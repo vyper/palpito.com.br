@@ -13,7 +13,9 @@ describe User do
 
   ## associations
   it { expect(subject).to belong_to(:team) }
+  it { expect(subject).to have_many(:members) }
   it { expect(subject).to have_many(:my_groups).class_name(Group).with_foreign_key(:admin_id) }
+  it { expect(subject).to have_many(:groups).through(:members) }
 
   ## methods
   it { expect(subject.to_s).to eq "vyper" }
