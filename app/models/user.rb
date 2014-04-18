@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   ## associations
   belongs_to :team
+  has_many :my_groups, class_name: Group, foreign_key: :admin_id
 
   ## methods
   def name
