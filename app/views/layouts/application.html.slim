@@ -7,9 +7,46 @@ html
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
   body
+    div[class="navbar navbar-default navbar-fixed-top" role="navigation"]
+      div.container
+        div.navbar-header
+          button.navbar-toggle[data-toggle="collapse" data-target=".navbar-collapse"]
+            span.sr-only
+              | Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+          = link_to "bolão :: mcorp.io", '#', class: "navbar-brand"
+        div[class="collapse navbar-collapse"]
+          - if false
+            ul[class="nav navbar-nav"]
+              li.dropdown
+                a[href="#" class="dropdown-toggle" data-toggle="dropdown"]
+                  | Dropdown
+                  b.caret
+                ul.dropdown-menu
+                  li
+                    = link_to 'a', "#"
+                    = link_to 'a', "#"
+                    = link_to 'a', "#"
+          ul[class="nav navbar-nav navbar-right"]
+            li
+              = link_to "Entrar", new_user_session_path
+            li
+              = link_to "Cadastrar", new_user_registration_path
+
     div.container
-      p.notice
-        = notice
-      p.alert
-        = alert
+      div.page-header
+        h1
+          = yield :title
+      - if notice.present?
+        p.notice
+          = notice
+      - if alert.present?
+        p.alert
+          = alert
       = yield
+
+//    div.footer
+//      div.container
+//        | bolão :: mcorp.ws
