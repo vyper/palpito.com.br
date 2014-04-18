@@ -11,6 +11,8 @@ describe Game do
   it { expect(subject).to validate_presence_of(:team_away) }
   it { expect(subject).to validate_presence_of(:team_home) }
   it { expect(subject).to validate_presence_of(:round) }
+  it { expect(subject).to ensure_length_of(:team_home_goals).is_at_least(0) }
+  it { expect(subject).to ensure_length_of(:team_away_goals).is_at_least(0) }
 
   ## methods
   context '#bettable?' do

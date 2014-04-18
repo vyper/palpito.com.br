@@ -9,6 +9,8 @@ class Game < ActiveRecord::Base
   validates :team_home, presence: true
   validates :team_away, presence: true
   validates :round,     presence: true
+  validates :team_home_goals, numericality: { greater_than: -1 }
+  validates :team_away_goals, numericality: { greater_than: -1 }
 
   ## methods
   def played?
