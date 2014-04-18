@@ -3,6 +3,11 @@ rvm:
   - 2.1.1
 addons:
   postgresql: "9.3"
+env:
+  - DB=postgresql
+script:
+  - bundle exec rake db:migrate RAILS_ENV=test
+  - bundle exec rake db:test:prepare
+  - bundle exec rspec
 before_script:
   - psql -c 'create database bolao_test;' -U postgres
-  - rake db:migrate RAILS_ENV=test
