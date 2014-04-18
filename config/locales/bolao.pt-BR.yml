@@ -1,0 +1,51 @@
+pt-BR:
+  activerecord:
+    models:
+      bet: Palpite
+      championship: Campeonato
+      game: Jogo
+      group: Grupo
+      member: Membro
+      round: Rodada
+      team: Time
+      user: Usuário
+    attributes:
+      bet:
+        game: Jogo
+        points: Pontos
+        team_home_goals: Gols mandante
+        team_away_goals: Gols visitante
+      championship:
+        name: Nome
+        started_at: Iniciado em
+        finished_at: Finalizado em
+      game:
+        played_at: Jogado em
+        team_home: Mandante
+        team_away: Visitante
+        team_home_goals: Gols mandante
+        team_away_goals: Gols visitante
+        round: Rodada
+      group:
+        name: Nome
+        admin: Administrador
+      member:
+        championship: Campeonato
+        group: Grupo
+        user: Usuário
+        status: Situação
+      round:
+        name: Nome
+        championship: Campeonato
+      team:
+        name: Nome
+        short_name: Sigla
+        image: Imagem
+      user:
+        first_name: Nome
+        last_name: Sobrenome
+        nickname: Apelido
+        password: Senha
+        password_confirmation: Confirmar senha
+        current_password: Senha atual
+        team: Time
