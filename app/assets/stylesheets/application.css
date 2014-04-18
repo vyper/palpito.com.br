@@ -14,3 +14,7 @@
  *= require_self
  *= require bootstrap
  */
+
+body > .container {
+  padding-top: 60px;
+}
