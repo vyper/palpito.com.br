@@ -4,4 +4,10 @@ FactoryGirl.define do
     short_name "SAO"
     image      File.new(File.join(Rails.root, 'spec', 'support', 'test.png'))
   end
+
+  factory :away, class: Team do
+    name       "Away"
+    short_name "AWA"
+    image      File.new(File.join(Rails.root, 'spec', 'support', 'test.png'))
+  end
 end
