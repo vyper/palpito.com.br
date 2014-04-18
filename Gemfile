@@ -13,8 +13,11 @@ gem 'uglifier', '>= 1.3.0'
 # Use CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails', '~> 4.0.0'
 
-# Templating
+# HTML
 gem 'slim-rails'
+gem 'simple_form'
+gem 'bootstrap-sass'
+gem 'font-awesome-rails'
 
 # Auth
 gem 'devise'
