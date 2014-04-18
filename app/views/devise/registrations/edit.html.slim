@@ -1,0 +1,26 @@
+h2
+  | Editar
+  = resource_name.to_s.humanize
+= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :nickname, required: true
+    = f.input :first_name, required: true
+    = f.input :last_name, required: true
+    = f.input :email, required: true, autofocus: true
+    - if devise_mapping.confirmable? && resource.pending_reconfirmation?
+      p
+        | Currently waiting confirmation for:
+        = resource.unconfirmed_email
+    = f.association :team, required: true
+    = f.input :password, autocomplete: "off", hint: "deixe em branco se não quer alterar sua senha", required: false
+    = f.input :password_confirmation, required: false
+    = f.input :current_password, hint: "você precisa confirmar sua senha atual para alterar dados", required: true
+  .form-actions
+    = f.button :submit, "Salvar alterações"
+h3
+  | Cancel my account
+p
+  | Unhappy?
+  = link_to "Cancelar a conta", registration_path(resource_name), data: { confirm: "Você está certo disto? );" }, method: :delete
+= link_to "Back", :back

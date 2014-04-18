@@ -1,0 +1,12 @@
+h2
+  | Altere sua senha
+= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put }) do |f|
+  = f.error_notification
+  = f.input :reset_password_token, as: :hidden
+  = f.full_error :reset_password_token
+  .form-inputs
+    = f.input :password, label: "Nova senha", required: true, autofocus: true
+    = f.input :password_confirmation, label: "Confirmação", required: true
+  .form-actions
+    = f.button :submit, "Alterar minha senha"
+= render "devise/shared/links"
