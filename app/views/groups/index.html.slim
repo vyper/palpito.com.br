@@ -1,0 +1,28 @@
+- content_for :title
+  | Grupos
+  = link_to "Adicionar grupo", new_group_path, class: "btn btn-primary pull-right"
+h2
+  | Meus grupos
+
+- if @my_groups.present?
+  table.table
+    thead
+      tr
+        th[class="col-md-11"]
+          | Nome
+        th[class="col-md-1"]
+          |
+    - for group in @my_groups do
+      tbody
+        tr
+          td
+            = group
+          td
+            = link_to "Editar", edit_group_path(group)
+            |&nbsp;
+            = link_to "Excluir", group, method: :delete, "data-confirm" => "Tem certeza que deseja excluir o grupo?\n\nVocê perderá todos os dados e usuários vinculados!"
+- else
+  p
+    | Você não criou nenhum grupo até agora. Acho que é uma ótima oportunidade, que tal&nbsp;
+    = link_to "criar seu grupo", new_group_path
+    | ? (:

@@ -34,4 +34,6 @@ Rails.application.routes.draw do
       delete '' => 'devise/registrations#destroy'
     end
   end
+
+  resources :groups, except: :show
 end
