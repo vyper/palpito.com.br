@@ -5,4 +5,11 @@ FactoryGirl.define do
     nickname   "vyper"
     team
   end
+
+  factory :other_user, class: User do
+    first_name "Leo"
+    last_name  "SOS"
+    nickname   "vpr"
+    team
+  end
 end
