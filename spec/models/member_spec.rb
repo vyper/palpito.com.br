@@ -2,12 +2,10 @@ require 'spec_helper'
 
 describe Member do
   ## associations
-  it { expect(subject).to belong_to(:championship) }
   it { expect(subject).to belong_to(:group) }
   it { expect(subject).to belong_to(:user) }
 
   ## validations
-  it { expect(subject).to validate_presence_of(:championship) }
   it { expect(subject).to validate_presence_of(:group) }
   it { expect(subject).to validate_presence_of(:user) }
   it { expect(subject).to validate_presence_of(:status) }
