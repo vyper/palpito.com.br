@@ -1,4 +1,10 @@
 - content_for :title
   = link_to "Grupos", groups_path
   |  > Adicionar
-= render "form"
+= simple_form_for(@my_group) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name, required: true
+    = f.association :championship, required: true
+  .form-actions
+    = f.button :submit, "Salvar"

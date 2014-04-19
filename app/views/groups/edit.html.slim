@@ -2,4 +2,10 @@
   = link_to "Grupos", groups_path
   |  >&nbsp;
   = @my_group
-= render "form"
+
+= simple_form_for(@my_group) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name, required: true
+  .form-actions
+    = f.button :submit, "Salvar"
