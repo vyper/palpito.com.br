@@ -26,3 +26,24 @@ h2
     | Você não criou nenhum grupo até agora. Acho que é uma ótima oportunidade, que tal&nbsp;
     = link_to "criar seu grupo", new_group_path
     | ? (:
+
+- if @members.present?
+  h2
+    | Grupos que participo
+  table.table
+    thead
+      tr
+        th[class="col-md-6"]
+          | Nome
+        th[class="col-md-5"]
+          | Campeonato
+        th[class="col-md-1"]
+          |
+    - for member in @members do
+      tbody
+        tr
+          td
+            = member.group
+          td
+            = member.championship
+          td
