@@ -11,6 +11,11 @@ class Member < ActiveRecord::Base
   ## attributes
   enum status: [ :active, :pending, :invited ]
 
+  ## delegates
+  delegate :nickname,  to: :user
+  delegate :full_name, to: :user
+  delegate :email,     to: :user
+
   ## scopes
   scope :active,  -> { where(status: Member::statuses[:active]) }
   scope :pending, -> { where(status: Member::statuses[:pending]) }
