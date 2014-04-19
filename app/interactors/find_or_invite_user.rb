@@ -2,7 +2,7 @@ class FindOrInviteUser
   include Interactor
 
   def setup
-    context[:member].present? and context[:member].valid?
+    context.fail! if context[:member].blank? or not context[:member].valid?
   end
 
   def perform
