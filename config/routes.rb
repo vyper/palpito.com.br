@@ -26,9 +26,9 @@ Rails.application.routes.draw do
       get   '/confirmacao/renviar' => 'devise/confirmations#new',    as: 'new_user_confirmation'
 
       # settings & cancellation
-      get '/cancelar'      => 'devise/registrations#cancel', as: 'cancel_user_registration'
-      get '/configuracoes' => 'devise/registrations#edit',   as: 'edit_user_registration'
-      put '/configuracoes' => 'devise/registrations#update'
+      get '/cancelar'   => 'devise/registrations#cancel', as: 'cancel_user_registration'
+      get '/meus-dados' => 'devise/registrations#edit',   as: 'edit_user_registration'
+      put '/meus-dados' => 'devise/registrations#update'
 
       # account deletion
       delete '' => 'devise/registrations#destroy'
