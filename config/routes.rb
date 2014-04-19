@@ -35,11 +35,15 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :groups, except: :show do
-    resources :members, only: [:index]
-    resource :member, only: [] do
-      get  :new
-      post :invite
+  resources :groups, path: '/grupos', except: :show do
+    resources :members, path: '/participantes', only: [:index] do
+    end
+
+    resource :member, path: '/participante', only: [] do
+      get    '/novo'     => 'members#new',    as: 'new'
+      post   '/convidar' => 'members#invite', as: 'invite'
+      put    '/aceitar'  => 'member#accept',  as: 'accept'
+      delete '/'         => 'member#destroy', as: 'destroy'
     end
   end
 

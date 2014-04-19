@@ -36,7 +36,7 @@ h2
       = link_to "criar seu grupo", new_group_path
       | ? (:
 
-- if @groups.present?
+- if @members.present?
   h2
     | Grupos que participo
   table.table
@@ -48,11 +48,14 @@ h2
           | Campeonato
         th[class="col-md-2"]
           |
-    - for group in @groups do
+    - for member in @members do
       tbody
         tr
           td
-            = group
+            = member.group
           td
-            = group.championship
+            = member.group.championship
           td
+            - if member.invited?
+              = link_to "Aceitar", accept_group_member_path(member.group), method: :put
+            = link_to "Sair", destroy_group_member_path(member.group), method: :delete, "data-confirm" => 'Tem certeza que deseja deixar de participar desse bolão?'

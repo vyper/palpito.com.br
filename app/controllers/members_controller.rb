@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :set_common
+  before_filter :set_my_group, only: [:index, :new, :invite]
 
   respond_to :html
 
@@ -27,7 +27,7 @@ class MembersController < ApplicationController
   end
 
 private
-  def set_common
+  def set_my_group
     @group = current_user.my_groups.find(params[:group_id])
   end
 
