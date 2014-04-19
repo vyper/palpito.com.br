@@ -18,4 +18,7 @@ describe InviteUserToGroup do
 
     it { expect(subject.member.invited?).to eq true }
   end
+
+  it 'send with user_invited is true'
+  it 'dont send with user_invited is false'
 end
