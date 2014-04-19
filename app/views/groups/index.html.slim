@@ -1,6 +1,8 @@
 - content_for :title
   | Grupos
-  = link_to "Adicionar grupo", new_group_path, class: "btn btn-primary pull-right"
+  = link_to new_group_path, class: "btn btn-primary pull-right" do
+    i[class="glyphicon glyphicon-plus"]
+    |  Adicionar grupo
 h2
   | Meus grupos
 
