@@ -8,9 +8,9 @@ class ApplicationController < ActionController::Base
 protected
   def configure_permitted_parameters
     # TODO improve this source
-    devise_parameter_sanitizer.for(:sign_up) << :nickname
-    devise_parameter_sanitizer.for(:sign_up) << :first_name
-    devise_parameter_sanitizer.for(:sign_up) << :last_name
-    devise_parameter_sanitizer.for(:sign_up) << :team_id
+    %i{ nickname first_name last_name team_id }.each do |field|
+      devise_parameter_sanitizer.for(:sign_up)        << field
+      devise_parameter_sanitizer.for(:account_update) << field
+    end
   end
 end
