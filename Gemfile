@@ -49,6 +49,7 @@ group :development, :test do
 
   # Use debugger
   gem 'pry-nav'
+  gem 'better_errors'
 
   # Tests
   gem 'rspec-rails', '~> 3.0.0.beta'
