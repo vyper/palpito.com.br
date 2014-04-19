@@ -18,7 +18,7 @@ class InviteUserToGroup
         context.fail!
       end
 
-      unless context[:user_invited]
+      if member.invited? and not context[:user_invited]
         MemberMailer.invite(member).deliver
       end
     end
