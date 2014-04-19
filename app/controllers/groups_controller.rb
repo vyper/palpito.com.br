@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
 
   def index
     @my_groups = current_user.my_groups
-    @groups    = current_user.groups
+    @groups    = current_user.groups - @my_groups
     respond_with @my_groups + @groups
   end
 
@@ -16,8 +16,13 @@ class GroupsController < ApplicationController
   end
 
   def create
-    @my_group = current_user.my_groups.new(group_params)
-    flash[:notice] = "Seu grupo #{@my_group} foi criado com sucesso" if @my_group.save
+    result = CreateGroup.perform(params: group_params, user: current_user)
+    @my_group = result.group
+
+    if result.success?
+      flash[:notice] = "Seu grupo #{@my_group} foi criado com sucesso"
+    end
+
     respond_with @my_group, location: groups_path
   end
 

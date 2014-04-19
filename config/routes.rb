@@ -36,6 +36,12 @@ Rails.application.routes.draw do
   end
 
   resources :groups, except: :show do
-    resources :members, except: :show
+    resources :members, only: [:index]
+    resource :member, only: [] do
+      get  :new
+      post :invite
+    end
   end
+
+  root to: 'groups#index'
 end

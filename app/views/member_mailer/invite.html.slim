@@ -1,0 +1,14 @@
+p
+  | Olá
+  = " #{@member.email}"
+  | !
+p
+  | Alguém o convidou para o grupo
+  strong
+    = " #{@member.group} "
+  | no&nbsp;
+  strong
+    = link_to "bolão :: mcorp.io", root_url
+  |, você pode gerenciar o convite ao grupo usando o endereço abaixo.
+p
+  = link_to 'Meus grupos', groups_url
