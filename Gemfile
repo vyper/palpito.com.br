@@ -30,6 +30,7 @@ gem 'paperclip'
 gem 'rails_admin'
 
 # Pattern
+gem "interactor"
 gem "interactor-rails"
 
 # i18n

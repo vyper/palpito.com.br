@@ -263,6 +263,7 @@ DEPENDENCIES
   devise_invitable
   factory_girl_rails
   font-awesome-rails
+  interactor
   interactor-rails
   jbuilder (~> 2.0)
   jquery-rails
