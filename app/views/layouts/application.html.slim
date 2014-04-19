@@ -32,7 +32,23 @@ html
           ul[class="nav navbar-nav navbar-right"]
             - if user_signed_in?
               li
-                = link_to "Sair", destroy_user_session_path, method: :delete
+                ul[class="nav navbar-nav"]
+                  li.dropdown
+                    a[href="#" class="dropdown-toggle" data-toggle="dropdown"]
+                      | Minha conta
+                      b.caret
+                    ul.dropdown-menu
+                      li.dropdown-header
+                        | Administração
+                      li
+                        = link_to 'Meus grupos', groups_path
+                      li.divider
+                      li.dropdown-header
+                        | Minha conta
+                      li
+                        = link_to "Meus dados", edit_user_registration_path
+                      li
+                        = link_to "Sair", destroy_user_session_path, method: :delete
             - else
               li
                 = link_to "Entrar", new_user_session_path
