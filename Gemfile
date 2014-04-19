@@ -21,6 +21,7 @@ gem 'font-awesome-rails'
 
 # Auth
 gem 'devise'
+gem 'devise_invitable'
 
 # Attachment
 gem 'paperclip'
