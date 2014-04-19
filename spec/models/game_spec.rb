@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Game do
+  fixtures :games
+
+  subject { games(:sao_x_par) }
+
   ## associations
   it { expect(subject).to belong_to(:team_away).class_name(Team) }
   it { expect(subject).to belong_to(:team_home).class_name(Team) }
@@ -19,12 +23,12 @@ describe Game do
   ## methods
   context '#bettable?' do
     it 'in the future' do
-      subject = build(:game, played_at: DateTime.now + 1)
+      subject.played_at = DateTime.now + 1
       expect(subject.bettable?).to eq true
     end
 
     it 'in the past' do
-      subject = build(:game, played_at: DateTime.now - 1)
+      subject.played_at = DateTime.now - 1
       expect(subject.bettable?).to eq false
     end
   end
@@ -32,65 +36,72 @@ describe Game do
   ## methods
   context '#played?' do
     it 'in the future' do
-      subject = build(:game, played_at: DateTime.now + 1)
+      subject.played_at = DateTime.now + 1
       expect(subject.played?).to eq false
     end
 
     it 'in the past' do
-      subject = build(:game, played_at: DateTime.now - 1)
+      subject.played_at = DateTime.now - 1
       expect(subject.played?).to eq true
     end
   end
 
   context '#goals?' do
     it 'with goals' do
-      expect(build(:game).goals?).to eq true
+      expect(subject.goals?).to eq true
     end
 
     it 'without goals' do
-      expect(build(:game, team_home_goals: nil).goals?).to eq false
+      subject.team_home_goals = nil
+      expect(subject.goals?).to eq false
     end
   end
 
   context '#team_home_winner?' do
     it 'with team home has more goals' do
-      expect(build(:game).team_home_winner?).to eq true
+      expect(subject.team_home_winner?).to eq true
     end
 
     it 'with team away has more goals' do
-      expect(build(:game, team_away_goals: 2).team_home_winner?).to eq false
+      subject.team_away_goals = 2
+      expect(subject.team_home_winner?).to eq false
     end
 
     it 'with team home and away have equal goals' do
-      expect(build(:game, team_away_goals: 1).team_home_winner?).to eq false
+      subject.team_away_goals = 1
+      expect(subject.team_home_winner?).to eq false
     end
   end
 
   context '#team_away_winner?' do
     it 'with team home has more goals' do
-      expect(build(:game).team_away_winner?).to eq false
+      expect(subject.team_away_winner?).to eq false
     end
 
     it 'with team away has more goals' do
-      expect(build(:game, team_away_goals: 2).team_away_winner?).to eq true
+      subject.team_away_goals = 2
+      expect(subject.team_away_winner?).to eq true
     end
 
     it 'with team home and away have equal goals' do
-      expect(build(:game, team_away_goals: 1).team_away_winner?).to eq false
+      subject.team_away_goals = 1
+      expect(subject.team_away_winner?).to eq false
     end
   end
 
   context '#tied?' do
     it 'with team home has more goals' do
-      expect(build(:game).tied?).to eq false
+      expect(subject.tied?).to eq false
     end
 
     it 'with team away has more goals' do
-      expect(build(:game, team_away_goals: 2).tied?).to eq false
+      subject.team_away_goals = 2
+      expect(subject.tied?).to eq false
     end
 
     it 'with team home and away have equal goals' do
-      expect(build(:game, team_away_goals: 1).tied?).to eq true
+      subject.team_away_goals = 1
+      expect(subject.tied?).to eq true
     end
   end
 end
