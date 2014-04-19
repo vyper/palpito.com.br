@@ -9,8 +9,29 @@ class MembersController < ApplicationController
     respond_with @members
   end
 
+  def new
+    @member = MemberForm.new(group: @group)
+    respond_with @member
+  end
+
+  def invite
+    @member = MemberForm.new(member_params)
+    result  = InviteMember.perform(member: @member)
+
+    if result.success?
+      @member = result.member
+      flash[:notice] = "Você convidou #{@member.email} com sucesso"
+    end
+
+    respond_with @member, location: group_members_path(@group)
+  end
+
 private
   def set_common
     @group = current_user.my_groups.find(params[:group_id])
+  end
+
+  def member_params
+    params.require(:member_form).permit(:email).merge(group: @group)
   end
 end

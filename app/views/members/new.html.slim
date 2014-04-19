@@ -1,0 +1,14 @@
+- content_for :title
+  = link_to "Grupos", groups_path
+  |  >&nbsp;
+  = @group
+  |  >&nbsp;
+  = link_to "Participantes", group_members_path(@group)
+
+= simple_form_for([@group, @member], url: invite_group_member_path(@group, @member)) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :group, readonly: true
+    = f.input :email, required: true
+  .form-actions
+    = f.button :submit, "Convidar participante"
