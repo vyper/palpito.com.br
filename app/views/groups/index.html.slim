@@ -44,8 +44,10 @@ h2
       tr
         th[class="col-md-5"]
           | Nome
-        th[class="col-md-5"]
+        th[class="col-md-3"]
           | Campeonato
+        th[class="col-md-2"]
+          | Administrador
         th[class="col-md-2"]
           |
     - for member in @members do
@@ -56,6 +58,9 @@ h2
           td
             = member.group.championship
           td
+            = member.group.admin
+          td
             - if member.invited?
               = link_to "Aceitar", accept_group_member_path(member.group), method: :put
+            | &nbsp;
             = link_to "Sair", destroy_group_member_path(member.group), method: :delete, "data-confirm" => 'Tem certeza que deseja deixar de participar desse bolão?'
