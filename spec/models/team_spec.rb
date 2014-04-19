@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Team do
+  fixtures :teams
+
+  subject { teams(:sao) }
+
   ## validations
   it { expect(subject).to validate_presence_of(:name) }
   it { expect(subject).to validate_uniqueness_of(:name) }
