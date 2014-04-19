@@ -8,11 +8,11 @@ h2
   table.table
     thead
       tr
-        th[class="col-md-6"]
+        th[class="col-md-5"]
           | Nome
         th[class="col-md-5"]
           | Campeonato
-        th[class="col-md-1"]
+        th[class="col-md-2"]
           |
     - for group in @my_groups do
       tbody
@@ -22,14 +22,17 @@ h2
           td
             = group.championship
           td
+            = link_to "Participantes", group_members_path(group)
+            |&nbsp;
             = link_to "Editar", edit_group_path(group)
             |&nbsp;
             = link_to "Excluir", group, method: :delete, "data-confirm" => "Tem certeza que deseja excluir o grupo?\n\nVocê perderá todos os dados e usuários vinculados!"
 - else
-  p
-    | Você não criou nenhum grupo até agora. Acho que é uma ótima oportunidade, que tal&nbsp;
-    = link_to "criar seu grupo", new_group_path
-    | ? (:
+  div[class="alert alert-warning"]
+    p
+      | Você não criou nenhum grupo até agora. Acho que é uma ótima oportunidade, que tal&nbsp;
+      = link_to "criar seu grupo", new_group_path
+      | ? (:
 
 - if @groups.present?
   h2
@@ -37,11 +40,11 @@ h2
   table.table
     thead
       tr
-        th[class="col-md-6"]
+        th[class="col-md-5"]
           | Nome
         th[class="col-md-5"]
           | Campeonato
-        th[class="col-md-1"]
+        th[class="col-md-2"]
           |
     - for group in @groups do
       tbody

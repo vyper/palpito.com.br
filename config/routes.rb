@@ -35,5 +35,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :groups, except: :show
+  resources :groups, except: :show do
+    resources :members, except: :show
+  end
 end

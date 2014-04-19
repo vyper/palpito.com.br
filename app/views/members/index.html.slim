@@ -1,0 +1,37 @@
+- content_for :title
+  = link_to "Grupos", groups_path
+  |  >&nbsp;
+  = @group
+  |  > Participantes
+  = link_to "Convidar novo membro", new_group_member_path(@group), class: "btn btn-primary pull-right"
+
+- if @members.present?
+  table.table
+    thead
+      tr
+        th.col-md-2
+          | Apelido
+        th.col-md-4
+          | Nome
+        th.col-md-3
+          | E-mail
+        th.col-md-2
+          |
+    - for member in @members do
+      tbody
+        tr
+          td
+            = member.nickname
+          td
+            = member.full_name
+          td
+            = member.email
+          td
+- else
+  div[class="alert alert-warning"]
+    p
+      | O que?! Você não tem nenhum participante no seu grupo?
+    p
+      | Está mais que na hora de&nbsp;
+      = link_to "convidar alguém", new_group_member_path(@group)
+      |  para participar!
