@@ -8,7 +8,7 @@ describe Group do
   ## associations
   it { expect(subject).to belong_to(:admin).class_name(User) }
   it { expect(subject).to belong_to(:championship) }
-  it { expect(subject).to have_many(:members) }
+  it { expect(subject).to have_many(:members).dependent(:destroy) }
   it { expect(subject).to have_many(:users).through(:members) }
 
   ## validations
