@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Group do
+  fixtures :groups, :users
+
+  subject { groups(:vyper) }
+
   ## associations
   it { expect(subject).to belong_to(:admin).class_name(User) }
   it { expect(subject).to belong_to(:championship) }
@@ -16,16 +20,11 @@ describe Group do
 
   context '#admin?' do
     it 'same user' do
-      subject = build_stubbed(:group)
-
-      expect(subject.admin?(subject.admin)).to eq true
+      expect(subject.admin?(users(:vyper))).to eq true
     end
 
     it 'other user' do
-      subject = build_stubbed(:group)
-      user    = User.new attributes_for(:other_user)
-
-      expect(subject.admin?(user)).to eq false
+      expect(subject.admin?(users(:vpr))).to eq false
     end
   end
 end

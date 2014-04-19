@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Round do
+  fixtures :rounds
+
+  subject { rounds(:first) }
+
   ## associations
   it { expect(subject).to belong_to(:championship) }
 

@@ -1,11 +1,13 @@
 require 'spec_helper'
 
 describe User do
-  subject { build(:user) }
+  fixtures :users
+
+  subject { users(:vyper) }
 
   ## validations
   it { expect(subject).to validate_presence_of(:nickname) }
-  it 'validate_uniqueness_of(:nickname)'
+  it { expect(subject).to validate_uniqueness_of(:nickname) }
   it { expect(subject).to ensure_length_of(:nickname).is_at_least(2).is_at_most(15) }
   it { expect(subject).to validate_presence_of(:first_name) }
   it { expect(subject).to validate_presence_of(:last_name) }
