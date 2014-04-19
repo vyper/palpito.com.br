@@ -2,6 +2,7 @@ class Group < ActiveRecord::Base
   ## associations
   belongs_to :admin, class_name: User
   belongs_to :championship
+  has_many   :members
 
   ## validations
   validates :name,         presence: true, uniqueness: { scope: :championship }

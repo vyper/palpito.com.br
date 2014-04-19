@@ -4,6 +4,7 @@ describe Group do
   ## associations
   it { expect(subject).to belong_to(:admin).class_name(User) }
   it { expect(subject).to belong_to(:championship) }
+  it { expect(subject).to have_many(:members) }
 
   ## validations
   it { expect(subject).to validate_presence_of(:name) }
