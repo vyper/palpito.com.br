@@ -6,8 +6,9 @@ class FindOrInviteUser
   end
 
   def perform
-    email = context[:member].email
-    user = User.where(email: email).first
+    member = context[:member]
+    email  = member.email
+    user   = User.where(email: email).first
     context[:user_invited] = false
 
     if user.blank?
@@ -16,6 +17,7 @@ class FindOrInviteUser
       user = User.where(email: email).first
     end
 
-    context[:user] = user
+    context[:group] = member.group
+    context[:user]  = user
   end
 end
