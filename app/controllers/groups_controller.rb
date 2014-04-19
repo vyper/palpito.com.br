@@ -6,7 +6,7 @@ class GroupsController < ApplicationController
 
   def index
     @my_groups = current_user.my_groups
-    @groups    = current_user.groups
+    @groups    = current_user.groups - @my_groups
     respond_with @my_groups + @groups
   end
 
