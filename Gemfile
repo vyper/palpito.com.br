@@ -29,6 +29,9 @@ gem 'paperclip'
 # CRUD Admin
 gem 'rails_admin'
 
+# Pattern
+gem "interactor-rails"
+
 # i18n
 gem 'rails-i18n'
 
