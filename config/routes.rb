@@ -36,7 +36,7 @@ Rails.application.routes.draw do
   end
 
   resources :groups, path: '/grupos', except: [:show] do
-    resources :members, path: '/participantes', only: [:index]
+    resources :members, path: '/participantes', only: [:index, :destroy]
 
     resource :member, path: '/participante', only: [] do
       get    '/novo'     => 'members#new',    as: 'new'

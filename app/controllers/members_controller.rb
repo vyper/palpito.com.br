@@ -26,6 +26,13 @@ class MembersController < ApplicationController
     respond_with @member, location: group_members_path(@group)
   end
 
+  def destroy
+    @member = @groups.members.find(params[:id])
+    flash[:notice] = "Você removeu o #{@member} com sucesso" if @member.destroy
+
+    respond_with @member, location: group_members_path(@group)
+  end
+
 private
   def set_my_group
     @group = current_user.my_groups.find(params[:group_id])
