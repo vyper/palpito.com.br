@@ -6,8 +6,8 @@ class GroupsController < ApplicationController
 
   def index
     @my_groups = current_user.my_groups
-    @groups    = current_user.groups - @my_groups
-    respond_with @my_groups + @groups
+    @members   = current_user.members.where.not(group: @my_groups.map(&:id))
+    respond_with @my_groups
   end
 
   def new
