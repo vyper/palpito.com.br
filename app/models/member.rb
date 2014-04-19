@@ -4,7 +4,7 @@ class Member < ActiveRecord::Base
   belongs_to :user
 
   ## validations
-  validates :group,        presence: true
+  validates :group,        presence: true, uniqueness: { scope: :user }
   validates :user,         presence: true
   validates :status,       presence: true
 
