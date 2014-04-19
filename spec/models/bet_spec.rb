@@ -1,6 +1,10 @@
 require 'spec_helper'
 
 describe Bet do
+  fixtures :bets, :teams
+
+  subject { bets(:sao_w_x_par) }
+
   ## associations
   it { expect(subject).to belong_to(:user) }
   it { expect(subject).to belong_to(:game) }
@@ -14,15 +18,9 @@ describe Bet do
   it { expect(subject).to ensure_length_of(:team_away_goals).is_at_least(0) }
 
   ## methods
-  it '#to_s' do
-    subject = build_stubbed(:bet)
-
-    expect(subject.to_s).to eq "#{subject.game.team_home.short_name} vs #{subject.game.team_away.short_name}"
-  end
+  it { expect(subject.to_s).to eq("#{subject.game.team_home.short_name} vs #{subject.game.team_away.short_name}") }
 
   context '#goals?' do
-    subject { Bet.new attributes_for(:bet) }
-
     it 'with goals' do
       expect(subject.goals?).to eq true
     end
