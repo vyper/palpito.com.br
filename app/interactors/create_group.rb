@@ -1,5 +1,5 @@
 class CreateGroup
   include Interactor::Organizer
 
-  organize AddGroup, AddMyMemberOnOwnGroup
+  organize AddGroup, InviteUserToGroup
 end
