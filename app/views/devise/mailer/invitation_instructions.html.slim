@@ -1,0 +1,14 @@
+p
+  | Olá
+  = " #{@resource.email}"
+  | !
+p
+  | Alguém o convidou para&nbsp;
+  = root_url "bolão :: mcorp.io"
+  | , você pode aceitar usando o endereço abaixo.
+p
+  = link_to 'Aceitar o convite', accept_invitation_url(@resource, invitation_token: @token)
+p
+  | Se você não quer aceitar o convite, somente ignore este e-mail.
+  br
+  |  Sua conta não será criada até você acessar o endereço e criar a sua senha.
