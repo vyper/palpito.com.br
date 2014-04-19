@@ -33,11 +33,12 @@
           td
             = member.status
           td
+            = link_to "Excluir", group_member_path(@group, member), method: :delete, "data-confirm" => "Tem certeza que deseja excluir o participante?"
 - else
   div[class="alert alert-warning"]
     p
       | O que?! Você não tem nenhum participante no seu grupo?
     p
       | Está mais que na hora de&nbsp;
-      = link_to "convidar alguém", group_member_path(@group)
+      = link_to "convidar alguém", new_group_member_path(@group)
       |  para participar!

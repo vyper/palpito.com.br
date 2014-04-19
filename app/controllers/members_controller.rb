@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :set_my_group, only: [:index, :new, :invite]
+  before_filter :set_my_group
 
   respond_to :html
 
@@ -27,8 +27,8 @@ class MembersController < ApplicationController
   end
 
   def destroy
-    @member = @groups.members.find(params[:id])
-    flash[:notice] = "Você removeu o #{@member} com sucesso" if @member.destroy
+    @member = @group.members.find(params[:id])
+    flash[:notice] = "Você removeu o #{@member.email} com sucesso" if @member.destroy
 
     respond_with @member, location: group_members_path(@group)
   end
