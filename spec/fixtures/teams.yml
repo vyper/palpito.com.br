@@ -2,3 +2,8 @@ sao:
   name: São Paulo
   short_name: SAO
   image_file_name: <%= File.join(Rails.root, 'spec', 'support', 'test.png') %>
+
+par:
+  name: Paraná
+  short_name: PAR
+  image_file_name: <%= File.join(Rails.root, 'spec', 'support', 'test.png') %>
