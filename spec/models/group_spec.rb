@@ -3,10 +3,11 @@ require 'spec_helper'
 describe Group do
   ## associations
   it { expect(subject).to belong_to(:admin).class_name(User) }
+  it { expect(subject).to belong_to(:championship) }
 
   ## validations
   it { expect(subject).to validate_presence_of(:name) }
-  it { expect(subject).to validate_uniqueness_of(:name) }
+  it { expect(subject).to validate_uniqueness_of(:name).scoped_to(:championship_id) }
   it { expect(subject).to validate_presence_of(:admin) }
 
   ## methods
