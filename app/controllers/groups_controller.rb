@@ -6,8 +6,8 @@ class GroupsController < ApplicationController
 
   def index
     @my_groups = current_user.my_groups
-    @members   = current_user.members
-    respond_with @my_groups
+    @groups    = current_user.groups
+    respond_with @my_groups + @groups
   end
 
   def new
@@ -42,6 +42,6 @@ private
   end
 
   def group_params
-    params.require(:group).permit(:name)
+    params.require(:group).permit(:name, :championship_id)
   end
 end
