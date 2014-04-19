@@ -13,6 +13,9 @@ class Game < ActiveRecord::Base
   # validates :team_home_goals, numericality: { greater_than: -1 }
   # validates :team_away_goals, numericality: { greater_than: -1 }
 
+  ## delegates
+  delegate :championship, to: :round
+
   ## methods
   def played?
     DateTime.now > played_at

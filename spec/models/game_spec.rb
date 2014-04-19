@@ -20,6 +20,9 @@ describe Game do
 #  it { expect(subject).to ensure_length_of(:team_home_goals).is_at_least(0) }
 #  it { expect(subject).to ensure_length_of(:team_away_goals).is_at_least(0) }
 
+  ## delegates
+  it { expect(subject.championship).to eq subject.round.championship }
+
   ## methods
   context '#bettable?' do
     it 'in the future' do
