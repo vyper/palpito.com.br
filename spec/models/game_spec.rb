@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Game do
-  fixtures :games
+  fixtures :games, :rounds, :championships
 
   subject { games(:sao_x_par) }
 
