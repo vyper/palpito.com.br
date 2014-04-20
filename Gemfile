@@ -36,6 +36,9 @@ gem "interactor-rails"
 # Queue
 gem 'sidekiq'
 
+# Schedule
+gem 'whenever'
+
 # i18n
 gem 'rails-i18n'
 
