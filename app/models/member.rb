@@ -15,6 +15,7 @@ class Member < ActiveRecord::Base
   delegate :nickname,  to: :user
   delegate :full_name, to: :user
   delegate :email,     to: :user
+  delegate :to_s,      to: :user
 
   ## scopes
   scope :active,  -> { where(status: Member::statuses[:active]) }

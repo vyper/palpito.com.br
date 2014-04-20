@@ -24,6 +24,7 @@ describe Member do
     expect(subject.email).to eq user.email
     expect(subject.nickname).to eq user.nickname
     expect(subject.full_name).to eq user.full_name
+    expect(subject.to_s).to eq user.to_s
   end
 
   ## scopes
