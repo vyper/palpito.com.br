@@ -10,6 +10,8 @@ class Bet < ActiveRecord::Base
   validates :team_away_goals, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
   ## delegates
+  delegate :round,     to: :game
+  delegate :played_at, to: :game
   delegate :team_home, to: :game
   delegate :team_away, to: :game
 
