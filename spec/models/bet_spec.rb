@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Bet do
-  fixtures :bets, :teams
+  fixtures :bets, :games, :teams
 
   subject { bets(:sao_w_x_par) }
 
