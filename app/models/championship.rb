@@ -4,6 +4,9 @@ class Championship < ActiveRecord::Base
   validates :started_at,  presence: true
   validates :finished_at, presence: true
 
+  ## associations
+  has_many :groups
+
   ## methods
   def finished?
     finished_at <= DateTime.now

@@ -15,10 +15,14 @@ describe Game do
   it { expect(subject).to validate_presence_of(:team_away) }
   it { expect(subject).to validate_presence_of(:team_home) }
   it { expect(subject).to validate_presence_of(:round) }
-  it 'ensure_length_of(:team_home_goals).is_at_least(0)'
-  it 'ensure_length_of(:team_away_goals).is_at_least(0)'
-#  it { expect(subject).to ensure_length_of(:team_home_goals).is_at_least(0) }
-#  it { expect(subject).to ensure_length_of(:team_away_goals).is_at_least(0) }
+  it { expect(subject).to validate_numericality_of(:team_home_goals).is_greater_than_or_equal_to(0).allow_nil }
+  it { expect(subject).to validate_numericality_of(:team_away_goals).is_greater_than_or_equal_to(0).allow_nil }
+
+  ## scopes
+  it { expect(Game.not_played.to_sql).to include '"games"."played_at" <' }
+
+  ## delegates
+  it { expect(subject.championship).to eq subject.round.championship }
 
   ## methods
   context '#bettable?' do

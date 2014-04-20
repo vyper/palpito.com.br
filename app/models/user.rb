@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
 
   ## associations
   belongs_to :team
+  has_many :bets
   has_many :members
   has_many :my_groups, class_name: Group, foreign_key: :admin_id
   has_many :groups, through: :members
