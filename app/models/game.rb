@@ -9,12 +9,14 @@ class Game < ActiveRecord::Base
   validates :team_home, presence: true
   validates :team_away, presence: true
   validates :round,     presence: true
-  # TODO: enable this validates after fix in rails_admin
-  # validates :team_home_goals, numericality: { greater_than: -1 }
-  # validates :team_away_goals, numericality: { greater_than: -1 }
+  validates :team_home_goals, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+  validates :team_away_goals, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
 
   ## delegates
   delegate :championship, to: :round
+
+  ## scopes
+  scope :not_played, -> { where('"games"."played_at" < ?', DateTime.now) }
 
   ## methods
   def played?
