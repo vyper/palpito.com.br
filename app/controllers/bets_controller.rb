@@ -20,7 +20,7 @@ class BetsController < ApplicationController
 
 private
   def week
-    @week = Week.new(group.championship, params[:week])
+    @week = WeekNavigation.new(group.championship, params[:week])
   end
 
   def group

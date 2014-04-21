@@ -1,16 +1,16 @@
 require 'spec_helper'
 
-describe Week do
+describe WeekNavigation do
   fixtures :championships
 
   let(:championship) { championships(:worldcup) }
-  let(:week)         { Week.new(championship) }
-  let(:week_w_n)     { Week.new(championship, 25) }
+  let(:week)         { WeekNavigation.new(championship) }
+  let(:week_w_n)     { WeekNavigation.new(championship, 25) }
 
   context '#number' do
-    it('max limit')           { expect(Week.new(championship, 66).number).to eq 28 }
-    it('min limit')           { expect(Week.new(championship, -3).number).to eq 24 }
-    it('empty')               { expect(Week.new(championship).number).    to eq 24 }
+    it('max limit')           { expect(WeekNavigation.new(championship, 66).number).to eq 28 }
+    it('min limit')           { expect(WeekNavigation.new(championship, -3).number).to eq 24 }
+    it('empty')               { expect(WeekNavigation.new(championship).number).    to eq 24 }
   end
 
   it('#min_number_limit') { expect(week.min_number_limit).to eq 24 }

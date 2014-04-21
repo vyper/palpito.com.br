@@ -1,4 +1,4 @@
-class Week
+class WeekNavigation
   attr_accessor :championship, :today, :number
 
   def initialize(championship, number = nil)
