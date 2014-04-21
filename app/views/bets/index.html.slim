@@ -1,14 +1,39 @@
 - content_for :title
   | Meus palpites
+  ul[class="nav navbar-nav pull-right"]
+    li.dropdown
+      a[href="#" class="dropdown-toggle" data-toggle="dropdown"]
+        = @group.championship
+        small
+          = " #{@group}"
+        b.caret
+      ul.dropdown-menu
+        li
+          - for group in @groups
+            = link_to group, bets_path(group_id: group)
 
 div[class="col-xs-12 col-sm-9"]
   ul.pager
-    li.previous
-      = link_to '←', '#'
+    - if @week.previous?
+      li.previous
+        = link_to '←', bets_path(week: @week.previous)
+    - else
+      li[class='previous disabled']
+        a
+          | ←
     li
-      | Semana XX: dd/mm a dd/mm
-    li.next
-      = link_to '→', '#'
+      | Semana
+      = " #{@week.number}:"
+      = " #{@week.start.strftime("%d/%m")} "
+      | a
+      = " #{@week.finish.strftime("%d/%m")} "
+    - if @week.next?
+      li.next
+        = link_to '→', bets_path(week: @week.next)
+    - else
+      li[class="next disabled"]
+        a
+          | →
 
   ul.list-group
     - for bet in @bets
@@ -48,19 +73,9 @@ div[class="col-xs-12 col-sm-3" role="navigation"]
     | Participantes
 
   div.list-group
-    a[href='#' class="list-group-item list-group-item-success"]
-      | vyper
-      span.badge
-        | 1
-    a[href='#' class="list-group-item"]
-      | ferpa
-      span.badge
-        | 2
-    a[href='#' class="list-group-item"]
-      | Jô
-      span.badge
-        | 3
-    a[href='#' class="list-group-item"]
-      | Kiko
-      span.badge
-        | 4
+    - for member in @members
+      a[href='#' class="list-group-item"]
+        // list-group-item-success
+        = member
+        span.badge
+          | 0
