@@ -14,6 +14,4 @@ describe Round do
 
   ## methods
   it { expect(subject.to_s).to eq subject.name }
-  it '#previous'
-  it '#next'
 end
