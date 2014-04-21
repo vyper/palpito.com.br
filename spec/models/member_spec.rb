@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Member do
-  fixtures :members, :users
+  fixtures :members, :users, :groups
   subject { members(:vyper) }
 
   ## associations

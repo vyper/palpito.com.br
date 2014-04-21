@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe InviteUserToGroup do
-  fixtures :users, :groups
+  fixtures :users, :members, :groups
 
   subject      { InviteUserToGroup.perform(user: user, group: group) }
   let(:user)   { users(:vyper) }
