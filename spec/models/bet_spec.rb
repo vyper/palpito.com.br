@@ -12,8 +12,10 @@ describe Bet do
   ## validations
   it { expect(subject).to validate_presence_of(:user) }
   it { expect(subject).to validate_presence_of(:game) }
-  it { expect(subject).to validate_numericality_of(:team_home_goals).is_greater_than_or_equal_to(0).allow_nil }
-  it { expect(subject).to validate_numericality_of(:team_away_goals).is_greater_than_or_equal_to(0).allow_nil }
+  it { expect(subject).to validate_presence_of(:team_home_goals) }
+  it { expect(subject).to validate_presence_of(:team_away_goals) }
+  it { expect(subject).to validate_numericality_of(:team_home_goals).is_greater_than_or_equal_to(0) }
+  it { expect(subject).to validate_numericality_of(:team_away_goals).is_greater_than_or_equal_to(0) }
 
   ## delegates
   it { expect(subject.round).to eq subject.game.round }
