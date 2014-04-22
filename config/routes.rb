@@ -48,5 +48,8 @@ Rails.application.routes.draw do
 
   resources :bets, only: [:index, :edit, :update]
 
+  get '/sobre'       => 'pages#about', as: 'about'
+  get '/regulamento' => 'pages#rule',  as: 'rule'
+
   root to: 'bets#index'
 end
