@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bets, only: :index
+  resources :bets, only: [:index, :edit, :update]
 
   root to: 'bets#index'
 end

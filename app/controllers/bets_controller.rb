@@ -1,7 +1,7 @@
 class BetsController < ApplicationController
   before_filter :authenticate_user!
 
-  respond_to :html
+  respond_to :html, :js
 
   def index
     @groups  = current_user.groups.order(:name)
@@ -16,6 +16,20 @@ class BetsController < ApplicationController
               order('"games"."played_at" ASC')
 
     respond_with @bets
+  end
+
+  def edit
+    @bet = current_user.bets.find(params[:id])
+
+    respond_with(@bet) do |format|
+      format.html { render layout: nil }
+    end
+  end
+
+  def update
+    @bet = current_user.bets.find(params[:id])
+    @bet.update(bet_params)
+    respond_with @bet
   end
 
 private
@@ -34,5 +48,9 @@ private
     end
 
     @group
+  end
+
+  def bet_params
+    params.require(:bet).permit(:team_home_goals, :team_away_goals)
   end
 end
