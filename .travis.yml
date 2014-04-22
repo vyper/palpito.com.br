@@ -1,12 +1,15 @@
 language: ruby
 rvm:
-  - 2.1.1
+- 2.1.1
 addons:
-  postgresql: "9.3"
+  postgresql: '9.3'
 env:
+  matrix:
   - DB=postgresql
+  global:
+    secure: VlylYwSKLVvgd1Bz0IWkXvB3woPzTAyuA4K8Y8uudDBUixLABXueTj+j8U2HY+HTr2uAR06Px9sEyvDZXQ6vJQanHqxK7PPhiZFV6NDLQLfS1u1f0ws+V+BcRy7F59tvqAvB4cOC0F4QYny/7qywtWsQMmZovpmHuQ53kT2+PK4=
 script:
-  - bundle exec rake db:migrate RAILS_ENV=test
-  - bundle exec rspec
+- bundle exec rake db:migrate RAILS_ENV=test
+- bundle exec rspec
 before_script:
-  - psql -c 'create database bolao_test;' -U postgres
+- psql -c 'create database bolao_test;' -U postgres
