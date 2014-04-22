@@ -1,24 +1,29 @@
 class MemberController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :set_group
+  before_filter :set_common
 
   respond_to :html
 
   def accept
-    @member = current_user.members.where(group_id: @group.id).first
-    flash[:notice] = "Você aceitou o convite para o #{@group}! Boa sorte!" if @member.active!
+    if @member.active!
+      flash[:notice] = "Você aceitou o convite para o #{@group}! Boa sorte!"
+    end
+
     respond_with @member, location: groups_path
   end
 
   def destroy
-    @member = current_user.members.where(group_id: @group.id).first
-    flash[:notice] = "Você saiu do #{@group}! );" if @member.destroy
+    if @member.destroy
+      flash[:notice] = "Você saiu do #{@group}! );"
+    end
+
     respond_with @member, location: groups_path
   end
 
 private
-  def set_group
-    @group = current_user.groups.find(params[:group_id])
+  def set_common
+    @group  = current_user.groups.find(params[:group_id])
+    @member = current_user.members.where(group_id: @group.id).first
   end
 
   def member_params
