@@ -66,4 +66,5 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'shoulda'
   gem 'coveralls', require: false
+  gem "codeclimate-test-reporter", require: false
 end
