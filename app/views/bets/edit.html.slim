@@ -1,0 +1,28 @@
+= form_for(@bet, remote: true) do |f|
+  div.modal-header
+    button[type="button" class="close" data-dismiss="modal" aria-hidden="true"]
+      | ×
+    h4[class="modal-title" id="myModalLabel"]
+      = "Editando #{@bet}"
+  div.modal-body
+    div.row
+      div.col-md-2
+      div.col-md-1
+        = @bet.team_home.short_name
+      div.col-md-1
+        = image_tag @bet.team_home.image, class: "img-responsive"
+      = f.text_field :team_home_goals, class: "col-md-1"
+      div.col-md-1
+        | vs
+      = f.text_field :team_away_goals, class: "col-md-1"
+      div.col-md-1
+        = image_tag @bet.team_away.image, class: "img-responsive"
+      div.col-md-1
+        = @bet.team_away.short_name
+      div.col-md-2
+
+  div.modal-footer
+    button[type="button" class="btn btn-default" data-dismiss="modal"]
+      | Cancelar
+    button[type="submit" class="btn btn-primary"]
+      | Salvar palpite

@@ -10,12 +10,4 @@ class Round < ActiveRecord::Base
   def to_s
     name
   end
-
-  def previous
-    raise "Not implemented"
-  end
-
-  def next
-    raise "Not implemented"
-  end
 end

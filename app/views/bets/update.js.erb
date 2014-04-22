@@ -1,0 +1,13 @@
+<% if @bet.errors.any? -%>
+  var error = "<%= pluralize(@bet.errors.count, "erro") %> ocorreram os erros abaixo:\n";
+
+  <% @bet.errors.full_messages.each do |msg| %>
+    error += "- <%= msg %>\n";
+  <% end %>
+
+  alert(error);
+<% else %>
+  jQuery("#bet_<%= @bet.id %>_team_home_goals").text("<%= @bet.team_home_goals %>");
+  jQuery("#bet_<%= @bet.id %>_team_away_goals").text("<%= @bet.team_away_goals %>");
+  jQuery('#bet_modal').modal('toggle');
+<% end %>
