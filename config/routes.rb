@@ -48,6 +48,8 @@ Rails.application.routes.draw do
 
   resources :bets, only: [:index, :edit, :update]
 
+  resources :games, except: :show
+
   get '/sobre'       => 'pages#about', as: 'about'
   get '/regulamento' => 'pages#rule',  as: 'rule'
 
