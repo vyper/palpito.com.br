@@ -1,0 +1,46 @@
+- content_for :title
+  | Jogos
+  = link_to new_game_path, class: "btn btn-primary pull-right" do
+    i[class="glyphicon glyphicon-plus"]
+    |  Adicionar jogo
+
+table[class="table table-hover"]
+  thead
+    tr
+      th.col-md-1
+        | Data
+      th[class="col-md-1 text-center"]
+        | Rodada
+      th[class="col-md-3 text-right"]
+        | Mandante
+      th[class="col-md-1 text-center"]
+        | Gols
+      th.col-md-1
+        |
+      th[class="col-md-1 text-center"]
+        | Gols
+      th.col-md-3
+        | Visitante
+      th.col-md-1
+        |
+  - for game in @games do
+    tbody
+      tr
+        td
+          = game.played_at.strftime("%d/%m %H:%M")
+        td.text-center
+          = game.round
+        td.text-right
+          = game.team_home
+        td.text-center
+          = game.team_home_goals
+        td.text-center
+          | x
+        td.text-center
+          = game.team_away_goals
+        td
+          = game.team_away
+        td
+          = link_to "Editar", edit_game_path(game)
+          |&nbsp;
+          = link_to "Excluir", game, method: :delete, "data-confirm" => "Tem certeza que deseja excluir o jogo?"
