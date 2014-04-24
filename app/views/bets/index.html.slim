@@ -21,7 +21,7 @@ div[class="col-xs-12 col-sm-9"]
       li[class='previous disabled']
         a
           | ←
-    li
+    li.week
       | Semana
       = " #{@week.number}:"
       = " #{@week.start.strftime("%d/%m")} "
@@ -35,10 +35,10 @@ div[class="col-xs-12 col-sm-9"]
         a
           | →
 
-  ul.list-group
+  div.list-group
     - for bet in @bets
-      = link_to edit_bet_path(bet), class: "list-group-item row", data: { target: '#bet_modal', toggle: 'modal' } do
-        div[class="col-md-1 col-xs-1"]
+      = link_to edit_bet_path(bet), class: "list-group-item row bet", data: { target: '#bet_modal', toggle: 'modal' } do
+        div[class="col-md-1 col-xs-1 bet-col"]
           div[class="text-center bg-success"]
             strong
               = I18n.t("date.abbr_day_names")[bet.played_at.strftime("%w").to_i]
@@ -47,24 +47,23 @@ div[class="col-xs-12 col-sm-9"]
           div.text-center
             small.text-muted
               = bet.played_at.strftime("%d/%m")
-        div[class="col-md-1 col-xs-1 text-center"]
+        div[class="col-md-1 col-xs-1 text-center round"]
           = bet.round
-        div[class="row col-md-9 col-xs-9"]
-          div[class="col-md-3 col-xs-3 text-right"]
+        div[class="row col-md-10 col-xs-10 bet-col teams"]
+          div[class="col-md-3 col-xs-3 text-right team-name"]
             = bet.team_home
           div[class="col-md-1 col-xs-1 text-left"]
-            = image_tag bet.team_home.image, class: "img-responsive"
-          div[id="bet_#{bet.id}_team_home_goals" class="col-md-1 col-xs-1 text-center"]
+            = image_tag bet.team_home.image
+          div[id="bet_#{bet.id}_team_home_goals" class="col-md-1 col-xs-1 text-center goal"]
             = bet.team_home_goals
-          div[class="col-md-2 col-xs-2 text-center"]
+          div[class="col-md-2 col-xs-2 text-center vs"]
             | vs
-          div[id="bet_#{bet.id}_team_away_goals" class="col-md-1 col-xs-1 text-center"]
+          div[id="bet_#{bet.id}_team_away_goals" class="col-md-1 col-xs-1 text-center goal"]
             = bet.team_away_goals
           div[class="col-md-1 col-xs-1 text-right"]
-            = image_tag bet.team_away.image, class: "img-responsive"
-          div[class="col-md-3 col-xs-3"]
+            = image_tag bet.team_away.image
+          div[class="col-md-3 col-xs-3 team-name"]
             = bet.team_away
-        div[class="col-md-1 col-xs-1"]
 
 div[class="col-xs-12 col-sm-3" role="navigation"]
   h4

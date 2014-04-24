@@ -18,3 +18,36 @@
 body > .container {
   padding-top: 60px;
 }
+
+.week {
+  font-size: 1.8em;
+  font-weight: bold;
+}
+
+.bet {
+  height: 5.5em;
+}
+
+.round {
+  padding-top: 0.5em;
+  font-size: 1.5em;
+}
+
+.teams img {
+  width: 50px;
+  height: 50px;
+}
+
+.team-name {
+  padding-top: 0.4em;
+  font-size: 1.7em;
+}
+
+.goal {
+  font-size: 2.5em;
+}
+
+.vs {
+  padding-top: 0.5em;
+  font-size: 1.5em;
+}
