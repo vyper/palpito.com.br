@@ -1,6 +1,7 @@
 class Round < ActiveRecord::Base
   ## associations
   belongs_to :championship
+  has_many   :games
 
   ## validations
   validates :name,         presence: true

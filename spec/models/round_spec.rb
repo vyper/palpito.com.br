@@ -7,6 +7,7 @@ describe Round do
 
   ## associations
   it { expect(subject).to belong_to(:championship) }
+  it { expect(subject).to have_many(:games) }
 
   ## validations
   it { expect(subject).to validate_presence_of(:name) }
