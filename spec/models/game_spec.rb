@@ -25,6 +25,8 @@ describe Game do
   it { expect(subject.championship).to eq subject.round.championship }
 
   ## methods
+  it { expect(subject.to_s).to eq "#{subject.team_home} vs #{subject.team_away}" }
+
   context '#bettable?' do
     it 'in the future' do
       subject.played_at = DateTime.now + 1

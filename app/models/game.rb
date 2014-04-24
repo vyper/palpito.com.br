@@ -19,6 +19,10 @@ class Game < ActiveRecord::Base
   scope :not_played, -> { where('"games"."played_at" < ?', DateTime.now) }
 
   ## methods
+  def to_s
+    "#{team_home} vs #{team_away}"
+  end
+
   def played?
     DateTime.now > played_at
   end
