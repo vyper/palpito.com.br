@@ -11,6 +11,7 @@ class Game < ActiveRecord::Base
   validates :round,     presence: true
   validates :team_home_goals, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :team_away_goals, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
+  validate  :only_one_game_of_the_team_in_round
 
   ## delegates
   delegate :championship, to: :round
@@ -45,5 +46,16 @@ class Game < ActiveRecord::Base
 
   def bettable?
     not played?
+  end
+
+private
+  def only_one_game_of_the_team_in_round
+    if team_home.present? and team_home_id_changed? and round.teams.include? team_home
+      errors.add(:team_home, "Team home already exists in the round")
+    end
+
+    if team_away.present? and team_away_id_changed? and round.teams.include? team_away
+      errors.add(:team_away, "Team away already exists in the round")
+    end
   end
 end

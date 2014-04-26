@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Game do
-  fixtures :games, :rounds, :championships
+  fixtures :games, :teams, :rounds, :championships
 
   subject { games(:sao_x_par) }
 
@@ -17,6 +17,51 @@ describe Game do
   it { expect(subject).to validate_presence_of(:round) }
   it { expect(subject).to validate_numericality_of(:team_home_goals).is_greater_than_or_equal_to(0).allow_nil }
   it { expect(subject).to validate_numericality_of(:team_away_goals).is_greater_than_or_equal_to(0).allow_nil }
+
+  context 'only one game by team on round' do
+    subject { Game.new round: rounds(:first), played_at: Time.now }
+
+    it 'already exists team home and away' do
+      subject.team_home = teams(:sao)
+      subject.team_away = teams(:par)
+
+      expect(subject.valid?).to eq false
+      expect(subject.errors[:team_home].count).to eq 1
+      expect(subject.errors[:team_away].count).to eq 1
+    end
+
+    it 'already exists team home' do
+      subject.team_home = teams(:sao)
+      subject.team_away = teams(:cfc)
+
+      expect(subject.valid?).to eq false
+      expect(subject.errors[:team_home].count).to eq 1
+      expect(subject.errors[:team_away].count).to eq 0
+    end
+
+    it 'already exists team away' do
+      subject.team_home = teams(:cap)
+      subject.team_away = teams(:par)
+
+      expect(subject.valid?).to eq false
+      expect(subject.errors[:team_home].count).to eq 0
+      expect(subject.errors[:team_away].count).to eq 1
+    end
+
+    it 'dont exists in the round' do
+      subject.team_home = teams(:cap)
+      subject.team_away = teams(:cfc)
+
+      expect(subject.valid?).to eq true
+      expect(subject.errors[:team_home].count).to eq 0
+      expect(subject.errors[:team_away].count).to eq 0
+    end
+
+    it 'only changed teams' do
+      subject = games(:sao_x_par)
+      expect(subject.valid?).to eq true
+    end
+  end
 
   ## scopes
   it { expect(Game.not_played.to_sql).to include '"games"."played_at" <' }
