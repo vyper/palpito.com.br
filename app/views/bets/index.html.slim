@@ -10,7 +10,10 @@
       ul.dropdown-menu
         li
           - for group in @groups
-            = link_to group, bets_path(group_id: group)
+            = link_to bets_path(group_id: group) do
+              = "#{group.championship} "
+              small
+                = group
 
 div[class="col-xs-12 col-sm-9"]
   ul.pager
