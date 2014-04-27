@@ -3,6 +3,7 @@ class Game < ActiveRecord::Base
   belongs_to :team_home, class_name: Team
   belongs_to :team_away, class_name: Team
   belongs_to :round
+  has_many   :bets, dependent: :restrict_with_error
 
   ## validations
   validates :played_at, presence: true

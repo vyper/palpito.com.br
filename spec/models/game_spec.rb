@@ -9,6 +9,7 @@ describe Game do
   it { expect(subject).to belong_to(:team_away).class_name(Team) }
   it { expect(subject).to belong_to(:team_home).class_name(Team) }
   it { expect(subject).to belong_to(:round) }
+  it { expect(subject).to have_many(:bets).dependent(:restrict_with_error) }
 
   ## validations
   it { expect(subject).to validate_presence_of(:played_at) }
