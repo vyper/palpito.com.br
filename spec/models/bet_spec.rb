@@ -17,6 +17,21 @@ describe Bet do
   it { expect(subject).to validate_numericality_of(:team_home_goals).is_greater_than_or_equal_to(0) }
   it { expect(subject).to validate_numericality_of(:team_away_goals).is_greater_than_or_equal_to(0) }
 
+  context 'Played game dont accept bets' do
+    it 'in the future' do
+      subject.game.played_at = DateTime.now + 1
+      subject.team_home_goals = 4
+      expect(subject.valid?).to eq true
+    end
+
+    it 'in the past' do
+      subject.game.played_at = DateTime.now - 1
+      subject.team_home_goals = 4
+      expect(subject.valid?).to eq false
+      expect(subject.errors[:base].count).to eq 1
+    end
+  end
+
   ## delegates
   it { expect(subject.round).to eq subject.game.round }
   it { expect(subject.played_at).to eq subject.game.played_at }
