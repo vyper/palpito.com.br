@@ -22,6 +22,7 @@ describe Bet do
   it { expect(subject.played_at).to eq subject.game.played_at }
   it { expect(subject.team_home).to eq subject.game.team_home }
   it { expect(subject.team_away).to eq subject.game.team_away }
+  it { expect(subject.bettable?).to eq subject.game.bettable? }
 
   ## methods
   it { expect(subject.to_s).to eq("#{subject.game.team_home.short_name} vs #{subject.game.team_away.short_name}") }

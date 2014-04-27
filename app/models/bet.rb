@@ -12,6 +12,7 @@ class Bet < ActiveRecord::Base
   ## delegates
   delegate :round,     to: :game
   delegate :played_at, to: :game
+  delegate :bettable?, to: :game
   delegate :team_home, to: :game
   delegate :team_away, to: :game
 
