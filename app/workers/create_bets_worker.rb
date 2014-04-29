@@ -10,7 +10,7 @@ class CreateBetsWorker
 
     result.each do |g|
       bet = Bet.new game_id: g.game_id, user_id: g.user_id
-      bet.save(validate: false)
+      bet.save
     end
   end
 end
