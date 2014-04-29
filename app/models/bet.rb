@@ -6,8 +6,8 @@ class Bet < ActiveRecord::Base
   ## validations
   validates :user, presence: true
   validates :game, presence: true
-  validates :team_home_goals, presence: true, numericality: { greater_than_or_equal_to: 0 }
-  validates :team_away_goals, presence: true, numericality: { greater_than_or_equal_to: 0 }
+  validates :team_home_goals, presence: true, numericality: { greater_than_or_equal_to: 0 }, on: :update
+  validates :team_away_goals, presence: true, numericality: { greater_than_or_equal_to: 0 }, on: :update
   validate  :only_bettable
 
   ## delegates
