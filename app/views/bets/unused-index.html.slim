@@ -38,9 +38,10 @@ div[class="col-xs-12 col-sm-9"]
         a
           | →
 
-  div.list-group
+  div[id="bets" class="list-group"]
     - for bet in @bets
-      = link_to edit_bet_path(bet), class: "list-group-item row bet", data: { target: '#bet_modal', toggle: 'modal' } do
+      //= link_to edit_bet_path(bet), class: "list-group-item row bet", data: { target: '#bet_modal', toggle: 'modal' } do
+      div[class="list-group-item row bet"]
         div[class="col-md-1 col-xs-1 bet-col"]
           div[class="text-center bg-success"]
             strong
