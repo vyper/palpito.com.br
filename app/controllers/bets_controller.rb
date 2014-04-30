@@ -1,7 +1,7 @@
 class BetsController < ApplicationController
   before_filter :authenticate_user!
 
-  respond_to :html, :js
+  respond_to :html, :js, :json
 
   def index
     @groups  = current_user.groups.order(:name)
