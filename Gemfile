@@ -22,6 +22,7 @@ gem 'font-awesome-rails'
 # Auth
 gem 'devise'
 gem 'devise_invitable'
+gem 'omniauth-facebook'
 
 # Attachment
 gem 'paperclip'
