@@ -46,7 +46,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :bets, only: [:index, :edit, :update]
+  resources :bets, only: [:index, :update]
 
   resources :games, except: :show
 
