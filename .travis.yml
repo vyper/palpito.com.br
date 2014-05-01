@@ -7,7 +7,7 @@ env:
   matrix:
   - DB=postgresql
   global:
-    secure: VlylYwSKLVvgd1Bz0IWkXvB3woPzTAyuA4K8Y8uudDBUixLABXueTj+j8U2HY+HTr2uAR06Px9sEyvDZXQ6vJQanHqxK7PPhiZFV6NDLQLfS1u1f0ws+V+BcRy7F59tvqAvB4cOC0F4QYny/7qywtWsQMmZovpmHuQ53kT2+PK4=
+    secure: NXzl/FbZC/gBuoXfrtDfLn8NYIjFYoegSbRncyX2rEd4rmPy5vn7vBoG/k6zdYvYc4uKBfiLcwHIVLJAJa/JYut3sfxtysQUawsz3GH2HiINtecQ9w2v1PA2B8+Dm2d9zX3VNIQZEe8EzZ+JTnkZvdMT7+kuEX9FUo+NXjXJtmQ=
 script:
 - bundle exec rake db:migrate RAILS_ENV=test
 - bundle exec rspec
