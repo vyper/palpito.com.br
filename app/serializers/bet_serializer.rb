@@ -1,6 +1,6 @@
 class BetSerializer < ActiveModel::Serializer
   ## bet attributes
-  attributes :id, :url, :team_home_goals, :team_away_goals
+  attributes :id, :team_home_goals, :team_away_goals
 
   ## game attributes
   attributes :team_home, :team_away, :round, :team_home_image_url, :team_away_image_url, :weekday, :time, :date
@@ -36,9 +36,5 @@ class BetSerializer < ActiveModel::Serializer
 
   def team_away_image_url
     object.team_away.image.url
-  end
-
-  def url
-    bet_url(object)
   end
 end
