@@ -1,19 +1,19 @@
 sao:
   name: São Paulo
   short_name: SAO
-  image_file_name: <%= File.join(Rails.root, 'spec', 'support', 'test.png') %>
+  image_file_name: <%= File.join('spec', 'support', 'test.png') %>
 
 par:
   name: Paraná
   short_name: PAR
-  image_file_name: <%= File.join(Rails.root, 'spec', 'support', 'test.png') %>
+  image_file_name: <%= File.join('spec', 'support', 'test.png') %>
 
 cfc:
   name: Coritiba
   short_name: CFC
-  image_file_name: <%= File.join(Rails.root, 'spec', 'support', 'test.png') %>
+  image_file_name: <%= File.join('spec', 'support', 'test.png') %>
 
 cap:
   name: Atlético-PR
   short_name: CAP
-  image_file_name: <%= File.join(Rails.root, 'spec', 'support', 'test.png') %>
+  image_file_name: <%= File.join('spec', 'support', 'test.png') %>
