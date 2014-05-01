@@ -9,47 +9,47 @@ class BetCalculator
   end
 
   def calculate
-    if goals?
-      score = 0
+    return nil unless goals?
 
-      if bet_is_correct?
-        # home goals
-        # IF(B2>B3,X-(B2-B3),X-(B3-B2))
-        gh_goals = game_home_goals
-        bh_goals = bet_home_goals
+    return 0 unless bet_is_correct?
 
-        if gh_goals > bh_goals
-          score += Points - (gh_goals - bh_goals)
-        elsif gh_goals < bh_goals
-          score += Points - (bh_goals - gh_goals)
-        else
-          score += 10
-        end
+    score = 0
 
-        # away goals
-        # IF(D2>D3,X-(D2-D3),X-(D3-D2))
-        ga_goals = game_away_goals
-        ba_goals = bet_away_goals
+    # home goals
+    # IF(B2>B3,X-(B2-B3),X-(B3-B2))
+    gh_goals = game_home_goals
+    bh_goals = bet_home_goals
 
-        if ga_goals > ba_goals
-          score += Points - (ga_goals - ba_goals)
-        elsif ga_goals < ba_goals
-          score += Points - (ba_goals - ga_goals)
-        else
-          score += 10
-        end
-
-        # Points by correct bet
-        score += 10
-
-        # Points by correct score
-        if game_home_goals == bet_home_goals && game_away_goals == bet_away_goals
-          score += 10
-        end
-      end
-
-      score
+    if gh_goals > bh_goals
+      score += Points - (gh_goals - bh_goals)
+    elsif gh_goals < bh_goals
+      score += Points - (bh_goals - gh_goals)
+    else
+      score += 10
     end
+
+    # away goals
+    # IF(D2>D3,X-(D2-D3),X-(D3-D2))
+    ga_goals = game_away_goals
+    ba_goals = bet_away_goals
+
+    if ga_goals > ba_goals
+      score += Points - (ga_goals - ba_goals)
+    elsif ga_goals < ba_goals
+      score += Points - (ba_goals - ga_goals)
+    else
+      score += 10
+    end
+
+    # Points by correct bet
+    score += 10
+
+    # Points by correct score
+    if game_home_goals == bet_home_goals && game_away_goals == bet_away_goals
+      score += 10
+    end
+
+    score
   end
 
   def goals?
