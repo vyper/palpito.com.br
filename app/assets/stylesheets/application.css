@@ -60,10 +60,14 @@ body > .container {
   cursor: pointer;
   text-align: center;
   width: 1.5em;
-  border: 0;
+  border: 1px solid white;
   background-color: white;
 }
 
+.bet:hover input {
+  border: 1px solid #ccc;
+}
+
 .editing input {
-  border: 1px solid gray;
+  border: 1px solid gray !important;
 }
