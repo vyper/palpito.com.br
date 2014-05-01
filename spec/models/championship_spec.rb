@@ -9,7 +9,8 @@ describe Championship do
   it { expect(subject).to validate_presence_of(:finished_at) }
 
   ## associations
-  it { expect(subject).to have_many(:groups) }
+  it { expect(subject).to have_many(:groups).dependent(:restrict_with_error) }
+  it { expect(subject).to have_many(:rounds).dependent(:restrict_with_error) }
 
   ## methods
   it { expect(subject.to_s).to eq subject.name }

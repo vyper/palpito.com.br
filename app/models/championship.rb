@@ -5,7 +5,8 @@ class Championship < ActiveRecord::Base
   validates :finished_at, presence: true
 
   ## associations
-  has_many :groups
+  has_many :groups, dependent: :restrict_with_error
+  has_many :rounds, dependent: :restrict_with_error
 
   ## methods
   def finished?
