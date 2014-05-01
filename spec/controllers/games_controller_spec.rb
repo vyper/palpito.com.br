@@ -6,5 +6,6 @@ describe GamesController do
   pending '#create'
   pending '#edit'
   pending '#update'
+  pending '#classify'
   pending '#destroy'
 end
