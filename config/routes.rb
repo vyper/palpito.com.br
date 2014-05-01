@@ -1,6 +1,4 @@
 Rails.application.routes.draw do
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
-
   # Authentication
   devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations]
   as :user do

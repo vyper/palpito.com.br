@@ -26,9 +26,6 @@ gem 'devise_invitable'
 # Attachment
 gem 'paperclip'
 
-# CRUD Admin
-gem 'rails_admin'
-
 # Pattern
 gem "interactor"
 gem "interactor-rails"
