@@ -12,7 +12,6 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require underscore
 //= require backbone
 //= require_tree .
@@ -23,7 +22,7 @@ $(function(){
   var Bet = Backbone.Model.extend({
     url: function() {
       var base = 'bets';
-      if (this.isNew()) return base;
+      if (this.isNew()) return base + '?week=' + location.search.replace(/\?week=(\d)/, "$1");
       return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.id;
     },
 
@@ -38,7 +37,7 @@ $(function(){
 
     url: function() {
       var base = 'bets';
-      if (!this.get("id")) return base;
+      if (!this.get("id")) return base + '?week=' + location.search.replace(/\?week=(\d)/, "$1");
       return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.get("id");
     }
   });
@@ -47,6 +46,12 @@ $(function(){
 
   var BetView = Backbone.View.extend({
     tagName:  "div",
+
+    events: {
+      "dblclick .teams" : "edit",
+      "keypress .teams" : "updateOnEnter"
+      //"blur     .teams" : "close"
+    },
 
     template: _.template($('#bet-template').html()),
 
@@ -59,6 +64,29 @@ $(function(){
     render: function() {
       this.$el.html(this.template(this.model.toJSON()));
       return this;
+    },
+
+    edit: function() {
+      this.$el.addClass("editing");
+      this.$el.find("input:first").focus();
+      this.$el.find("input:first").select();
+      this.$el.find("input").prop("disabled", false);
+    },
+
+    close: function() {
+      var team_home_goals = this.$el.find("input:first").val();
+      var team_away_goals = this.$el.find("input:last").val();
+      if (!team_home_goals || !team_away_goals) {
+        this.clear();
+      } else {
+        this.model.save({ team_home_goals: team_home_goals, team_away_goals: team_away_goals });
+        this.$el.removeClass("editing");
+        this.$el.find("input").prop("disabled", true);
+      }
+    },
+
+    updateOnEnter: function(e) {
+      if (e.keyCode == 13) this.close();
     }
   });
 
