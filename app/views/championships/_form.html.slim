@@ -1,0 +1,9 @@
+= simple_form_for(@championship) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name
+    = f.input :started_at,  as: :string
+    = f.input :finished_at, as: :string
+
+  .form-actions
+    = f.button :submit, "Salvar"

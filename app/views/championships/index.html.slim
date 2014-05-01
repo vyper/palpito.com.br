@@ -1,0 +1,30 @@
+- content_for :title
+  | Campeonatos
+  = link_to new_championship_path, class: "btn btn-primary pull-right" do
+    i[class="glyphicon glyphicon-plus"]
+    |  Adicionar campeonato
+
+table[class="table table-hover"]
+  thead
+    tr
+      th.col-md-7
+        | Campeonato
+      th.col-md-2.text-center
+        | Começa em
+      th.col-md-2.text-center
+        | Termina em
+      th.col-md-1
+        |
+  - for championship in @championships do
+    tbody
+      tr
+        td
+          = championship
+        td.text-center
+          = l championship.started_at, format: :short
+        td.text-center
+          = l championship.finished_at, format: :short
+        td
+          = link_to "Editar", edit_championship_path(championship)
+          |&nbsp;
+          = link_to "Excluir", championship, method: :delete, "data-confirm" => "Tem certeza que deseja excluir o campeonato?"
