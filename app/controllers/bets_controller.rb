@@ -1,7 +1,7 @@
 class BetsController < ApplicationController
   before_filter :authenticate_user!
 
-  respond_to :html, :js, :json
+  respond_to :html, :json
 
   def index
     @groups  = current_user.groups.order(:name)
@@ -16,14 +16,6 @@ class BetsController < ApplicationController
               order('"games"."played_at" ASC')
 
     respond_with @bets
-  end
-
-  def edit
-    @bet = current_user.bets.find(params[:id])
-
-    respond_with(@bet) do |format|
-      format.html { render layout: nil }
-    end
   end
 
   def update
