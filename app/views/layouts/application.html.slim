@@ -31,9 +31,10 @@ html
                         | Administração
                       li
                         = link_to 'Meus grupos', groups_path
-                        = link_to 'Campeonatos', championships_path
-                        = link_to 'Rodadas', rounds_path
-                        = link_to 'Jogos', games_path
+                        - if current_user.try :admin?
+                          = link_to 'Campeonatos', championships_path
+                          = link_to 'Rodadas', rounds_path
+                          = link_to 'Jogos', games_path
                       li.divider
                       li.dropdown-header
                         | Minha conta
