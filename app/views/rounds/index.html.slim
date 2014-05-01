@@ -1,0 +1,26 @@
+- content_for :title
+  | Rodadas
+  = link_to new_round_path, class: "btn btn-primary pull-right" do
+    i[class="glyphicon glyphicon-plus"]
+    |  Adicionar rodada
+
+table[class="table table-hover"]
+  thead
+    tr
+      th.col-md-4
+        | Rodada
+      th.col-md-7
+        | Campeonato
+      th.col-md-1
+        |
+  - for round in @rounds do
+    tbody
+      tr
+        td
+          = round
+        td
+          = round.championship
+        td
+          = link_to "Editar", edit_round_path(round)
+          |&nbsp;
+          = link_to "Excluir", round, method: :delete, "data-confirm" => "Tem certeza que deseja excluir a rodada?"
