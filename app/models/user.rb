@@ -9,7 +9,6 @@ class User < ActiveRecord::Base
   validates :nickname,   presence: true, uniqueness: true, length: { minimum: 2, maximum: 15 }
   validates :first_name, presence: true
   validates :last_name,  presence: true
-  validates :team,       presence: true
 
   ## associations
   belongs_to :team
@@ -31,39 +30,28 @@ class User < ActiveRecord::Base
     nickname
   end
 
-  def self.find_for_facebook_oauth(auth)
-    binding.pry
-    params = auth.slice(:provider, :uid).merge(email: auth.info.email)
-    user = where("email = :email OR (provider = :provider AND uid = :uid)", params).first_or_create do |u|
-      u.provider   = auth.provider
-      u.uid        = auth.uid
-      u.email      = auth.info.email
-      u.password   = Devise.friendly_token[0,20]
-      u.first_name = auth.info.first_name
-      u.last_name  = auth.info.last_name
+  def facebooked?
+    provider.present? and uid.present?
+  end
+
+  def self.from_facebook_oauth(auth)
+    user = where(email: auth.info.email).first_or_create
+
+    unless user.facebooked?
+      user.provider = auth.provider
+      user.uid      = auth.uid
     end
-    # # TODO improve this
-    # user = where(email: auth.info.email).first
-    # user = where(provider: auth.provider, uid: auth.uid).first unless user
 
-    # unless user
-    #   user = User.create provider: auth.provider,
-    #                      uid: auth.uid,
-    #                      email: auth.info.email,
-    #                      name: auth.extra.raw_info.name,
-    #                      password: Devise.friendly_token[0,20]
-    # end
+    unless user.persisted?
+      user.first_name = auth.info.first_name
+      user.last_name  = auth.info.last_name
+      user.email      = auth.info.email
+      user.nickname   = user.name[0..15]
+      user.password   = Devise.friendly_token[0,20]
+    end
 
-    # user
+    user.save if user.changed?
 
-    # where(auth.slice(:provider, :uid)).first_or_create do |user|
-    #   user.provider = auth.provider
-    #   user.uid = auth.uid
-    #   user.email = auth.info.email
-    #   user.password = Devise.friendly_token[0,20]
-    #   binding.pry
-    #   user.first_name = auth.info.first_name
-    #   user.last_name  = auth.info.last_name
-    # end
+    user
   end
 end

@@ -5,6 +5,8 @@ vyper:
   last_name: Saraiva
   confirmed_at: 2014-01-01 08:00:00
   team: sao
+  provider: facebook
+  uid: 1
 
 vpr:
   email: vpr@mcorp.io
