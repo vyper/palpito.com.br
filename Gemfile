@@ -42,6 +42,9 @@ gem 'whenever'
 # i18n
 gem 'rails-i18n'
 
+# api
+gem "active_model_serializers"
+
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
