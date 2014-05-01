@@ -1,7 +1,7 @@
 class Round < ActiveRecord::Base
   ## associations
   belongs_to :championship
-  has_many   :games
+  has_many   :games, dependent: :restrict_with_error
   has_many   :teams_home, through: :games, source: :team_home
   has_many   :teams_away, through: :games, source: :team_away
 

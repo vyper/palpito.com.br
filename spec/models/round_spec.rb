@@ -7,7 +7,7 @@ describe Round do
 
   ## associations
   it { expect(subject).to belong_to(:championship) }
-  it { expect(subject).to have_many(:games) }
+  it { expect(subject).to have_many(:games).dependent(:restrict_with_error) }
   it { expect(subject).to have_many(:teams_home).through(:games).source(:team_home) }
   it { expect(subject).to have_many(:teams_away).through(:games).source(:team_away) }
 
