@@ -7,7 +7,7 @@
 table[class="table table-hover"]
   thead
     tr
-      th.col-md-1
+      th.col-md-2
         | Data
       th.col-md-2
         | Campeonato
@@ -17,8 +17,6 @@ table[class="table table-hover"]
         | Mandante
       th.col-md-1.text-center
         | Gols
-      th.col-md-1
-        |
       th.col-md-1.text-center
         | Gols
       th.col-md-2
@@ -39,12 +37,12 @@ table[class="table table-hover"]
         td.text-center
           = game.team_home_goals
         td.text-center
-          | x
-        td.text-center
           = game.team_away_goals
         td
           = game.team_away
         td
+          = link_to_if game.goals?, "Classificar!", classify_game_path(game), method: :put
+          |&nbsp;
           = link_to "Editar", edit_game_path(game)
           |&nbsp;
           = link_to "Excluir", game, method: :delete, "data-confirm" => "Tem certeza que deseja excluir o jogo?"

@@ -48,7 +48,9 @@ Rails.application.routes.draw do
 
   resources :bets, only: [:index, :update]
 
-  resources :games, except: :show
+  resources :games, except: :show do
+    put '/classify' => 'games#classify', as: 'classify', on: :member
+  end
 
   get '/sobre'       => 'pages#about', as: 'about'
   get '/regulamento' => 'pages#rule',  as: 'rule'
