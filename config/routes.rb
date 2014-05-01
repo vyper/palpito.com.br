@@ -49,6 +49,9 @@ Rails.application.routes.draw do
   resources :bets, only: [:index, :update]
 
   resources :championships, except: :show
+
+  resources :rounds, except: :show
+
   resources :games, except: :show do
     put '/classify' => 'games#classify', as: 'classify', on: :member
   end
