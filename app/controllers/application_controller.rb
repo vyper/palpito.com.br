@@ -6,6 +6,12 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
 
 protected
+  def authenticate_admin!
+    if not current_user.try(:admin?)
+      redirect_to new_user_session_path
+    end
+  end
+
   def configure_permitted_parameters
     # TODO improve this source
     %i{ nickname first_name last_name team_id }.each do |field|
