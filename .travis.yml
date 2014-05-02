@@ -5,7 +5,7 @@ addons:
   postgresql: '9.3'
 env:
   matrix:
-  - DB=postgresql
+  - DB=postgresql SECRET_KEY_BASE=7341d1461ee7639554ce50ebffeb333b3356878bef1e0e7c2a4d0a44e779abb11e5840afe8085640683aa0c1bfe5da938c3bb764801f77446a6969e38f65ef37
   global:
     secure: NXzl/FbZC/gBuoXfrtDfLn8NYIjFYoegSbRncyX2rEd4rmPy5vn7vBoG/k6zdYvYc4uKBfiLcwHIVLJAJa/JYut3sfxtysQUawsz3GH2HiINtecQ9w2v1PA2B8+Dm2d9zX3VNIQZEe8EzZ+JTnkZvdMT7+kuEX9FUo+NXjXJtmQ=
 script:
