@@ -33,6 +33,7 @@ gem "interactor-rails"
 
 # Queue
 gem 'sidekiq'
+gem 'sinatra', require: nil
 
 # Schedule
 gem 'whenever'
