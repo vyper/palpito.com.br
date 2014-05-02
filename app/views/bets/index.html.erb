@@ -59,7 +59,7 @@
     <% @members.each do |member| %>
       <a href='#' class="list-group-item">
         <%= member %>
-        <span class="badge">0</span>
+        <span class="badge"><%= member.points %></span>
       </a>
     <% end %>
   </div>
