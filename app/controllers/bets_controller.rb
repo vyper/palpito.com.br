@@ -1,5 +1,6 @@
 class BetsController < ApplicationController
   before_filter :authenticate_user!
+  before_filter :with_groups?
 
   respond_to :html, :json
 
@@ -25,6 +26,12 @@ class BetsController < ApplicationController
   end
 
 private
+  def with_groups?
+    unless current_user.groups.count > 0
+      redirect_to groups_path
+    end
+  end
+
   def week
     @week = WeekNavigation.new(group.championship, params[:week])
   end

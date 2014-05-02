@@ -22,6 +22,7 @@ gem 'font-awesome-rails'
 # Auth
 gem 'devise'
 gem 'devise_invitable'
+gem 'omniauth-facebook'
 
 # Attachment
 gem 'paperclip'
@@ -53,6 +54,9 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 
 # Use unicorn as the app server
 gem 'unicorn', group: :production
+
+# Environment variables
+gem 'dotenv-rails'
 
 group :development, :test do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

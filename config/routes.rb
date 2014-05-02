@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   # Authentication
-  devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations]
+  devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations],
+                     controllers: { omniauth_callbacks: "users/omniauth_callbacks" }
   as :user do
     # session handling
     get     '/entrar'  => 'devise/sessions#new',     as: 'new_user_session'
