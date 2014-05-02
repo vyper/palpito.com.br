@@ -48,8 +48,8 @@ $(function(){
     tagName:  "div",
 
     events: {
-      "dblclick .teams" : "edit",
-      "keypress .teams" : "updateOnEnter"
+      "dblclick .bettable" : "edit",
+      "keypress .bettable" : "updateOnEnter"
       //"blur     .teams" : "close"
     },
 
