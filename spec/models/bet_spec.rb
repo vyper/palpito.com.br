@@ -30,6 +30,12 @@ describe Bet do
       expect(subject.valid?).to eq false
       expect(subject.errors[:base].count).to eq 1
     end
+
+    it 'dont change goals' do
+      subject.game.played_at = DateTime.now - 1
+      subject.points = 3
+      expect(subject.valid?).to eq true
+    end
   end
 
   ## delegates

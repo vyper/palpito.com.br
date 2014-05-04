@@ -28,7 +28,7 @@ class Bet < ActiveRecord::Base
 
 private
   def only_bettable
-    unless bettable?
+    if not bettable? and (team_home_goals_changed? or team_away_goals_changed?)
       errors.add(:base, "The game was played and now isn't bettable")
     end
   end
