@@ -3,9 +3,11 @@ require 'spec_helper'
 describe ClassifyBetWorker do
   fixtures :bets
 
+  let(:bet)  { bets(:sao_w_x_par) }
+
   it '#perform' do
     expect {
-      subject.perform(bets(:sao_w_x_par))
-    }.to change { Bet.find(bets(:sao_w_x_par).id).points }.from(nil).to(40)
+      subject.perform(bet.id)
+    }.to change { bet.reload.points }.from(nil).to(40)
   end
 end
