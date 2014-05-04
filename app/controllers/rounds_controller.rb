@@ -30,7 +30,7 @@ class RoundsController < ApplicationController
 
   def update
     if @round.update(round_params)
-      flash[:notice] = "Campeonato '#{@round}' salvo com sucesso"
+      flash[:notice] = "Rodada '#{@round}' salva com sucesso"
     end
 
     respond_with @round, location: rounds_path
