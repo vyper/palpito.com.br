@@ -15,6 +15,7 @@ class Game < ActiveRecord::Base
   validates :team_home_goals, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :team_away_goals, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validate  :only_one_game_of_the_team_in_round
+  validate  :only_accept_goals_on_played_game
 
   ## delegates
   delegate :championship, to: :round
@@ -59,6 +60,16 @@ private
 
     if team_away.present? and team_away_id_changed? and round.teams.include? team_away
       errors.add(:team_away, "Team away already exists in the round")
+    end
+  end
+
+  def only_accept_goals_on_played_game
+    if not played? and team_home_goals.present?
+      errors.add(:team_home_goals, "Don't accept team home goals for game not played")
+    end
+
+    if not played? and team_away_goals.present?
+      errors.add(:team_away_goals, "Don't accept team away goals for game not played")
     end
   end
 end

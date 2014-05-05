@@ -34,6 +34,26 @@ describe Game do
     end
   end
 
+  context 'only accept game' do
+    it 'played with goals' do
+      expect(subject.valid?).to eq true
+    end
+
+    it 'not played without goals' do
+      subject.played_at = 1.day.from_now
+      subject.team_home_goals = nil
+      subject.team_away_goals = nil
+
+      expect(subject.valid?).to eq true
+    end
+
+    it 'not played with goals' do
+      subject.played_at = 1.day.from_now
+
+      expect(subject.valid?).to eq false
+    end
+  end
+
   context 'only one game by team on round' do
     subject { Game.new round: rounds(:first), played_at: 1.day.from_now }
 
