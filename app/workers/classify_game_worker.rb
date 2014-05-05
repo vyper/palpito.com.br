@@ -4,8 +4,10 @@ class ClassifyGameWorker
   def perform(game_id)
     game = Game.find(game_id)
 
-    game.bets.each do |bet|
-      ClassifyBetWorker.perform_async(bet.id)
+    if game.goals?
+      game.bets.each do |bet|
+        ClassifyBetWorker.perform_async(bet.id)
+      end
     end
   end
 end
