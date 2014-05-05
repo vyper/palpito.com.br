@@ -19,8 +19,23 @@ describe Game do
   it { expect(subject).to validate_numericality_of(:team_home_goals).is_greater_than_or_equal_to(0).allow_nil }
   it { expect(subject).to validate_numericality_of(:team_away_goals).is_greater_than_or_equal_to(0).allow_nil }
 
+  context '#played?' do
+    subject { games(:sao_x_par) }
+
+    it 'true' do
+      expect(subject).to validate_presence_of(:team_home_goals)
+      expect(subject).to validate_presence_of(:team_away_goals)
+    end
+
+    it 'false' do
+      subject.played_at = 1.days.from_now
+      expect(subject).to_not validate_presence_of(:team_home_goals)
+      expect(subject).to_not validate_presence_of(:team_away_goals)
+    end
+  end
+
   context 'only one game by team on round' do
-    subject { Game.new round: rounds(:first), played_at: Time.now }
+    subject { Game.new round: rounds(:first), played_at: 1.day.from_now }
 
     it 'already exists team home and away' do
       subject.team_home = teams(:sao)

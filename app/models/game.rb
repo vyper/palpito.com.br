@@ -10,6 +10,8 @@ class Game < ActiveRecord::Base
   validates :team_home, presence: true
   validates :team_away, presence: true
   validates :round,     presence: true
+  validates :team_home_goals, presence: true, if: :played?
+  validates :team_away_goals, presence: true, if: :played?
   validates :team_home_goals, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :team_away_goals, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validate  :only_one_game_of_the_team_in_round
@@ -26,7 +28,7 @@ class Game < ActiveRecord::Base
   end
 
   def played?
-    DateTime.now > played_at
+    played_at.present? and DateTime.now.in_time_zone > played_at
   end
 
   def goals?
