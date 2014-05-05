@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe PersistGame do
-  fixtures :games
+  fixtures :games, :teams
 
   let(:game) { games(:sao_x_par) }
   let(:params) { { id: game.id, team_home_goals: 3, team_away_goals: 0 } }
