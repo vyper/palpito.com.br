@@ -29,7 +29,9 @@ class GamesController < ApplicationController
   end
 
   def update
-    if @game.update(game_params)
+    result = UpdateGame.perform(game: @game, params: game_params)
+
+    if result.success?
       flash[:notice] = "Jogo '#{@game}' salvo com sucesso"
     end
 
