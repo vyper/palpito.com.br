@@ -17,3 +17,13 @@ cap:
   name: Atlético-PR
   short_name: CAP
   image_file_name: <%= File.join('spec', 'support', 'test.png') %>
+
+cor:
+  name: Corinthians
+  short_name: COR
+  image_file_name: <%= File.join('spec', 'support', 'test.png') %>
+
+pal:
+  name: Palmeiras
+  short_name: PAL
+  image_file_name: <%= File.join('spec', 'support', 'test.png') %>

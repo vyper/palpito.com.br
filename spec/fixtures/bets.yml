@@ -3,3 +3,9 @@ sao_w_x_par:
   user: vyper
   team_home_goals: 1
   team_away_goals: 0
+
+cor_w_x_pal:
+  game: cor_x_pal
+  user: vyper
+  team_home_goals: 1
+  team_away_goals: 0
