@@ -73,22 +73,6 @@ describe Game do
   ## methods
   it { expect(subject.to_s).to eq "#{subject.team_home} vs #{subject.team_away}" }
 
-  context '#goals_changed?' do
-    it 'home goals' do
-      subject.team_home_goals = 33
-      expect(subject.goals_changed?).to eq true
-    end
-
-    it 'away goals' do
-      subject.team_away_goals = 33
-      expect(subject.goals_changed?).to eq true
-    end
-
-    it 'none' do
-      expect(subject.goals_changed?).to eq false
-    end
-  end
-
   context '#bettable?' do
     it 'in the future' do
       subject.played_at = DateTime.now + 1
