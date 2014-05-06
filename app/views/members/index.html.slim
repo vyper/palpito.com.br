@@ -1,8 +1,6 @@
 - content_for :title
   = link_to "Grupos", groups_path
-  |  >&nbsp;
-  = @group
-  |  > Participantes
+  |  > Participantes do #{@group}
   = link_to new_group_member_path(@group), class: "btn btn-primary pull-right"
     i[class="glyphicon glyphicon-envelope"]
     |  Convidar novo membro
@@ -32,8 +30,10 @@
             = member.email
           td
             = member.status
-          td
-            = link_to "Excluir", group_member_path(@group, member), method: :delete, "data-confirm" => "Tem certeza que deseja excluir o participante?"
+          td.text-right
+            = link_to group_member_path(@group, member), method: :delete, "data-confirm" => "Tem certeza que deseja excluir o participante?", class: "btn btn-default btn-xs" do
+              i.glyphicon.glyphicon-remove
+              |  Excluir
 - else
   div[class="alert alert-warning"]
     p
