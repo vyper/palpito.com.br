@@ -38,12 +38,6 @@ class GamesController < ApplicationController
     respond_with @game, location: games_path
   end
 
-  def classify
-    ClassifyGameWorker.perform_async(@game.id)
-    flash[:notice] = "Classificação de palpites do '#{@game} enfileirada com sucesso"
-    respond_with @game, location: games_path
-  end
-
   def destroy
     if @game.destroy
       flash[:notice] = "Jogo excluído com sucesso"
