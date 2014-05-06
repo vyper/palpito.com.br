@@ -65,8 +65,12 @@ h2
             = member.group.championship
           td
             = member.group.admin
-          td
+          td.text-right
             - if member.invited?
-              = link_to "Aceitar", accept_group_member_path(member.group), method: :put
+              = link_to accept_group_member_path(member.group), method: :put, class: "btn btn-default btn-xs" do
+                i.glyphicon.glyphicon-ok
+                |  Aceitar
             | &nbsp;
-            = link_to "Sair", destroy_group_member_path(member.group), method: :delete, "data-confirm" => 'Tem certeza que deseja deixar de participar desse bolão?'
+            = link_to destroy_group_member_path(member.group), method: :delete, "data-confirm" => 'Tem certeza que deseja deixar de participar desse bolão?', class: "btn btn-default btn-xs" do
+              i.glyphicon.glyphicon-remove
+              |  Sair
