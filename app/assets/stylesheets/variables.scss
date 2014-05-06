@@ -1,0 +1,14 @@
+//$navbar-default-bg: #312312;
+//$light-orange: #ff8c00;
+//$navbar-default-color: $light-orange;
+
+$brand-primary: #0a721c;
+
+//== Navbar
+$navbar-default-bg: $brand-primary;
+$navbar-default-brand-color: #fff;
+$navbar-default-link-color: #fff;
+$navbar-default-link-hover-color: #fff;
+$navbar-default-link-active-color: #fff;
+
+@import "bootstrap";
