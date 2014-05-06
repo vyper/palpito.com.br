@@ -5,4 +5,6 @@
     = f.association :championship
 
   .form-actions
-    = f.button :submit, "Salvar"
+    = f.button :submit, "Salvar", class: "btn btn-primary"
+    | &nbsp;
+    = link_to "Cancelar", :back, class: "btn btn-danger"

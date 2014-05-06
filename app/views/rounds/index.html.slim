@@ -9,9 +9,9 @@ table[class="table table-hover"]
     tr
       th.col-md-4
         | Rodada
-      th.col-md-7
+      th.col-md-6
         | Campeonato
-      th.col-md-1
+      th.col-md-2
         |
   - for round in @rounds do
     tbody
@@ -20,7 +20,11 @@ table[class="table table-hover"]
           = round
         td
           = round.championship
-        td
-          = link_to "Editar", edit_round_path(round)
+        td.text-right
+          = link_to edit_round_path(round), class: "btn btn-default btn-xs" do
+            i.glyphicon.glyphicon-edit
+            |  Editar
           |&nbsp;
-          = link_to "Excluir", round, method: :delete, "data-confirm" => "Tem certeza que deseja excluir a rodada?"
+          = link_to round, method: :delete, "data-confirm" => "Tem certeza que deseja excluir a rodada?", class: "btn btn-default btn-xs" do
+            i.glyphicon.glyphicon-remove
+            |  Excluir
