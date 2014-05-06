@@ -12,9 +12,9 @@ h2
       tr
         th[class="col-md-5"]
           | Nome
-        th[class="col-md-5"]
+        th[class="col-md-4"]
           | Campeonato
-        th[class="col-md-2"]
+        th[class="col-md-3"]
           |
     - for group in @my_groups do
       tbody
@@ -23,12 +23,18 @@ h2
             = group
           td
             = group.championship
-          td
-            = link_to "Participantes", group_members_path(group)
+          td.text-right
+            = link_to group_members_path(group), class: "btn btn-default btn-xs" do
+              i.glyphicon.glyphicon-user
+              |  Participantes
             |&nbsp;
-            = link_to "Editar", edit_group_path(group)
+            = link_to edit_group_path(group), class: "btn btn-default btn-xs" do
+              i.glyphicon.glyphicon-edit
+              |  Editar
             |&nbsp;
-            = link_to "Excluir", group, method: :delete, "data-confirm" => "Tem certeza que deseja excluir o grupo?\n\nVocê perderá todos os dados e usuários vinculados!"
+            = link_to group, method: :delete, "data-confirm" => "Tem certeza que deseja excluir o grupo?\n\nVocê perderá todos os dados e usuários vinculados!", class: "btn btn-default btn-xs" do
+              i.glyphicon.glyphicon-remove
+              |  Excluir
 - else
   div[class="alert alert-warning"]
     p

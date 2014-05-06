@@ -7,4 +7,6 @@
     = f.input :name, required: true
     = f.association :championship, required: true
   .form-actions
-    = f.button :submit, "Salvar"
+    = f.button :submit, "Salvar", class: "btn btn-primary"
+    | &nbsp;
+    = link_to "Cancelar", :back, class: "btn btn-danger"
