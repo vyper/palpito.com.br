@@ -59,14 +59,19 @@ gem 'unicorn', group: :production
 # Environment variables
 gem 'dotenv-rails'
 
-group :development, :test do
+group :development do
+  gem 'bullet'
+  gem 'better_errors'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+end
 
+group :development, :test do
   # Use debugger
   gem 'pry-nav'
-  gem 'better_errors'
+end
 
+group :test do
   # Tests
   gem 'rspec-rails', '~> 3.0.0.beta'
   gem 'shoulda'
