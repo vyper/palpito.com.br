@@ -5,7 +5,7 @@ class BetsController < ApplicationController
   respond_to :html, :json
 
   def index
-    @groups  = current_user.groups.order(:name)
+    @groups  = current_user.groups.includes(:championship).order(:name)
     @members = group.members
 
     @bets = current_user.bets.
