@@ -16,7 +16,10 @@ html
             span.icon-bar
             span.icon-bar
             span.icon-bar
-          = link_to "bolão :: mcorp.io", root_path, class: "navbar-brand"
+          = link_to root_path, class: "navbar-brand" do
+            strong
+              | bolão
+            |  :: mcorp.io
         div[class="collapse navbar-collapse"]
           ul[class="nav navbar-nav navbar-right"]
             - if user_signed_in?
