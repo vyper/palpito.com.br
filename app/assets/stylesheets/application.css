@@ -23,6 +23,14 @@ body > .container {
   margin-top: 2em;
 }
 
+th.played, td.played {
+  background-color: #ececec;
+}
+
+th.happened, td.happened {
+  background-color: #b4b4b4;
+}
+
 .week {
   font-size: 1.8em;
   font-weight: bold;
