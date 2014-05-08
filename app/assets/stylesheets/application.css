@@ -12,6 +12,7 @@
  *
  *= require_tree .
  *= require_self
+ *= require font-awesome
  *= require variables
  */
 
@@ -34,6 +35,10 @@ th.happened, td.happened {
 .week {
   font-size: 1.8em;
   font-weight: bold;
+}
+
+.btn-social:hover {
+  color: white;
 }
 
 .bet {
