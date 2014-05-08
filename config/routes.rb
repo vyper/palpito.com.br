@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   end
 
   resources :groups, path: '/grupos', except: [:show] do
+    put :classify, on: :member
     resources :members, path: '/participantes', only: [:index, :destroy]
 
     resource :member, path: '/participante', only: [] do
