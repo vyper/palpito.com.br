@@ -1,7 +1,7 @@
 - content_for :title
   | Grupos
   = link_to new_group_path, class: "btn btn-primary pull-right" do
-    i[class="glyphicon glyphicon-plus"]
+    i.fa.fa-plus
     |  Adicionar grupo
 h2
   | Meus grupos
@@ -25,15 +25,15 @@ h2
             = group.championship
           td.text-right
             = link_to group_members_path(group), class: "btn btn-default btn-xs" do
-              i.glyphicon.glyphicon-user
+              i.fa.fa-users
               |  Participantes
             |&nbsp;
             = link_to edit_group_path(group), class: "btn btn-default btn-xs" do
-              i.glyphicon.glyphicon-edit
+              i.fa.fa-edit
               |  Editar
             |&nbsp;
             = link_to group, method: :delete, "data-confirm" => "Tem certeza que deseja excluir o grupo?\n\nVocê perderá todos os dados e usuários vinculados!", class: "btn btn-default btn-xs" do
-              i.glyphicon.glyphicon-remove
+              i.fa.fa-trash-o
               |  Excluir
 - else
   div[class="alert alert-warning"]
@@ -68,9 +68,9 @@ h2
           td.text-right
             - if member.invited?
               = link_to accept_group_member_path(member.group), method: :put, class: "btn btn-default btn-xs" do
-                i.glyphicon.glyphicon-ok
+                i.fa.fa-sign-in
                 |  Aceitar
             | &nbsp;
             = link_to destroy_group_member_path(member.group), method: :delete, "data-confirm" => 'Tem certeza que deseja deixar de participar desse bolão?', class: "btn btn-default btn-xs" do
-              i.glyphicon.glyphicon-remove
+              i.fa.fa-sign-out
               |  Sair

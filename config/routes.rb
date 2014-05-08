@@ -41,6 +41,7 @@ Rails.application.routes.draw do
   end
 
   resources :groups, path: '/grupos', except: [:show] do
+    put :classify, on: :member
     resources :members, path: '/participantes', only: [:index, :destroy]
 
     resource :member, path: '/participante', only: [] do
@@ -57,9 +58,7 @@ Rails.application.routes.draw do
 
   resources :rounds, except: :show
 
-  resources :games, except: :show do
-    put '/classify' => 'games#classify', as: 'classify', on: :member
-  end
+  resources :games, except: :show
 
   get '/sobre'       => 'pages#about', as: 'about'
   get '/regulamento' => 'pages#rule',  as: 'rule'

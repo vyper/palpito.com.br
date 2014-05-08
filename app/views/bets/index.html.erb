@@ -53,16 +53,21 @@
 </div>
 
 <div class="col-xs-12 col-sm-3" role="navigation">
-  <h4>Participantes</h4>
+  <h4>
+    Participantes
+    <%= link_to classify_group_path(@group), method: :put, title: "Atualizar a classificação do grupo com últimos resultados" do %>
+      <i class="fa fa-refresh pull-right"></i>
+    <% end if @group.admin? current_user %>
+  </h4>
 
-  <div class="list-group">
+  <ol class="list-group ranking">
     <% @members.each do |member| %>
-      <a href='#' class="list-group-item">
+      <li class="list-group-item <%= member.user == current_user ? 'list-group-item-success' : '' %>">
         <%= member %>
         <span class="badge"><%= member.points %></span>
-      </a>
+      </li>
     <% end %>
-  </div>
+  </ol>
 </div>
 
 <script type="text/template" id="bet-template">

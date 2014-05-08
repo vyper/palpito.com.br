@@ -1,7 +1,7 @@
 - content_for :title
   | Rodadas
   = link_to new_round_path, class: "btn btn-primary pull-right" do
-    i[class="glyphicon glyphicon-plus"]
+    i.fa.fa-plus
     |  Adicionar rodada
 
 table[class="table table-hover"]
@@ -22,9 +22,9 @@ table[class="table table-hover"]
           = round.championship
         td.text-right
           = link_to edit_round_path(round), class: "btn btn-default btn-xs" do
-            i.glyphicon.glyphicon-edit
+            i.fa.fa-edit
             |  Editar
           |&nbsp;
           = link_to round, method: :delete, "data-confirm" => "Tem certeza que deseja excluir a rodada?", class: "btn btn-default btn-xs" do
-            i.glyphicon.glyphicon-remove
+            i.fa.fa-trash-o
             |  Excluir

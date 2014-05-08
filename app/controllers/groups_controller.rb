@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   respond_to :html
 
   def index
-    @my_groups = current_user.my_groups
+    @my_groups = current_user.my_groups.includes(:championship)
     @members   = current_user.members.where.not(group: @my_groups.map(&:id))
     respond_with @my_groups
   end
@@ -33,6 +33,14 @@ class GroupsController < ApplicationController
   def update
     flash[:notice] = "O grupo #{@my_group} foi alterado com sucesso" if @my_group.update(group_params)
     respond_with @my_group, location: groups_path
+  end
+
+  def classify
+    if ClassifyGroupWorker.perform_async(@my_group.id)
+      flash[:notice] = "O recálculo do ranking do #{@my_group} foi solicitado com sucesso, aguarde alguns instantes e atualize a página! (:"
+    end
+
+    respond_with @my_group, location: bets_path
   end
 
   def destroy

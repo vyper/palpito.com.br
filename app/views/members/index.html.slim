@@ -2,7 +2,7 @@
   = link_to "Grupos", groups_path
   |  > Participantes do #{@group}
   = link_to new_group_member_path(@group), class: "btn btn-primary pull-right"
-    i[class="glyphicon glyphicon-envelope"]
+    i.fa.fa-envelope-o
     |  Convidar novo membro
 
 - if @members.present?
@@ -32,7 +32,7 @@
             = member.status
           td.text-right
             = link_to group_member_path(@group, member), method: :delete, "data-confirm" => "Tem certeza que deseja excluir o participante?", class: "btn btn-default btn-xs" do
-              i.glyphicon.glyphicon-remove
+              i.fa.fa-trash-o
               |  Excluir
 - else
   div[class="alert alert-warning"]

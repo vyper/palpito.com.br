@@ -5,7 +5,7 @@ class GamesController < ApplicationController
   respond_to :html
 
   def index
-    @games = Game.all.includes(:round, :team_home, :team_away).order(played_at: :asc)
+    @games = Game.all.includes(:team_home, :team_away, round: :championship).order(played_at: :asc)
     respond_with @games
   end
 

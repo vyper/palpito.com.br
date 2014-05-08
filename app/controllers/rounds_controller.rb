@@ -5,7 +5,7 @@ class RoundsController < ApplicationController
   respond_to :html
 
   def index
-    @rounds = Round.all
+    @rounds = Round.all.includes(:championship)
     respond_with @rounds
   end
 

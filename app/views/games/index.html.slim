@@ -1,7 +1,7 @@
 - content_for :title
   | Jogos
   = link_to new_game_path, class: "btn btn-primary pull-right" do
-    i[class="glyphicon glyphicon-plus"]
+    i.fa.fa-plus
     |  Adicionar jogo
 
 table[class="table table-hover"]
@@ -42,9 +42,9 @@ table[class="table table-hover"]
           = game.team_away
         td.text-right
           = link_to edit_game_path(game), class: "btn btn-default btn-xs" do
-            i.glyphicon.glyphicon-edit
+            i.fa.fa-edit
             |  Editar
           |&nbsp;
           = link_to game, method: :delete, "data-confirm" => "Tem certeza que deseja excluir o jogo?", class: "btn btn-default btn-xs" do
-            i.glyphicon.glyphicon-remove
+            i.fa.fa-trash-o
             |  Excluir
