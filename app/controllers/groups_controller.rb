@@ -5,7 +5,7 @@ class GroupsController < ApplicationController
   respond_to :html
 
   def index
-    @my_groups = current_user.my_groups
+    @my_groups = current_user.my_groups.includes(:championship)
     @members   = current_user.members.where.not(group: @my_groups.map(&:id))
     respond_with @my_groups
   end
