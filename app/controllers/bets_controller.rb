@@ -6,10 +6,11 @@ class BetsController < ApplicationController
 
   def index
     @groups  = current_user.groups.includes(:championship).order(:name)
-    @members = group.members
+    @members = group.members.includes(:user)
 
     @bets = current_user.bets.
               joins(game: :round).
+              includes(game: [:team_home, :team_away, :round]).
               where(
                 rounds: { championship_id: group.championship_id },
                 games: { played_at: week.to_range }
