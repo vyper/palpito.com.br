@@ -35,6 +35,14 @@ class GroupsController < ApplicationController
     respond_with @my_group, location: groups_path
   end
 
+  def classify
+    if ClassifyGroupWorker.perform_async(@my_group.id)
+      flash[:notice] = "O recálculo do ranking do #{@my_group} foi solicitado com sucesso, aguarde alguns instantes e atualize a página! (:"
+    end
+
+    respond_with @my_group, location: bets_path
+  end
+
   def destroy
     @my_group.destroy
     flash[:notice] = "O seu grupo foi excluído com sucesso"
