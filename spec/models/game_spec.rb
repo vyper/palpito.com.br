@@ -110,12 +110,12 @@ describe Game do
 
   context '#bettable?' do
     it 'in the future' do
-      subject.played_at = DateTime.now + 1
+      subject.played_at = DateTime.now.in_time_zone + 1
       expect(subject.bettable?).to eq true
     end
 
     it 'in the past' do
-      subject.played_at = DateTime.now - 1
+      subject.played_at = DateTime.now.in_time_zone - 1
       expect(subject.bettable?).to eq false
     end
   end
@@ -123,12 +123,12 @@ describe Game do
   ## methods
   context '#played?' do
     it 'in the future' do
-      subject.played_at = DateTime.now + 1
+      subject.played_at = DateTime.now.in_time_zone + 1
       expect(subject.played?).to eq false
     end
 
     it 'in the past' do
-      subject.played_at = DateTime.now - 1
+      subject.played_at = DateTime.now.in_time_zone - 1
       expect(subject.played?).to eq true
     end
   end
