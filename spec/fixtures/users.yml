@@ -3,6 +3,7 @@ vyper:
   nickname: vyper
   first_name: Leonardo
   last_name: Saraiva
+  encrypted_password: $2a$10$/nM2RsLA3U3bzZzWCBka6.6wJPISp87ld7sz947FzWMTE/WcPzs8q
   confirmed_at: 2014-01-01 08:00:00
   team: sao
   provider: facebook
