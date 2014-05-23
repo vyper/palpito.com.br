@@ -8,6 +8,7 @@ vyper:
   team: sao
   provider: facebook
   uid: 1
+  admin: true
 
 vpr:
   email: vpr@mcorp.io
