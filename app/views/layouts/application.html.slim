@@ -24,23 +24,32 @@ html
           ul[class="nav navbar-nav navbar-right"]
             - if user_signed_in?
               li
+                ul.nav.navbar-nav
+                  li.dropdown
+                    - if current_user.groups.exists?
+                      a[href="#" class="dropdown-toggle" data-toggle="dropdown"]
+                        | Gerenciar bolão
+                        b.caret
+                      ul.dropdown-menu
+                        li
+                          = link_to 'Meus grupos', groups_path
+                        - if current_user.try :admin?
+                          li.divider
+                          li.dropdown-header
+                            | Administração
+                          li
+                            = link_to 'Campeonatos', championships_path
+                            = link_to 'Rodadas', rounds_path
+                            = link_to 'Jogos', games_path
+                    - else
+                      = link_to 'Crie um grupo!', new_group_path
+              li
                 ul[class="nav navbar-nav"]
                   li.dropdown
                     a[href="#" class="dropdown-toggle" data-toggle="dropdown"]
                       | Minha conta
                       b.caret
                     ul.dropdown-menu
-                      li.dropdown-header
-                        | Administração
-                      li
-                        = link_to 'Meus grupos', groups_path
-                        - if current_user.try :admin?
-                          = link_to 'Campeonatos', championships_path
-                          = link_to 'Rodadas', rounds_path
-                          = link_to 'Jogos', games_path
-                      li.divider
-                      li.dropdown-header
-                        | Minha conta
                       li
                         = link_to "Meus dados", edit_user_registration_path
                       li
