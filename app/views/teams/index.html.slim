@@ -1,0 +1,26 @@
+- content_for :title
+  | Times
+  = link_to new_team_path, class: "btn btn-primary pull-right" do
+    i.fa.fa-plus
+    |  Adicionar time
+
+table[class="table table-hover"]
+  thead
+    tr
+      th.col-md-10
+        | Nome
+      th.col-md-2
+        |
+  - for team in @teams do
+    tbody
+      tr
+        td
+          = team
+        td.text-right
+          = link_to edit_team_path(team), class: "btn btn-default btn-xs" do
+            i.fa.fa-edit
+            |  Editar
+          |&nbsp;
+          = link_to team, method: :delete, "data-confirm" => "Tem certeza que deseja excluir o time?", class: "btn btn-default btn-xs" do
+            i.fa.fa-trash-o
+            |  Excluir
