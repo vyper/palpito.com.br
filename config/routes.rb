@@ -58,6 +58,8 @@ Rails.application.routes.draw do
 
   resources :rounds, except: :show
 
+  resources :teams, except: :show
+
   resources :games, except: :show
 
   get '/sobre'       => 'pages#about', as: 'about'
