@@ -6,7 +6,7 @@ working_directory "#{base_path}/current"
 listen "#{base_path}/shared/tmp/unicorn.#{application}.sock", backlog: 64
 timeout 30
 
-pid "#{base_path}/shared/pids/unicorn.pid"
+pid "#{base_path}/shared/tmp/pids/unicorn.pid"
 stderr_path "#{base_path}/shared/log/unicorn.stderr.log"
 stdout_path "#{base_path}/shared/log/unicorn.stdout.log"
 
