@@ -53,9 +53,6 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0',          group: :doc
 
-# Use unicorn as the app server
-gem 'unicorn', group: :production
-
 # Environment variables
 gem 'dotenv-rails'
 
@@ -64,6 +61,12 @@ group :development do
   gem 'better_errors'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
+
+  # deploy
+  gem 'capistrano'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
+  gem 'capistrano-sidekiq'
 end
 
 group :development, :test do
@@ -78,4 +81,10 @@ group :test do
   gem 'shoulda'
   gem 'coveralls', require: false
   gem "codeclimate-test-reporter", require: false
+end
+
+# Use unicorn as the app server
+group :production do
+  gem 'unicorn'
+  gem 'unicorn-rails'
 end
