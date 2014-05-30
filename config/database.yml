@@ -80,6 +80,6 @@ test:
 #
 production:
   <<: *default
-  database: bolao_production
+  database: bolao
   username: bolao
   password: <%= ENV['BOLAO_DATABASE_PASSWORD'] %>
