@@ -15,8 +15,9 @@ protected
   def configure_permitted_parameters
     # TODO improve this source
     %i{ nickname first_name last_name team_id }.each do |field|
-      devise_parameter_sanitizer.for(:sign_up)        << field
-      devise_parameter_sanitizer.for(:account_update) << field
+      devise_parameter_sanitizer.for(:sign_up)           << field
+      devise_parameter_sanitizer.for(:account_update)    << field
+      devise_parameter_sanitizer.for(:accept_invitation) << field
     end
   end
 end
