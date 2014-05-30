@@ -1,9 +1,9 @@
 rails_env   = ENV['RAILS_ENV'] || 'production'
 application = 'bolao.papodeboleiro.com'
 base_path   = "/var/www/#{application}"
-worker_processes 2
+worker_processes 4
 working_directory "#{base_path}/current"
-listen "#{base_path}/shared/tmp/unicorn.#{application}.sock", backlog: 64
+listen "#{base_path}/shared/tmp/sockets/unicorn.#{application}.sock", backlog: 64
 timeout 30
 
 pid "#{base_path}/shared/tmp/pids/unicorn.pid"
