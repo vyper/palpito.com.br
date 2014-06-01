@@ -8,7 +8,6 @@ class InviteUserToGroup
   def perform
     group  = context[:group]
     user   = context[:user]
-    status = user == group.admin ? Member::statuses[:active] : Member::statuses[:invited]
 
     member = group.members.where(user: user).first
     if member.blank?
@@ -24,5 +23,20 @@ class InviteUserToGroup
     end
 
     context[:member] = member
+  end
+
+  def status
+    group  = context[:group]
+    user   = context[:user]
+
+    if user === group.admin
+      return Member::statuses[:active]
+
+    elsif not user.confirmed?
+      return Member::statuses[:active]
+
+    else
+      return Member::statuses[:invited]
+    end
   end
 end
