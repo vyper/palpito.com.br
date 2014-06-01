@@ -1,5 +1,5 @@
 class MemberMailer < ActionMailer::Base
-  default from: "bolao@mcorp.io"
+  default from: "leonardo@papodeboleiro.com"
 
   def invite(member)
     @member = member

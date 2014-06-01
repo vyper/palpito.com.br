@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      | bolão :: mcorp.io
+      | Bolão :: Papo de Boleiro.com
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false
     = javascript_include_tag 'application', 'data-turbolinks-track' => false
     = csrf_meta_tags
@@ -18,8 +18,8 @@ html
             span.icon-bar
           = link_to root_path, class: "navbar-brand" do
             strong
-              | bolão
-            |  :: mcorp.io
+              | Bolão
+            |  :: Papo de Boleiro.com
         div[class="collapse navbar-collapse"]
           ul[class="nav navbar-nav navbar-right"]
             - if user_signed_in?
