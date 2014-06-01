@@ -6,7 +6,7 @@ class BetsController < ApplicationController
 
   def index
     @groups  = current_user.groups.includes(:championship).order(:name)
-    @members = group.members.active.includes(:user).order(points: :desc)
+    @members = group.members.joins(:user).active.merge(User.confirmed).order(points: :desc)
 
     @bets = current_user.bets.
               joins(game: :round).
