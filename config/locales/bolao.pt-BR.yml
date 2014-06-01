@@ -29,6 +29,7 @@ pt-BR:
       group:
         name: Nome
         admin: Administrador
+        championship: Campeonato
       member:
         championship: Campeonato
         group: Grupo
