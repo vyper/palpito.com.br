@@ -2,8 +2,8 @@
   = f.error_notification
   .form-inputs
     = f.input :name
-    = f.input :started_at,  as: :string
-    = f.input :finished_at, as: :string
+    = f.input :started_at,  as: :string, input_html: { value: localize(f.object.started_at) }
+    = f.input :finished_at, as: :string, input_html: { value: localize(f.object.finished_at) }
 
   .form-actions
     = f.button :submit, "Salvar", class: "btn btn-primary"
