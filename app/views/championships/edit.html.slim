@@ -2,4 +2,14 @@
   = link_to "Campeonatos", championships_path
   |  > Editar #{@championship}
 
-= render "form"
+= simple_form_for(@championship) do |f|
+  = f.error_notification
+  .form-inputs
+    = f.input :name
+    = f.input :started_at,  as: :string, input_html: { value: l(f.object.started_at) }
+    = f.input :finished_at, as: :string, input_html: { value: l(f.object.finished_at) }
+
+  .form-actions
+    = f.button :submit, "Salvar", class: "btn btn-primary"
+    | &nbsp;
+    = link_to "Cancelar", :back, class: "btn btn-danger"
