@@ -17,6 +17,9 @@ class User < ActiveRecord::Base
   has_many :my_groups, class_name: Group, foreign_key: :admin_id
   has_many :groups, through: :members
 
+  ## scopes
+  scope :confirmed,  -> { where.not(confirmed_at: nil) }
+
   ## methods
   def name
     "#{first_name} #{last_name.to_s.first}."

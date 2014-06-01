@@ -19,6 +19,9 @@ describe User do
   it { expect(subject).to have_many(:my_groups).class_name(Group).with_foreign_key(:admin_id) }
   it { expect(subject).to have_many(:groups).through(:members) }
 
+  ## scopes
+  it { expect(User.confirmed.to_sql).to include '("users"."confirmed_at" IS NOT NULL)' }
+
   ## methods
   it { expect(subject.to_s).to eq "vyper" }
   it { expect(subject.name).to eq "Leonardo S." }
