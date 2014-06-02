@@ -17,6 +17,9 @@ describe Team do
   it { expect(subject).to validate_attachment_presence(:image) }
   it { expect(subject).to validate_attachment_content_type(:image).allowing('image/png', 'image/gif', 'image/jpg') }
 
+  ## scopes
+  it { expect(Team.all.to_sql).to include('"teams"."name"') }
+
   ## methods
   it { expect(subject.to_s).to eq subject.name }
 end

@@ -9,6 +9,9 @@ class Team < ActiveRecord::Base
   validates :image, attachment_presence: true,
                     attachment_content_type: { content_type: %w{ image/png image/gif image/jpg } }
 
+  ## scopes
+  default_scope { order(:name) }
+
   ## methods
   def to_s
     name
