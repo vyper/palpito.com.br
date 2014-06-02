@@ -67,11 +67,15 @@ $(function(){
     },
 
     edit: function() {
-      this.$el.addClass("editing");
-      this.$el.find("input:first").focus();
-      this.$el.find("input:first").select();
-      this.$el.find("input").prop("disabled", false);
-      this.$el.find("i.fa-check").removeClass("hidden");
+      var el = this.$el;
+
+      if (!el.hasClass("editing")) {
+        el.addClass("editing");
+        el.find("input:first").focus();
+        el.find("input:first").select();
+        el.find("input").prop("disabled", false);
+        el.find("i.fa-check").removeClass("hidden");
+      }
     },
 
     close: function() {
