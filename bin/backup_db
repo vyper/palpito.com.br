@@ -6,7 +6,7 @@ FILE=/tmp/bolao-backup-$(date +%Y-%m-%d)
 LOG=/var/www/bolao.papodeboleiro.com/shared/log/backup.log
 
 echo "[$(date)] Start database backup" >> $LOG
-rm /tmp/bolao*
+rm -r /tmp/bolao*
 sudo -u postgres pg_dump bolao > $FILE
 gzip -9 $FILE
 
