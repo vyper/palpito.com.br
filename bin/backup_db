@@ -1,0 +1,14 @@
+#!/bin/bash
+
+PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games"
+
+FILE=/tmp/bolao-backup-$(date +%Y-%m-%d)
+LOG=/var/www/bolao.papodeboleiro.com/shared/log/backup.log
+
+echo "[$(date)] Start database backup" >> $LOG
+rm /tmp/bolao*
+sudo -u postgres pg_dump bolao > $FILE
+gzip -9 $FILE
+
+s3cmd put $FILE.gz s3://bolao.papodeboleiro.com/backup/$(date +%Y)/$(date +%m)/bolao-backup-$(date +%Y-%m-%d).gz >> $LOG
+echo "[$(date)] End database backup" >> $LOG
