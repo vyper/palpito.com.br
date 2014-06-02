@@ -76,6 +76,15 @@ html
 
       = yield
 
-//    div.footer
-//      div.container
-//        | bolão :: mcorp.ws
+  footer.navbar.navbar-default.navbar-fixed-bottom.navbar-inverse
+    div.container
+      div.navbar-header
+        = link_to root_path, class: "navbar-brand" do
+          small
+            | Bolão :: Papo de Boleiro.com
+            = " © 2010-#{DateTime.now.in_time_zone.year}"
+      ul.nav.nav-pills.pull-right
+        li.btn
+          = link_to "Regulamento", rule_path
+        li.btn
+          = link_to "Sobre", about_path
