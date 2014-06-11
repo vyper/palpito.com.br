@@ -7,7 +7,7 @@ class FindOrInviteUser
 
   def perform
     member = context[:member]
-    email  = member.email
+    email  = member.email.downcase
     user   = User.where(email: email).first
     context[:user_invited] = false
 
