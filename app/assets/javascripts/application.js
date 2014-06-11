@@ -15,7 +15,9 @@
 //= require underscore
 //= require backbone
 //= require_tree .
-//= require bootstrap
+//= require bootstrap/alert
+//= require bootstrap/button
+//= require bootstrap/dropdown
 
 $(function(){
 
