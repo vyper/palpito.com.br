@@ -22,7 +22,7 @@
   </ul>
 <% end %>
 
-<div class="col-xs-12 col-sm-9">
+<div class="col-xs-12 col-md-9">
   <ul class="pager">
     <% if @week.previous? %>
       <li class="previous">
@@ -52,7 +52,7 @@
   </div>
 </div>
 
-<div class="col-xs-12 col-sm-3" role="navigation">
+<div class="col-xs-12 col-md-3" role="navigation">
   <h4>
     Participantes
     <%= link_to classify_group_path(@group), method: :put, title: "Atualizar a classificação do grupo com últimos resultados" do %>
@@ -78,7 +78,8 @@
   </div>
   <div class="col-md-1 col-xs-1 text-center round"><%%- round %></div>
   <div class="row col-md-9 col-xs-9 teams <%%- is_bettable ? 'bettable': '' %>" title="Clique para editar seu palpite">
-    <div class="col-md-3 col-xs-3 text-right team-name"><%%- team_home %></div>
+    <div class="col-md-3 col-xs-3 text-right team-name hidden-xs hidden-sm"><%%- team_home %></div>
+    <div class="col-md-3 col-xs-3 text-right team-name hidden-md hidden-lg"><%%- team_home_short %></div>
     <div class="col-md-1 col-xs-1 text-left"><img src="<%%- team_home_image_url %>" /></div>
     <div class="col-md-1 col-xs-1 text-center goal">
       <input type="text" value="<%%- team_home_goals %>" disabled />
@@ -88,7 +89,8 @@
       <input type="text" value="<%%- team_away_goals %>" disabled />
     </div>
     <div class="col-md-1 col-xs-1 text-right"><img src="<%%- team_away_image_url %>" /></div>
-    <div class="col-md-3 col-xs-3 team-name"><%%- team_away %></div>
+    <div class="col-md-3 col-xs-3 team-name hidden-xs hidden-sm"><%%- team_away %></div>
+    <div class="col-md-3 col-xs-3 team-name hidden-md hidden-lg"><%%- team_away_short %></div>
   </div>
   <div class="col-md-1 col-xs-1 text-center points">
     <%%- points %>
