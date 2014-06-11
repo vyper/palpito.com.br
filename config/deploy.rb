@@ -1,6 +1,10 @@
 # config valid only for Capistrano 3.1
 lock '3.2.1'
 
+set :rollbar_token, ENV['ROLLBAR_TOKEN']
+set :rollbar_env, Proc.new { fetch :stage }
+set :rollbar_role, Proc.new { :app }
+
 set :application, 'bolao.papodeboleiro.com'
 set :repo_url, 'git@github.com:mcorp/bolao.git'
 
