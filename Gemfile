@@ -83,6 +83,9 @@ group :test do
   gem "codeclimate-test-reporter", require: false
 end
 
+# Error notification
+gem 'rollbar'
+
 # Use unicorn as the app server
 group :production do
   gem 'unicorn'
