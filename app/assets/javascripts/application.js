@@ -50,7 +50,7 @@ $(function(){
     events: {
       "click .bettable" : "edit",
       "keypress .bettable" : "updateOnEnter",
-      "click .fa-check" : "close"
+      "click .save-bet" : "close"
     },
 
     template: _.template($('#bet-template').html()),
@@ -74,7 +74,7 @@ $(function(){
         el.find("input:first").focus();
         el.find("input:first").select();
         el.find("input").prop("disabled", false);
-        el.find("i.fa-check").removeClass("hidden");
+        el.find(".save-bet").removeClass("hidden");
       }
     },
 
@@ -87,7 +87,7 @@ $(function(){
         this.model.save({ team_home_goals: team_home_goals, team_away_goals: team_away_goals });
         this.$el.removeClass("editing");
         this.$el.find("input").prop("disabled", true);
-        this.$el.find("i.fa-check").addClass("hidden");
+        this.$el.find(".save-bet").addClass("hidden");
       }
     },
 
