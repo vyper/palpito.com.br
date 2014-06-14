@@ -5,6 +5,9 @@ class BetsController < ApplicationController
   respond_to :html, :json
 
   def index
+    # TODO choose better way
+    request.variant = :mobile if browser.mobile?
+
     @groups  = current_user.groups.includes(:championship).order(:name)
     @members = group.members.joins(:user).active.merge(User.confirmed).order(points: :desc)
 

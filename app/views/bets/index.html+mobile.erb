@@ -1,0 +1,96 @@
+<% content_for :title do %>
+  Meus palpites
+
+  <ul class="nav navbar-nav pull-right">
+    <li class="dropdown">
+      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+        <%= @group.championship %>
+        <small><%= @group %></small>
+        <b class="caret"></b>
+      </a>
+      <ul class="dropdown-menu">
+        <li>
+          <% @groups.each do |group| %>
+            <%= link_to bets_path(group_id: group) do %>
+              <%= group.championship %>
+              <small><%= group %></small>
+            <% end %>
+          <% end %>
+        </li>
+      </ul>
+    </li>
+  </ul>
+<% end %>
+
+<div class="col-xs-12">
+  <ul class="pager">
+    <% if @week.previous? %>
+      <li class="previous">
+        <%= link_to '←', bets_path(week: @week.previous) %>
+      </li>
+    <% else %>
+      <li class='previous disabled'>
+        <a>←</a>
+      </li>
+    <% end %>
+    <li class="week">
+      Semana <%= @week.number %>:
+      <%= @week.start.strftime("%d/%m") %> a <%= @week.finish.strftime("%d/%m") %>
+    </li>
+    <% if @week.next? %>
+      <li class="next">
+        <%= link_to '→', bets_path(week: @week.next) %>
+      </li>
+    <% else %>
+      <li class="next disabled">
+        <a>→</a>
+      </li>
+    <% end %>
+  </ul>
+
+  <div id="bets" class="list-group">
+  </div>
+</div>
+
+<div class="col-xs-12" role="navigation">
+  <h4>
+    Participantes
+    <%= link_to classify_group_path(@group), method: :put, title: "Atualizar a classificação do grupo com últimos resultados" do %>
+      <i class="fa fa-refresh pull-right"></i>
+    <% end if @group.admin? current_user %>
+  </h4>
+
+  <ol class="list-group ranking">
+    <% @members.each do |member| %>
+      <li class="list-group-item <%= member.user == current_user ? 'list-group-item-success' : '' %>">
+        <%= member %>
+        <span class="badge"><%= member.points %></span>
+      </li>
+    <% end %>
+  </ol>
+</div>
+
+<script type="text/template" id="bet-template">
+  <div class="col-xs-1">
+    <div class="text-center bg-success"><strong><%%- weekday %></strong></div>
+    <div class="text-center"><%%- time %></div>
+    <div class="text-center"><small class="text-muted"><%%- date %></small></div>
+  </div>
+  <div class="row col-xs-10 teams <%%- is_bettable ? 'bettable': '' %>" title="Clique para editar seu palpite">
+    <div class="col-xs-3 text-right team-name"><%%- team_home_short %></div>
+    <div class="col-xs-1 text-left"><img src="<%%- team_home_image_url %>" /></div>
+    <div class="col-xs-1 text-center goal">
+      <input type="text" value="<%%- team_home_goals %>" disabled />
+    </div>
+    <div class="col-xs-2 text-center vs">vs</div>
+    <div class="col-xs-1 text-center goal">
+      <input type="text" value="<%%- team_away_goals %>" disabled />
+    </div>
+    <div class="col-xs-1 text-right"><img src="<%%- team_away_image_url %>" /></div>
+    <div class="col-xs-3 team-name"><%%- team_away_short %></div>
+  </div>
+  <div class="col-xs-1 text-center points">
+    <%%- points %>
+    <button class="hidden btn btn-primary save-bet" title="Salvar!">Salvar!</button>
+  </div>
+</script>
