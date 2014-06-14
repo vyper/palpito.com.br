@@ -19,6 +19,9 @@ gem 'simple_form', '~> 3.1.0.rc1'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 
+# Browser
+gem 'browser'
+
 # Auth
 gem 'devise'
 gem 'devise_invitable'
