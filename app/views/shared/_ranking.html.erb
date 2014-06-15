@@ -1,0 +1,17 @@
+<div class="col-xs-12 col-sm-3" role="navigation">
+  <h4>
+    Participantes
+    <%= link_to classify_group_path(@group), method: :put, title: "Atualizar a classificação do grupo com últimos resultados" do %>
+      <i class="fa fa-refresh pull-right"></i>
+    <% end if @group.admin? current_user %>
+  </h4>
+
+  <ol class="list-group ranking">
+    <% @members.each do |member| %>
+      <li class="list-group-item <%= member.user == current_user ? 'list-group-item-success' : '' %>">
+        <%= member %>
+        <span class="badge"><%= member.points %></span>
+      </li>
+    <% end %>
+  </ol>
+</div>
