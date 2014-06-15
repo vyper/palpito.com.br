@@ -21,7 +21,7 @@ class Game < ActiveRecord::Base
   delegate :championship, to: :round
 
   ## scopes
-  scope :not_played, -> { where('"games"."played_at" < ?', DateTime.now.in_time_zone) }
+  scope :played, -> { where('"games"."played_at" < ?', DateTime.now.in_time_zone) }
 
   ## methods
   def to_s

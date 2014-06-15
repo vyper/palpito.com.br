@@ -100,7 +100,7 @@ describe Game do
   end
 
   ## scopes
-  it { expect(Game.not_played.to_sql).to include '"games"."played_at" <' }
+  it { expect(Game.played.to_sql).to include '"games"."played_at" <' }
 
   ## delegates
   it { expect(subject.championship).to eq subject.round.championship }
