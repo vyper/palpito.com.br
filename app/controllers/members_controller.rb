@@ -1,6 +1,6 @@
 class MembersController < ApplicationController
   before_filter :authenticate_user!
-  before_filter :set_my_group
+  before_filter :set_my_group, except: :bets
 
   respond_to :html
 
