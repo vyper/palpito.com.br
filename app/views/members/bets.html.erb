@@ -1,0 +1,53 @@
+<% content_for :title do %>
+  Palpites de <%= @member %> no <%= @group %>
+<% end %>
+
+<div class="col-xs-12 col-sm-9">
+  <ul class="pager">
+    <% if @week.previous? %>
+      <li class="previous">
+        <%= link_to '←', group_member_bets_path(@group, @member, week: @week.previous) %>
+      </li>
+    <% else %>
+      <li class='previous disabled'>
+        <a>←</a>
+      </li>
+    <% end %>
+    <li class="week">
+      Semana <%= @week.number %>:
+      <%= @week.start.strftime("%d/%m") %> a <%= @week.finish.strftime("%d/%m") %>
+    </li>
+    <% if @week.next? %>
+      <li class="next">
+        <%= link_to '→', group_member_bets_path(@group, @member, week: @week.next) %>
+      </li>
+    <% else %>
+      <li class="next disabled">
+        <a>→</a>
+      </li>
+    <% end %>
+  </ul>
+
+  <div id="bets" class="list-group">
+  <% @bets.each do |bet| %>
+    <div class="col-sm-1 col-xs-1">
+      <div class="text-center bg-success"><strong><%= I18n.t("date.abbr_day_names")[bet.game.played_at.strftime("%w").to_i] %></strong></div>
+      <div class="text-center"><%= bet.game.played_at.strftime("%H:%M") %></div>
+      <div class="text-center"><small class="text-muted"><%= bet.game.played_at.strftime("%d/%m") %></small></div>
+    </div>
+    <div class="col-sm-1 col-xs-1 text-center round"><%#%- round %></div>
+    <div class="row col-sm-9 col-xs-9 teams">
+      <div class="col-sm-3 col-xs-3 text-right team-name hidden-xs hidden-sm"><%= bet.team_home %></div>
+      <div class="col-sm-1 col-xs-1 text-left"><%= image_tag bet.team_home.image.url %></div>
+      <div class="col-sm-1 col-xs-1 text-center goal"><%= bet.team_home_goals %></div>
+      <div class="col-sm-2 col-xs-2 text-center vs">vs</div>
+      <div class="col-sm-1 col-xs-1 text-center goal"><%= bet.team_away_goals %></div>
+      <div class="col-sm-1 col-xs-1 text-right"><%= image_tag bet.team_away.image.url %></div>
+      <div class="col-sm-3 col-xs-3 team-name hidden-xs hidden-sm"><%= bet.team_away %></div>
+    </div>
+    <div class="col-sm-1 col-xs-1 text-center points"><%= bet.points %></div>
+  <% end %>
+  </div>
+</div>
+
+<%= render "shared/ranking" %>

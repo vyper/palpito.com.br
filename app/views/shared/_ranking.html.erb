@@ -9,7 +9,7 @@
   <ol class="list-group ranking">
     <% @members.each do |member| %>
       <li class="list-group-item <%= member.user == current_user ? 'list-group-item-success' : '' %>">
-        <%= member %>
+        <%= link_to member, group_member_bets_path(@group, member) %>
         <span class="badge"><%= member.points %></span>
       </li>
     <% end %>
