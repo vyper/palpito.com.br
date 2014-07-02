@@ -19,6 +19,8 @@
 //= require bootstrap/button
 //= require bootstrap/dropdown
 
+$.ajaxSetup({ cache: false });
+
 $(function(){
 
   var Bet = Backbone.Model.extend({
