@@ -22,61 +22,62 @@
   </ul>
 <% end %>
 
-<div class="col-xs-12 col-sm-9">
-  <ul class="pager">
-    <% if @week.previous? %>
-      <li class="previous">
-        <%= link_to '←', bets_path(week: @week.previous) %>
+<div class="row">
+  <div class="col-xs-12 col-sm-9">
+    <ul class="pager">
+      <% if @week.previous? %>
+        <li class="previous">
+          <%= link_to '←', bets_path(week: @week.previous) %>
+        </li>
+      <% else %>
+        <li class='previous disabled'>
+          <a>←</a>
+        </li>
+      <% end %>
+      <li class="week">
+        Semana <%= @week.number %>:
+        <%= @week.start.strftime("%d/%m") %> a <%= @week.finish.strftime("%d/%m") %>
       </li>
-    <% else %>
-      <li class='previous disabled'>
-        <a>←</a>
-      </li>
-    <% end %>
-    <li class="week">
-      Semana <%= @week.number %>:
-      <%= @week.start.strftime("%d/%m") %> a <%= @week.finish.strftime("%d/%m") %>
-    </li>
-    <% if @week.next? %>
-      <li class="next">
-        <%= link_to '→', bets_path(week: @week.next) %>
-      </li>
-    <% else %>
-      <li class="next disabled">
-        <a>→</a>
-      </li>
-    <% end %>
-  </ul>
+      <% if @week.next? %>
+        <li class="next">
+          <%= link_to '→', bets_path(week: @week.next) %>
+        </li>
+      <% else %>
+        <li class="next disabled">
+          <a>→</a>
+        </li>
+      <% end %>
+    </ul>
 
-  <div id="bets" class="list-group">
+    <div id="bets" class="list-group row">
+    </div>
   </div>
+
+  <%= render "shared/ranking" %>
 </div>
 
-<%= render "shared/ranking" %>
-
 <script type="text/template" id="bet-template">
-  <div class="col-sm-1 col-xs-1">
+  <div class="col-sm-1">
     <div class="text-center bg-success"><strong><%%- weekday %></strong></div>
     <div class="text-center"><%%- time %></div>
     <div class="text-center"><small class="text-muted"><%%- date %></small></div>
   </div>
-  <div class="col-sm-1 col-xs-1 text-center round"><%%- round %></div>
-  <div class="row col-sm-9 col-xs-9 teams <%%- is_bettable ? 'bettable': '' %>" title="Clique para editar seu palpite">
-    <div class="col-sm-3 col-xs-3 text-right team-name hidden-xs hidden-sm"><%%- team_home %></div>
-    <div class="col-sm-3 col-xs-3 text-right team-name hidden-md hidden-lg"><%%- team_home_short %></div>
-    <div class="col-sm-1 col-xs-1 text-left"><img src="<%%- team_home_image_url %>" /></div>
-    <div class="col-sm-1 col-xs-1 text-center goal">
+
+  <div class="col-sm-1 text-center round"><%%- round %></div>
+
+  <div class="col-sm-9 teams <%%- is_bettable ? 'bettable': '' %>">
+    <div class="col-sm-3 team-name text-right"><%%- team_home %></div>
+    <div class="col-sm-1 team-image text-center"><img src="<%%- team_home_image_url %>" class="img-responsive" /></div>
+    <div class="col-sm-4 text-center goal">
       <input type="text" value="<%%- team_home_goals %>" disabled />
-    </div>
-    <div class="col-sm-2 col-xs-2 text-center vs">vs</div>
-    <div class="col-sm-1 col-xs-1 text-center goal">
+      <span class="vs">x</span>
       <input type="text" value="<%%- team_away_goals %>" disabled />
     </div>
-    <div class="col-sm-1 col-xs-1 text-right"><img src="<%%- team_away_image_url %>" /></div>
-    <div class="col-sm-3 col-xs-3 team-name hidden-xs hidden-sm"><%%- team_away %></div>
-    <div class="col-sm-3 col-xs-3 team-name hidden-md hidden-lg"><%%- team_away_short %></div>
+    <div class="col-sm-1 team-image text-center"><img src="<%%- team_away_image_url %>" class="img-responsive" /></div>
+    <div class="col-sm-3 team-name"><%%- team_away %></div>
   </div>
-  <div class="col-sm-1 col-xs-1 text-center points">
+
+  <div class="col-sm-1 text-center points">
     <%%- points %>
     <button class="hidden btn btn-primary save-bet" title="Salvar!">Salvar!</button>
   </div>

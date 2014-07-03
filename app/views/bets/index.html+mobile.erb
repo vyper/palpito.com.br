@@ -48,7 +48,7 @@
     <% end %>
   </ul>
 
-  <div id="bets" class="list-group">
+  <div id="bets" class="list-group row">
   </div>
 </div>
 
@@ -60,19 +60,19 @@
     <div class="text-center"><%%- time %></div>
     <div class="text-center"><small class="text-muted"><%%- date %></small></div>
   </div>
-  <div class="row col-xs-10 teams <%%- is_bettable ? 'bettable': '' %>" title="Clique para editar seu palpite">
-    <div class="col-xs-3 text-right team-name"><%%- team_home_short %></div>
-    <div class="col-xs-1 text-left"><img src="<%%- team_home_image_url %>" /></div>
-    <div class="col-xs-1 text-center goal">
+
+  <div class="col-sm-10 teams <%%- is_bettable ? 'bettable': '' %>">
+    <div class="col-sm-3 team-name text-right"><%%- team_home_short %></div>
+    <div class="col-sm-1 team-image text-center"><img src="<%%- team_home_image_url %>" class="img-responsive" /></div>
+    <div class="col-sm-4 text-center goal">
       <input type="text" value="<%%- team_home_goals %>" disabled />
-    </div>
-    <div class="col-xs-2 text-center vs">vs</div>
-    <div class="col-xs-1 text-center goal">
+      <span class="vs">x</span>
       <input type="text" value="<%%- team_away_goals %>" disabled />
     </div>
-    <div class="col-xs-1 text-right"><img src="<%%- team_away_image_url %>" /></div>
-    <div class="col-xs-3 team-name"><%%- team_away_short %></div>
+    <div class="col-sm-1 team-image text-center"><img src="<%%- team_away_image_url %>" class="img-responsive" /></div>
+    <div class="col-sm-3 team-name"><%%- team_away_short %></div>
   </div>
+
   <div class="col-xs-1 text-center points">
     <%%- points %>
     <button class="hidden btn btn-primary save-bet" title="Salvar!">Salvar!</button>

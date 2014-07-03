@@ -44,11 +44,16 @@ th.happened, td.happened {
 
 .bet {
   height: 5.5em;
+  padding: 10px 0;
 }
 
 .round {
   padding-top: 0.5em;
   font-size: 1.5em;
+}
+
+.teams {
+  padding: 0;
 }
 
 .teams img {
@@ -61,6 +66,11 @@ th.happened, td.happened {
   font-size: 1.6em;
 }
 
+.team-image {
+  padding: 0;
+  margin: 0;
+}
+
 .goal, .points {
   font-size: 2.5em;
 }
@@ -70,8 +80,8 @@ th.happened, td.happened {
 }
 
 .vs {
-  padding-top: 0.5em;
-  font-size: 1.5em;
+  color: #999;
+  font-size: 0.5em;
 }
 
 .bet input {
