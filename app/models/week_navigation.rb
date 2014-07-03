@@ -21,8 +21,12 @@ class WeekNavigation
     championship.started_at.year
   end
 
+  def now
+    Time.zone.now
+  end
+
   def number
-    @number ||= Time.zone.now.strftime("%W").to_i + 1
+    @number ||= now.strftime("%W").to_i + 1
 
     @number = max_number_limit if @number > max_number_limit
     @number = min_number_limit if @number < min_number_limit

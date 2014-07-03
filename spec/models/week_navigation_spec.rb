@@ -7,10 +7,14 @@ describe WeekNavigation do
   let(:week)         { WeekNavigation.new(championship) }
   let(:week_w_n)     { WeekNavigation.new(championship, 25) }
 
+  before :each do
+    allow_any_instance_of(WeekNavigation).to receive(:now).and_return(Time.parse("2014-06-11 00:00:00"))
+  end
+
   context '#number' do
-    it('max limit')           { expect(WeekNavigation.new(championship, 66).number).to eq 28 }
-    it('min limit')           { expect(WeekNavigation.new(championship, -3).number).to eq 24 }
-    it('empty')               { expect(WeekNavigation.new(championship).number).    to eq 24 }
+    it('max limit') { expect(WeekNavigation.new(championship, 66).number).to eq 28 }
+    it('min limit') { expect(WeekNavigation.new(championship, -3).number).to eq 24 }
+    it('empty')     { expect(WeekNavigation.new(championship).number).    to eq 24 }
   end
 
   it('#min_number_limit') { expect(week.min_number_limit).to eq 24 }
