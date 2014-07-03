@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ClassifyBetWorker do
-  fixtures :bets
+  fixtures :bets, :games, :teams, :users
 
   let(:bet)  { bets(:sao_w_x_par) }
 
