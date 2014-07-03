@@ -34,6 +34,9 @@ class MembersController < ApplicationController
   end
 
   def bets
+    # TODO choose better way
+    request.variant = :mobile if browser.mobile?
+
     @group   = current_user.groups.find(params[:group_id])
     @member  = @group.members.find(params[:member_id])
     @members = @group.members.joins(:user).active.merge(User.confirmed).order(points: :desc)

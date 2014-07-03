@@ -2,7 +2,7 @@
   Palpites de <%= @member %> no <%= @group %>
 <% end %>
 
-<div class="col-sm-9">
+<div class="col-xs-12">
   <ul class="pager">
     <% if @week.previous? %>
       <li class="previous">
@@ -31,27 +31,25 @@
   <div id="bets" class="list-group row">
   <% @bets.each do |bet| %>
     <div class="list-group-item bet">
-      <div class="col-sm-1">
+      <div class="col-xs-1">
         <div class="text-center bg-success"><strong><%= I18n.t("date.abbr_day_names")[bet.game.played_at.strftime("%w").to_i] %></strong></div>
         <div class="text-center"><%= bet.game.played_at.strftime("%H:%M") %></div>
         <div class="text-center"><small class="text-muted"><%= bet.game.played_at.strftime("%d/%m") %></small></div>
       </div>
 
-      <div class="col-sm-1 text-center round"><%= bet.game.round %></div>
-
-      <div class="col-sm-9 teams">
-        <div class="col-sm-3 team-name text-right"><%= bet.team_home %></div>
-        <div class="col-sm-1 team-image text-center"><%= image_tag bet.team_home.image.url, class: "img-responsive" %></div>
-        <div class="col-sm-4 text-center goal">
+      <div class="col-xs-10 teams">
+        <div class="col-xs-3 team-name text-right"><%= bet.team_home %></div>
+        <div class="col-xs-1 team-image text-center"><%= image_tag bet.team_home.image.url, class: "img-responsive" %></div>
+        <div class="col-xs-4 text-center goal">
           <%= text_field_tag "home_goals", bet.team_home_goals %>
           <span class="vs">x</span>
           <%= text_field_tag "away_goals", bet.team_away_goals %>
         </div>
-        <div class="col-sm-1 team-image text-center"><%= image_tag bet.team_away.image.url, class: "img-responsive" %></div>
-        <div class="col-sm-3 team-name"><%= bet.team_away %></div>
+        <div class="col-xs-1 team-image text-center"><%= image_tag bet.team_away.image.url, class: "img-responsive" %></div>
+        <div class="col-xs-3 team-name"><%= bet.team_away %></div>
       </div>
 
-      <div class="col-sm-1 text-center points"><%= bet.points %></div>
+      <div class="col-xs-1 text-center points"><%= bet.points %></div>
     </div>
   <% end %>
   </div>
