@@ -24,30 +24,7 @@
 
 <div class="row">
   <div class="col-xs-12 col-sm-9">
-    <ul class="pager">
-      <% if @week.previous? %>
-        <li class="previous">
-          <%= link_to '←', bets_path(week: @week.previous) %>
-        </li>
-      <% else %>
-        <li class='previous disabled'>
-          <a>←</a>
-        </li>
-      <% end %>
-      <li class="week">
-        Semana <%= @week.number %>:
-        <%= @week.start.strftime("%d/%m") %> a <%= @week.finish.strftime("%d/%m") %>
-      </li>
-      <% if @week.next? %>
-        <li class="next">
-          <%= link_to '→', bets_path(week: @week.next) %>
-        </li>
-      <% else %>
-        <li class="next disabled">
-          <a>→</a>
-        </li>
-      <% end %>
-    </ul>
+    <% render "week_navigation" %>
 
     <div id="bets" class="list-group row">
     </div>
