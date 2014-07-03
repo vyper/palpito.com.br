@@ -3,30 +3,7 @@
 <% end %>
 
 <div class="col-sm-9">
-  <ul class="pager">
-    <% if @week.previous? %>
-      <li class="previous">
-        <%= link_to '←', group_member_bets_path(@group, @member, week: @week.previous) %>
-      </li>
-    <% else %>
-      <li class='previous disabled'>
-        <a>←</a>
-      </li>
-    <% end %>
-    <li class="week">
-      Semana <%= @week.number %>:
-      <%= @week.start.strftime("%d/%m") %> a <%= @week.finish.strftime("%d/%m") %>
-    </li>
-    <% if @week.next? %>
-      <li class="next">
-        <%= link_to '→', group_member_bets_path(@group, @member, week: @week.next) %>
-      </li>
-    <% else %>
-      <li class="next disabled">
-        <a>→</a>
-      </li>
-    <% end %>
-  </ul>
+  <%= render "shared/week_navigation" %>
 
   <div id="bets" class="list-group row">
   <% @bets.each do |bet| %>
