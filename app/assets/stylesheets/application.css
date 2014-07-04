@@ -75,6 +75,13 @@ th.happened, td.happened {
   font-size: 2.5em;
 }
 
+.played {
+  font-size: 0.4em;
+  position: absolute;
+  top: 36px;
+  left: 90px;
+}
+
 .save-bet {
   cursor: pointer;
 }
