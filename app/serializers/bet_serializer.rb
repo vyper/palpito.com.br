@@ -1,6 +1,6 @@
 class BetSerializer < ActiveModel::Serializer
   ## bet attributes
-  attributes :id, :team_home_goals, :team_away_goals, :points, :is_bettable
+  attributes :id, :team_home_goals, :team_away_goals, :points, :is_bettable, :label
 
   ## game attributes
   attributes :team_home, :team_home_short, :team_away, :team_away_short, :round,
@@ -14,6 +14,13 @@ class BetSerializer < ActiveModel::Serializer
 
   def is_bettable
     object.bettable?
+  end
+
+  def label
+    return nil       if object.points.blank?
+    return 'success' if object.points == 40
+    return 'danger'  if object.points == 0
+    return 'warning'
   end
 
   def weekday
@@ -53,10 +60,10 @@ class BetSerializer < ActiveModel::Serializer
   end
 
   def game_team_home_goals
-    object.team_home_goals
+    object.game.team_home_goals
   end
 
   def game_team_away_goals
-    object.team_away_goals
+    object.game.team_away_goals
   end
 end
