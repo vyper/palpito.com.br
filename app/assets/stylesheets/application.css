@@ -82,6 +82,7 @@ th.happened, td.happened {
 .vs {
   color: #999;
   font-size: 0.5em;
+  padding-top: 0.8em;
 }
 
 .bet input {

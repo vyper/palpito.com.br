@@ -46,9 +46,11 @@
     <div class="col-sm-3 team-name text-right"><%%- team_home %></div>
     <div class="col-sm-1 team-image text-center"><img src="<%%- team_home_image_url %>" class="img-responsive" /></div>
     <div class="col-sm-4 text-center goal">
-      <input type="text" value="<%%- team_home_goals %>" disabled />
-      <span class="vs">x</span>
-      <input type="text" value="<%%- team_away_goals %>" disabled />
+      <div class="row text-center">
+        <div class="col-sm-5"><input type="text" value="<%%- team_home_goals %>" disabled /></div>
+        <div class="vs col-sm-2">x</div>
+        <div class="col-sm-5"><input type="text" value="<%%- team_away_goals %>"  disabled/></div>
+      </div>
     </div>
     <div class="col-sm-1 team-image text-center"><img src="<%%- team_away_image_url %>" class="img-responsive" /></div>
     <div class="col-sm-3 team-name"><%%- team_away %></div>
