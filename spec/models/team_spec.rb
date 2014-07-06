@@ -11,7 +11,6 @@ describe Team do
   it { expect(subject).to ensure_length_of(:name).is_at_least(3).is_at_most(50) }
 
   it { expect(subject).to validate_presence_of(:short_name) }
-  it { expect(subject).to validate_uniqueness_of(:short_name) }
   it { expect(subject).to ensure_length_of(:short_name).is_at_least(3).is_at_most(3) }
 
   it { expect(subject).to validate_attachment_presence(:image) }
