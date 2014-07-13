@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.0.0'
 
 # HTML
 gem 'slim-rails'
-gem 'simple_form', '~> 3.1.0.rc1'
+gem 'simple_form', '~> 3.1.0.rc2'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 
