@@ -51,7 +51,7 @@ GEM
     capistrano-rails (1.1.1)
       capistrano (~> 3.1)
       capistrano-bundler (~> 1.1)
-    capistrano-sidekiq (0.3.3)
+    capistrano-sidekiq (0.3.4)
       capistrano
       sidekiq
     capybara (2.4.1)
@@ -233,7 +233,7 @@ GEM
     shoulda-context (1.2.1)
     shoulda-matchers (2.6.1)
       activesupport (>= 3.0.0)
-    sidekiq (3.2.0)
+    sidekiq (3.2.1)
       celluloid (>= 0.15.2)
       connection_pool (>= 2.0.0)
       json
