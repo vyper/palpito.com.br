@@ -3,6 +3,7 @@ class Game < ActiveRecord::Base
   belongs_to :team_home, class_name: Team
   belongs_to :team_away, class_name: Team
   belongs_to :round
+  belongs_to :championship
   has_many   :bets, dependent: :restrict_with_error
 
   ## validations
@@ -16,9 +17,6 @@ class Game < ActiveRecord::Base
   validates :team_away_goals, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validate  :only_one_game_of_the_team_in_round
   validate  :only_accept_goals_on_played_game
-
-  ## delegates
-  delegate :championship, to: :round
 
   ## scopes
   scope :played, -> { where('"games"."played_at" < ?', DateTime.now.in_time_zone) }

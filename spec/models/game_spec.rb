@@ -9,6 +9,7 @@ describe Game do
   it { expect(subject).to belong_to(:team_away).class_name(Team) }
   it { expect(subject).to belong_to(:team_home).class_name(Team) }
   it { expect(subject).to belong_to(:round) }
+  it { expect(subject).to belong_to(:championship) }
   it { expect(subject).to have_many(:bets).dependent(:restrict_with_error) }
 
   ## validations
@@ -101,9 +102,6 @@ describe Game do
 
   ## scopes
   it { expect(Game.played.to_sql).to include '"games"."played_at" <' }
-
-  ## delegates
-  it { expect(subject.championship).to eq subject.round.championship }
 
   ## methods
   it { expect(subject.to_s).to eq "#{subject.team_home} vs #{subject.team_away}" }
