@@ -6,7 +6,6 @@ class Championship < ActiveRecord::Base
 
   ## associations
   has_many :groups, dependent: :restrict_with_error
-  has_many :rounds, dependent: :restrict_with_error
   has_many :games,  dependent: :restrict_with_error
 
   ## methods

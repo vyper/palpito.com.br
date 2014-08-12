@@ -6,7 +6,6 @@ pt-BR:
       game: Jogo
       group: Grupo
       member: Membro
-      round: Rodada
       team: Time
       user: Usuário
     attributes:
@@ -35,9 +34,6 @@ pt-BR:
         group: Grupo
         user: Usuário
         status: Situação
-      round:
-        name: Nome
-        championship: Campeonato
       team:
         name: Nome
         short_name: Sigla
