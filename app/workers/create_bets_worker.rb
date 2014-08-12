@@ -3,7 +3,7 @@ class CreateBetsWorker
 
   def perform
     result = Game.select('"games"."id" as "game_id", "members"."user_id" as "user_id"').
-                  joins(round: { championship: { groups: :members } }).
+                  joins(championship: { groups: :members }).
                   joins('LEFT JOIN "bets" ON "bets"."user_id" = "members"."user_id" and "bets"."game_id" = "games"."id"').
                   where(bets: { id: nil }).
                   group('"games"."id", "members"."user_id"')

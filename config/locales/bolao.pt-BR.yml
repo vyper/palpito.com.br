@@ -25,7 +25,6 @@ pt-BR:
         team_away: Visitante
         team_home_goals: Gols mandante
         team_away_goals: Gols visitante
-        round: Rodada
         championship: Campeonato
       group:
         name: Nome

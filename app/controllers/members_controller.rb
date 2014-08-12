@@ -43,12 +43,11 @@ class MembersController < ApplicationController
     @week    = WeekNavigation.new(@group.championship, params[:week])
 
     @bets   = @member.user.bets.
-                joins(game: :round).
-                includes(game: [:team_home, :team_away, :round]).
+                joins(game: :championship).
+                includes(game: [:team_home, :team_away, :championship]).
                 merge(Game.played).
                 where(
-                  rounds: { championship_id: @group.championship_id },
-                  games: { played_at: @week.to_range }
+                  games: { played_at: @week.to_range, championship_id: @group.championship_id }
                 ).
                 order('"games"."played_at" ASC')
 

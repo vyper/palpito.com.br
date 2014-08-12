@@ -11,7 +11,6 @@ class Bet < ActiveRecord::Base
   validate  :only_bettable
 
   ## delegates
-  delegate :round,     to: :game
   delegate :played_at, to: :game
   delegate :bettable?, to: :game, allow_nil: true
   delegate :team_home, to: :game

@@ -12,11 +12,10 @@ class BetsController < ApplicationController
     @members = group.members.joins(:user).active.merge(User.confirmed).order(points: :desc)
 
     @bets = current_user.bets.
-              joins(game: :round).
-              includes(game: [:team_home, :team_away, :round]).
+              joins(:game).
+              includes(game: [:team_home, :team_away, :championship]).
               where(
-                rounds: { championship_id: group.championship_id },
-                games: { played_at: week.to_range }
+                games: { played_at: week.to_range, championship_id: group.championship_id }
               ).
               order('"games"."played_at" ASC')
 

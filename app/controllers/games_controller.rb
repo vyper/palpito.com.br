@@ -52,6 +52,6 @@ private
   end
 
   def game_params
-    params.require(:game).permit(:team_home_id, :team_away_id, :played_at, :round_id, :championship_id, :team_home_goals, :team_away_goals)
+    params.require(:game).permit(:team_home_id, :team_away_id, :played_at, :championship_id, :team_home_goals, :team_away_goals)
   end
 end
