@@ -50,6 +50,6 @@ private
   end
 
   def team_params
-    params.require(:team).permit(:name, :short_name, :image)
+    params.require(:team).permit(:name, :short_name, :external_id, :image)
   end
 end
