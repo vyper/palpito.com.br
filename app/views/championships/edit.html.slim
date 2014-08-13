@@ -6,6 +6,7 @@
   = f.error_notification
   .form-inputs
     = f.input :name
+    = f.input :url
     = f.input :started_at,  as: :string, input_html: { value: l(f.object.started_at) }
     = f.input :finished_at, as: :string, input_html: { value: l(f.object.finished_at) }
 

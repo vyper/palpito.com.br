@@ -50,6 +50,6 @@ private
   end
 
   def championship_params
-    params.require(:championship).permit(:name, :started_at, :finished_at)
+    params.require(:championship).permit(:name, :url, :started_at, :finished_at)
   end
 end

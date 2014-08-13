@@ -7,8 +7,10 @@
 table[class="table table-hover"]
   thead
     tr
-      th.col-md-10
+      th.col-md-6
         | Nome
+      th.col-md-4
+        | External
       th.col-md-2
         |
   - for team in @teams do
@@ -16,6 +18,8 @@ table[class="table table-hover"]
       tr
         td
           = team
+        td
+          = team.external_id
         td.text-right
           = link_to edit_team_path(team), class: "btn btn-default btn-xs" do
             i.fa.fa-edit
