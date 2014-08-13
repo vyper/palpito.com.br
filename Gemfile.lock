@@ -331,6 +331,7 @@ DEPENDENCIES
   interactor-rails
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri
   omniauth-facebook
   paperclip
   pg

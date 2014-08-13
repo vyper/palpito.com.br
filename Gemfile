@@ -22,6 +22,9 @@ gem 'font-awesome-rails'
 # Browser
 gem 'browser'
 
+# Crawling
+gem 'nokogiri'
+
 # Auth
 gem 'devise'
 gem 'devise_invitable'
