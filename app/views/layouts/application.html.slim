@@ -5,6 +5,8 @@ html
       | Bolão :: Papo de Boleiro.com
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false
     = javascript_include_tag 'application', 'data-turbolinks-track' => false
+    = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'
+    = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.1.2/backbone-min.js'
     = csrf_meta_tags
     /[if lt IE 9]
       = javascript_include_tag "http://html5shiv.googlecode.com/svn/trunk/html5.js"
