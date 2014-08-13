@@ -2,23 +2,19 @@ class Game < ActiveRecord::Base
   ## associations
   belongs_to :team_home, class_name: Team
   belongs_to :team_away, class_name: Team
-  belongs_to :round
+  belongs_to :championship
   has_many   :bets, dependent: :restrict_with_error
 
   ## validations
-  validates :played_at, presence: true
-  validates :team_home, presence: true
-  validates :team_away, presence: true
-  validates :round,     presence: true
+  validates :played_at,    presence: true
+  validates :team_home,    presence: true
+  validates :team_away,    presence: true
+  validates :championship, presence: true
   validates :team_home_goals, presence: true, if: :played?
   validates :team_away_goals, presence: true, if: :played?
   validates :team_home_goals, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
   validates :team_away_goals, numericality: { greater_than_or_equal_to: 0 }, allow_nil: true
-  validate  :only_one_game_of_the_team_in_round
   validate  :only_accept_goals_on_played_game
-
-  ## delegates
-  delegate :championship, to: :round
 
   ## scopes
   scope :played, -> { where('"games"."played_at" < ?', DateTime.now.in_time_zone) }
@@ -53,16 +49,6 @@ class Game < ActiveRecord::Base
   end
 
 private
-  def only_one_game_of_the_team_in_round
-    if team_home.present? and team_home_id_changed? and round.teams.include? team_home
-      errors.add(:team_home, "Team home already exists in the round")
-    end
-
-    if team_away.present? and team_away_id_changed? and round.teams.include? team_away
-      errors.add(:team_away, "Team away already exists in the round")
-    end
-  end
-
   def only_accept_goals_on_played_game
     if not played? and team_home_goals.present?
       errors.add(:team_home_goals, "Don't accept team home goals for game not played")

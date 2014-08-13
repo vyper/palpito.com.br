@@ -9,10 +9,8 @@ table[class="table table-hover"]
     tr
       th.col-md-1
         | Data
-      th.col-md-2
+      th.col-md-3
         | Campeonato
-      th.col-md-1.text-center
-        | Rodada
       th.col-md-2.text-right
         | Mandante
       th.col-md-1.text-center
@@ -30,8 +28,6 @@ table[class="table table-hover"]
           = game.played_at.strftime("%d/%m %H:%M")
         td
           = game.championship
-        td.text-center
-          = game.round
         td.text-right
           = game.team_home
         td.text-center

@@ -39,7 +39,6 @@ describe Bet do
   end
 
   ## delegates
-  it { expect(subject.round).to eq subject.game.round }
   it { expect(subject.played_at).to eq subject.game.played_at }
   it { expect(subject.team_home).to eq subject.game.team_home }
   it { expect(subject.team_away).to eq subject.game.team_away }

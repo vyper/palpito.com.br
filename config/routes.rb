@@ -58,8 +58,6 @@ Rails.application.routes.draw do
 
   resources :championships, except: :show
 
-  resources :rounds, except: :show
-
   resources :teams, except: :show
 
   resources :games, except: :show
