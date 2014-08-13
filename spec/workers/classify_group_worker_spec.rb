@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe ClassifyGroupWorker do
-  fixtures :groups, :members, :users, :bets, :games
+  fixtures :groups, :members, :users, :bets, :games, :championships
 
   let(:group)  { groups(:vyper) }
   let(:member) { members(:vyper) }
