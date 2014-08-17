@@ -7,6 +7,7 @@ namespace :api do
     task :update, [:id, :day] => [:environment] do |t, args|
       championship = Championship.where(id: args[:id]).first!
       game_date = args[:day].present? ? Time.zone.parse(args[:day]) : Time.zone.now
+      puts "START: api:championship:update => championship: #{championship} date: #{game_date}"
 
       default_logo = File.open(Rails.root.join('app', 'assets', 'images', 'default-logo.png'))
 
@@ -38,10 +39,14 @@ namespace :api do
           game.played_at = Time.zone.parse("#{game_date.strftime("%Y-%m-%d")} #{game_time}")
         end
 
+        print "."
         game.save
 
-        puts "#{game}"
+        ClassifyGameWorker.perform_async game.id
       end
+      puts
+
+      puts "FINISH: api:championship:update => championship: #{championship} date: #{game_date}"
     end
   end
 end
