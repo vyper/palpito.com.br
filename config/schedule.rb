@@ -7,4 +7,11 @@ end
 
 every :day do
   bin "backup_db"
+  rake "api:championship:update[$(date -d '-3 day' +%Y%m%d)]"
+  rake "api:championship:update[$(date -d '-2 day' +%Y%m%d)]"
+  rake "api:championship:update[$(date -d '-1 day' +%Y%m%d)]]"
+  rake "api:championship:update"
+  rake "api:championship:update[$(date -d '+1 day' +%Y%m%d)]]"
+  rake "api:championship:update[$(date -d '+2 day' +%Y%m%d)]]"
+  rake "api:championship:update[$(date -d '+3 day' +%Y%m%d)]]"
 end
