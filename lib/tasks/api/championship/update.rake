@@ -18,7 +18,7 @@ namespace :api do
 
         games = doc.css(".score-box")
         games.each do |game|
-          game_time = game.css(".game-info .time").text
+          game_time = game.css(".game-info .time")
 
           team_home_name = game.css(".team-name")[0].text.strip
           team_away_name = game.css(".team-name")[1].text.strip
@@ -37,8 +37,9 @@ namespace :api do
           game.team_away = team_away
           game.team_home_goals = team_home_goals
           game.team_away_goals = team_away_goals
-          if game_time != "FT"
-            game.played_at = Time.zone.parse("#{game_date.strftime("%Y-%m-%d")} #{game_time}")
+          if game_time.text != "FT"
+            played_at = game_time.first.attributes["data-time"].value
+            game.played_at = Time.zone.parse(played_at)
           end
 
           print "."
