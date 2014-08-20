@@ -1,4 +1,6 @@
 set :output, 'log/cron.log'
+env :PATH, ENV['PATH']
+
 job_type :bin,  "cd :path && :environment_variable=:environment bin/:task :output"
 
 every 1.hour do
