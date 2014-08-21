@@ -86,10 +86,19 @@ $(function(){
       if (!team_home_goals || !team_away_goals) {
         this.clear();
       } else {
-        this.model.save({ team_home_goals: team_home_goals, team_away_goals: team_away_goals });
-        this.$el.removeClass("editing");
-        this.$el.find("input").prop("disabled", true);
-        this.$el.find(".save-bet").addClass("hidden");
+        this.model.save(
+          { team_home_goals: team_home_goals, team_away_goals: team_away_goals },
+          { success: _.bind(function(model) {
+              this.$el.animate({opacity: 0.4}, 350).animate({opacity: 1}, 350);
+              this.$el.removeClass("editing");
+              this.$el.find("input").prop("disabled", true);
+              this.$el.find(".save-bet").addClass("hidden");
+            }, this),
+            fail: _.bind(function() {
+              this.$el.animate({left: -5}, 150).animate({left: 5}, 150);
+            }, this)
+          }
+        );
       }
     },
 
