@@ -92,6 +92,5 @@ gem 'rollbar'
 
 # Use unicorn as the app server
 group :production do
-  gem 'unicorn'
-  gem 'unicorn-rails'
+  gem 'puma'
 end
