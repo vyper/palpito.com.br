@@ -32,6 +32,7 @@ gem 'omniauth-facebook'
 
 # Attachment
 gem 'paperclip'
+gem 'aws-sdk', '< 2.0'
 
 # Pattern
 gem "interactor"
