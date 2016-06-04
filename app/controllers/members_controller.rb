@@ -35,7 +35,7 @@ class MembersController < ApplicationController
 
   def bets
     # TODO choose better way
-    request.variant = :mobile if browser.mobile?
+    request.variant = :mobile if browser.device.mobile?
 
     @group   = current_user.groups.find(params[:group_id])
     @member  = @group.members.find(params[:member_id])
