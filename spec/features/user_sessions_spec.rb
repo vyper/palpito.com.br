@@ -13,7 +13,7 @@ describe "UserSessions" do
     expect(page).to have_content 'Login efetuado com sucesso!'
   end
 
-  it "sign me up" do
+  xit "sign me up" do
     visit '/cadastrar'
     within('#new_user') do
       fill_in 'user_nickname',   with: 'leo'
