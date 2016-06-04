@@ -1,13 +1,13 @@
 class AddGroup
   include Interactor
 
-  def perform
-    group = user.my_groups.new(params)
+  def call
+    group = context.user.my_groups.new(context.params)
 
     unless group.save
       context.fail!
     end
 
-    context[:group] = group
+    context.group = group
   end
 end

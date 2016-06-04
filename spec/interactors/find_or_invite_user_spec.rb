@@ -3,7 +3,7 @@ require 'spec_helper'
 describe FindOrInviteUser do
   fixtures :users, :groups
 
-  subject      { FindOrInviteUser.perform(member: member) }
+  subject      { FindOrInviteUser.call(member: member) }
   let(:user)   { users(:vyper) }
   let(:group)  { groups(:vyper) }
 

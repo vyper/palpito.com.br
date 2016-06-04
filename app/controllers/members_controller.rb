@@ -16,7 +16,7 @@ class MembersController < ApplicationController
 
   def invite
     @member = MemberForm.new(member_params)
-    result  = InviteMember.perform(member: @member)
+    result  = InviteMember.call(member: @member)
 
     if result.success?
       @member = result.member

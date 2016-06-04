@@ -2,12 +2,12 @@ class InviteUserToGroup
   include Interactor
 
   def setup
-    context.fail! if context[:group].blank? or context[:user].blank?
+    context.fail! if context.group.blank? or context.user.blank?
   end
 
-  def perform
-    group  = context[:group]
-    user   = context[:user]
+  def call
+    group = context.group
+    user  = context.user
 
     member = group.members.where(user: user).first
     if member.blank?
@@ -17,17 +17,17 @@ class InviteUserToGroup
         context.fail!
       end
 
-      if member.invited? and not context[:user_invited]
+      if member.invited? and not context.user_invited
         MemberMailer.invite(member).deliver
       end
     end
 
-    context[:member] = member
+    context.member = member
   end
 
   def status
-    group  = context[:group]
-    user   = context[:user]
+    group  = context.group
+    user   = context.user
 
     if user === group.admin
       return Member::statuses[:active]

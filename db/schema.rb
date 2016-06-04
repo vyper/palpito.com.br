@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20140813183459) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "bets", force: true do |t|
+  create_table "bets", force: :cascade do |t|
     t.integer  "user_id",         null: false
     t.integer  "game_id",         null: false
     t.integer  "team_home_goals"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 20140813183459) do
   add_index "bets", ["game_id"], name: "index_bets_on_game_id", using: :btree
   add_index "bets", ["user_id"], name: "index_bets_on_user_id", using: :btree
 
-  create_table "championships", force: true do |t|
+  create_table "championships", force: :cascade do |t|
     t.string   "name",        null: false
     t.datetime "started_at",  null: false
     t.datetime "finished_at", null: false
@@ -38,7 +38,7 @@ ActiveRecord::Schema.define(version: 20140813183459) do
     t.string   "url"
   end
 
-  create_table "games", force: true do |t|
+  create_table "games", force: :cascade do |t|
     t.datetime "played_at",       null: false
     t.integer  "team_home_goals"
     t.integer  "team_away_goals"
@@ -55,7 +55,7 @@ ActiveRecord::Schema.define(version: 20140813183459) do
   add_index "games", ["team_away_id"], name: "index_games_on_team_away_id", using: :btree
   add_index "games", ["team_home_id"], name: "index_games_on_team_home_id", using: :btree
 
-  create_table "groups", force: true do |t|
+  create_table "groups", force: :cascade do |t|
     t.string   "name",            null: false
     t.integer  "admin_id",        null: false
     t.datetime "created_at"
@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 20140813183459) do
   add_index "groups", ["admin_id"], name: "index_groups_on_admin_id", using: :btree
   add_index "groups", ["championship_id"], name: "index_groups_on_championship_id", using: :btree
 
-  create_table "members", force: true do |t|
+  create_table "members", force: :cascade do |t|
     t.integer  "group_id",               null: false
     t.integer  "user_id",                null: false
     t.integer  "status",     default: 2, null: false
@@ -78,7 +78,7 @@ ActiveRecord::Schema.define(version: 20140813183459) do
   add_index "members", ["group_id"], name: "index_members_on_group_id", using: :btree
   add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
 
-  create_table "rounds", force: true do |t|
+  create_table "rounds", force: :cascade do |t|
     t.string   "name",            null: false
     t.integer  "championship_id", null: false
     t.datetime "created_at"
@@ -87,7 +87,7 @@ ActiveRecord::Schema.define(version: 20140813183459) do
 
   add_index "rounds", ["championship_id"], name: "index_rounds_on_championship_id", using: :btree
 
-  create_table "teams", force: true do |t|
+  create_table "teams", force: :cascade do |t|
     t.string   "name"
     t.string   "short_name"
     t.string   "image_file_name"
@@ -101,7 +101,7 @@ ActiveRecord::Schema.define(version: 20140813183459) do
 
   add_index "teams", ["external_id"], name: "index_teams_on_external_id", using: :btree
 
-  create_table "users", force: true do |t|
+  create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
     t.string   "encrypted_password",     default: "",    null: false
     t.string   "reset_password_token"
