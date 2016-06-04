@@ -78,13 +78,13 @@ Rails.application.configure do
   config.action_mailer.default_url_options = { host: 'palpito.com.br' }
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.smtp_settings = {
-    enable_starttls_auto: true,
-    address: "smtp.gmail.com",
-    port: 587,
-    domain: ENV['SMTP_DOMAIN'],
-    authentication: :login,
-    user_name: ENV['SMTP_USERNAME'],
-    password: ENV['SMTP_PASSWORD'],
+    address:              ENV['SMTP_ADDRESS'],
+    port:                 ENV['SMTP_PORT'],
+    user_name:            ENV['SMTP_USER_NAME'],
+    password:             ENV['SMTP_PASSWORD'],
+    authentication:       ENV['SMTP_AUTHENTICATION'],
+    enable_starttls_auto: ENV['SMTP_ENABLE_STARTTLS_AUTO'],
+    openssl_verify_mode:  ENV['SMTP_OPENSSL_VERIFY_MODE'],
   }
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
