@@ -6,10 +6,8 @@ class PersistGame
   end
 
   def call
-    unless game.update context.params
+    unless context.game.update context.params
       context.fail!
     end
-
-    context.game = game
   end
 end

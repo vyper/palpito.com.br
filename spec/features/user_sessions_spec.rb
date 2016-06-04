@@ -25,6 +25,6 @@ describe "UserSessions" do
     end
     click_on 'Cadastrar-se'
 
-    expect(page).to have_content 'Para continuar, efetue login ou registre-se'
+    expect(page).to have_content 'Antes de continuar, confirme a sua conta'
   end
 end
