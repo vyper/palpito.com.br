@@ -16,7 +16,7 @@ class GroupsController < ApplicationController
   end
 
   def create
-    result = CreateGroup.perform(params: group_params, user: current_user)
+    result = CreateGroup.call(params: group_params, user: current_user)
     @my_group = result.group
 
     if result.success?

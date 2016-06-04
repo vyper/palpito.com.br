@@ -26,7 +26,7 @@ class WeekNavigation
   end
 
   def number
-    @number ||= now.strftime("%W").to_i + 1
+    @number ||= now.strftime("%W").to_i
 
     @number = max_number_limit if @number > max_number_limit
     @number = min_number_limit if @number < min_number_limit

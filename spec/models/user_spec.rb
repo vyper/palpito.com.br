@@ -45,7 +45,7 @@ describe User do
 
   context '.from_facebook_oauth' do
     let(:info) { OpenStruct.new(email: "oauth@info.org", first_name: "First", last_name: "Last") }
-    let(:auth) { OpenStruct.new(info: info, provider: "facebook", uid: 12345) }
+    let(:auth) { OpenStruct.new(info: info, provider: "facebook", uid: '12345') }
 
     it 'non existent email' do
       user = nil

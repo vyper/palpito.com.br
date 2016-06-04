@@ -6,7 +6,7 @@ class BetsController < ApplicationController
 
   def index
     # TODO choose better way
-    request.variant = :mobile if browser.mobile?
+    request.variant = :mobile if browser.device.mobile?
 
     @groups  = current_user.groups.includes(:championship).order(:name)
     @members = group.members.joins(:user).active.merge(User.confirmed).order(points: :desc)

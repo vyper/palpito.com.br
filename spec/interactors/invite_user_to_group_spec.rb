@@ -3,7 +3,7 @@ require 'spec_helper'
 describe InviteUserToGroup do
   fixtures :users, :members, :groups
 
-  subject      { InviteUserToGroup.perform(user: user, group: group) }
+  subject      { InviteUserToGroup.call(user: user, group: group) }
   let(:user)   { users(:vyper) }
   let(:group)  { groups(:vyper) }
 
@@ -14,7 +14,7 @@ describe InviteUserToGroup do
   end
 
   context 'invited group' do
-    subject { InviteUserToGroup.perform(user: users(:vpr), group: group) }
+    subject { InviteUserToGroup.call(user: users(:vpr), group: group) }
 
     it { expect(subject.member.invited?).to eq true }
   end
