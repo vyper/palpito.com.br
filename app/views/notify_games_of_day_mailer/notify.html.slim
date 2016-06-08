@@ -1,0 +1,15 @@
+p
+  | Olá
+  = " #{@user.name}"
+  | !
+p
+  | Não pode esquecer de fazer seus palpites!
+
+p
+  | Olhe aí os jogos que tem pra hoje:
+
+ul
+  - @games.each do |game|
+    li = game
+p
+  = link_to 'Correr para palpitar!', bets_url

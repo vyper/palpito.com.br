@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe Game do
+RSpec.describe Game do
   fixtures :games, :teams, :championships
 
   subject { games(:sao_x_par) }
@@ -55,6 +55,11 @@ describe Game do
 
   ## scopes
   it { expect(Game.played.to_sql).to include '"games"."played_at" <' }
+  it '.of_day' do
+    starts_at = Date.today.beginning_of_day.utc.strftime('%F %H:%M:%S.%6N')
+    ends_at = Date.today.end_of_day.utc.strftime('%F %H:%M:%S.%6N')
+    expect(Game.of_day.to_sql).to include %{"games"."played_at" BETWEEN '#{starts_at}' AND '#{ends_at}'}
+  end
 
   ## methods
   it { expect(subject.to_s).to eq "#{subject.team_home} vs #{subject.team_away}" }
