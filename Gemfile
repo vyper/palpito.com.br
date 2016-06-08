@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # HTML
 gem 'slim-rails'
-gem 'simple_form', '~> 3.1.0.rc2'
+gem 'simple_form', '~> 3.2.1'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 
@@ -65,7 +65,7 @@ gem 'dotenv-rails'
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
-  gem 'web-console', '~> 2.0'
+  gem 'web-console', '~> 3.2'
 
   gem 'bullet'
   gem 'better_errors'
@@ -81,7 +81,7 @@ end
 
 group :test do
   # Tests
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.4.2'
   gem 'capybara'
   gem 'shoulda'
   gem 'coveralls', require: false
