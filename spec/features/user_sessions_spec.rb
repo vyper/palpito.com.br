@@ -19,7 +19,7 @@ describe "UserSessions" do
       fill_in 'user_nickname',   with: 'leo'
       fill_in 'user_first_name', with: 'Leonardo'
       fill_in 'user_last_name',  with: 'Saraiva'
-      fill_in 'user_email',      with: 'leonardo@papodeboleiro.com'
+      fill_in 'user_email',      with: 'leonardo@palpito.com.br'
       fill_in 'user_password',   with: 'super-senha'
       fill_in 'user_password_confirmation', with: 'super-senha'
     end

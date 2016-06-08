@@ -2,7 +2,7 @@ doctype html
 html
   head
     title
-      | Bolão :: Papo de Boleiro.com
+      | Palpito.com.br
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => false
     = javascript_include_tag 'application', 'data-turbolinks-track' => false
     = javascript_include_tag '//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js'
@@ -26,8 +26,8 @@ html
             span.icon-bar
           = link_to root_path, class: "navbar-brand" do
             strong
-              | Bolão
-            |  :: Papo de Boleiro.com
+              | Palpito
+            | .com.br
         div[class="collapse navbar-collapse"]
           ul[class="nav navbar-nav navbar-right"]
             - if user_signed_in?
@@ -88,7 +88,7 @@ html
       div.navbar-header
         = link_to root_path, class: "navbar-brand" do
           small
-            | Bolão :: Papo de Boleiro.com
+            | Palpito.com.br
             = " © 2010-#{DateTime.now.in_time_zone.year}"
       ul.nav.nav-pills.pull-right
         li.btn
