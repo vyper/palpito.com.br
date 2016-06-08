@@ -81,7 +81,7 @@ end
 
 group :test do
   # Tests
-  gem 'rspec-rails', '~> 3.0.0'
+  gem 'rspec-rails', '~> 3.4.2'
   gem 'capybara'
   gem 'shoulda'
   gem 'coveralls', require: false
