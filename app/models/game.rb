@@ -17,7 +17,8 @@ class Game < ActiveRecord::Base
   validate  :only_accept_goals_on_played_game
 
   ## scopes
-  scope :played, -> { where('"games"."played_at" < ?', DateTime.now.in_time_zone) }
+  scope :played, -> { where('"games"."played_at" < ?', Time.current) }
+  scope :of_day, -> { where(played_at: Date.today.beginning_of_day..Date.today.end_of_day)}
 
   ## methods
   def to_s
