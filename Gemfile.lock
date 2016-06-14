@@ -100,11 +100,17 @@ GEM
       railties (>= 4.1.0, < 5.1)
       responders
       warden (~> 1.2.3)
+    devise-doorkeeper (1.1.1)
+      devise
+      doorkeeper
+      rails
     devise_invitable (1.6.0)
       actionmailer (>= 3.2.6)
       devise (>= 3.2.0)
     diff-lcs (1.2.5)
     docile (1.1.5)
+    doorkeeper (3.1.0)
+      railties (>= 3.2)
     dotenv (2.1.1)
     dotenv-rails (2.1.1)
       dotenv (= 2.1.1)
@@ -323,7 +329,9 @@ DEPENDENCIES
   coffee-rails (~> 4.1.0)
   coveralls
   devise
+  devise-doorkeeper
   devise_invitable
+  doorkeeper
   dotenv-rails
   font-awesome-rails
   interactor

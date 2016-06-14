@@ -30,6 +30,10 @@ gem 'devise'
 gem 'devise_invitable'
 gem 'omniauth-facebook'
 
+# OAuth2 provider
+gem 'doorkeeper'
+gem 'devise-doorkeeper'
+
 # Attachment
 gem 'paperclip'
 gem 'aws-sdk', '< 2.0'
