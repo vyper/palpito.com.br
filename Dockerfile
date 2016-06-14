@@ -6,7 +6,7 @@ RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app
 
 COPY Gemfile* /usr/src/app/
-RUN bundle install
+RUN bundle install --jobs 4 --retry 10
 
 COPY . /usr/src/app
 
