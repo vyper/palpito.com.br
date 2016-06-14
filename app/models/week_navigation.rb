@@ -1,5 +1,5 @@
 class WeekNavigation
-  attr_accessor :championship, :today, :number
+  attr_accessor :championship, :number
 
   def initialize(championship, number = nil)
     if number.to_i > 0
@@ -10,11 +10,11 @@ class WeekNavigation
   end
 
   def start
-    DateTime.commercial(year, number, 1, 0, 0, 0).to_time
+    Date.commercial(year, number, 1).beginning_of_day
   end
 
   def finish
-    DateTime.commercial(year, number, 7, 23, 59, 59).to_time
+    Date.commercial(year, number, 7).end_of_day
   end
 
   def year
@@ -26,7 +26,7 @@ class WeekNavigation
   end
 
   def number
-    @number ||= now.strftime("%W").to_i
+    @number ||= now.to_date.cweek
 
     @number = max_number_limit if @number > max_number_limit
     @number = min_number_limit if @number < min_number_limit
@@ -35,11 +35,11 @@ class WeekNavigation
   end
 
   def min_number_limit
-    championship.started_at.strftime("%W").to_i + 1
+    championship.started_at.to_date.cweek
   end
 
   def max_number_limit
-    championship.finished_at.strftime("%W").to_i + 1
+    championship.finished_at.to_date.cweek
   end
 
   def next
