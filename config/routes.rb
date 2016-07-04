@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   use_doorkeeper
 
+  # TODO Waiting for fix
   # authenticate :user, lambda { |u| u.admin? } do
   #   require 'sidekiq/web'
   #   mount Sidekiq::Web => '/sidekiq'

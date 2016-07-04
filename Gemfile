@@ -44,7 +44,7 @@ gem 'interactor-rails'
 
 # Queue
 gem 'sidekiq'
-# gem 'sinatra', require: nil
+gem 'sinatra', require: nil
 
 # Schedule
 gem 'whenever'
@@ -87,7 +87,7 @@ end
 
 group :development, :test do
   # Use debugger
-  # gem 'byebug', platform: :mri
+  gem 'byebug', platform: :mri
   gem 'pry-byebug'
 end
 
