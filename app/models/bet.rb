@@ -1,4 +1,4 @@
-class Bet < ActiveRecord::Base
+class Bet < ApplicationRecord
   ## associations
   belongs_to :user
   belongs_to :game

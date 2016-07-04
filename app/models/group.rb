@@ -1,4 +1,4 @@
-class Group < ActiveRecord::Base
+class Group < ApplicationRecord
   ## associations
   belongs_to :admin, class_name: User
   belongs_to :championship

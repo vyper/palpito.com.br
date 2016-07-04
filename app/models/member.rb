@@ -1,4 +1,4 @@
-class Member < ActiveRecord::Base
+class Member < ApplicationRecord
   ## associations
   belongs_to :group
   belongs_to :user
