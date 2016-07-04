@@ -10,7 +10,7 @@ namespace :api do
 
       puts "[START #{Time.now.in_time_zone}] api:championship:update => date: #{game_date}"
 
-      championships = Championship.where("? between started_at and finished_at", Time.now)
+      championships = Championship.where("? between started_at and finished_at", game_date)
       championships.each do |championship|
         print "championship: #{championship}: "
         url = championship.url + "#{championship.url.include?("?") ? "&" : "?"}date=#{game_date.strftime("%Y%m%d")}"
@@ -37,12 +37,13 @@ namespace :api do
           game.team_away = team_away
           game.team_home_goals = team_home_goals
           game.team_away_goals = team_away_goals
-          if game_time.text != "FT"
-            played_at = game_time.first.attributes["data-time"].value
+
+          if !(game_time.text =~ /LIVE|FT|AET/)
+            played_at = game_time.first.attributes['data-time'].value
             game.played_at = Time.zone.parse(played_at)
           end
 
-          print "."
+          print '.'
           game.save
 
           ClassifyGameWorker.perform_async game.id
