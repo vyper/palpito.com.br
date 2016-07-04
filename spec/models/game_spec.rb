@@ -56,8 +56,9 @@ RSpec.describe Game do
   ## scopes
   it { expect(Game.played.to_sql).to include '"games"."played_at" <' }
   it '.of_day' do
-    starts_at = Date.today.beginning_of_day.utc.strftime('%F %H:%M:%S.%6N')
+    starts_at = Date.today.beginning_of_day.utc.strftime('%F %H:%M:%S')
     ends_at = Date.today.end_of_day.utc.strftime('%F %H:%M:%S.%6N')
+
     expect(Game.of_day.to_sql).to include %{"games"."played_at" BETWEEN '#{starts_at}' AND '#{ends_at}'}
   end
 

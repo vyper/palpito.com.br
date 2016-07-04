@@ -1,10 +1,11 @@
 Rails.application.routes.draw do
   use_doorkeeper
 
-  authenticate :user, lambda { |u| u.admin? } do
-    require 'sidekiq/web'
-    mount Sidekiq::Web => '/sidekiq'
-  end
+  # TODO Waiting for fix
+  # authenticate :user, lambda { |u| u.admin? } do
+  #   require 'sidekiq/web'
+  #   mount Sidekiq::Web => '/sidekiq'
+  # end
 
   # Authentication
   devise_for :users, skip: [:sessions, :passwords, :confirmations, :registrations],
