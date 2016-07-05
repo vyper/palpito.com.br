@@ -8,6 +8,40 @@ RSpec.describe WeekNavigation do
 
     subject { described_class.new(championship: championship, day: day) }
 
+    context 'use today when day is null' do
+      let(:day)      { nil }
+      let(:base_day) { championship.started_at.beginning_of_week }
+
+      before do
+        expect(Time).to receive(:current).and_return(Time.zone.parse('2014-01-01 00:00:00'))
+      end
+
+      it('#current')   { expect(subject.current).to eq base_day }
+      it('#week')      { expect(subject.week).to eq base_day.to_date.cweek }
+      it('#next')      { expect(subject.next).to eq base_day + 8.days }
+      it('#next?')     { expect(subject.next?).to be_truthy }
+      it('#previous')  { expect(subject.previous).to eq base_day - 1.day }
+      it('#previous?') { expect(subject.previous?).to be_falsey }
+      it('#to_range')  { expect(subject.to_range).to eq base_day..base_day.end_of_week }
+    end
+
+    context 'use today when day is empty' do
+      let(:day)      { '' }
+      let(:base_day) { championship.started_at.beginning_of_week }
+
+      before do
+        expect(Time).to receive(:current).and_return(Time.zone.parse('2014-01-01 00:00:00'))
+      end
+
+      it('#current')   { expect(subject.current).to eq base_day }
+      it('#week')      { expect(subject.week).to eq base_day.to_date.cweek }
+      it('#next')      { expect(subject.next).to eq base_day + 8.days }
+      it('#next?')     { expect(subject.next?).to be_truthy }
+      it('#previous')  { expect(subject.previous).to eq base_day - 1.day }
+      it('#previous?') { expect(subject.previous?).to be_falsey }
+      it('#to_range')  { expect(subject.to_range).to eq base_day..base_day.end_of_week }
+    end
+
     context 'day is before of championship' do
       let(:day)      { '2014-01-01 00:00:00' }
       let(:base_day) { championship.started_at.beginning_of_week }

@@ -40,7 +40,7 @@ class MembersController < ApplicationController
     @group   = current_user.groups.find(params[:group_id])
     @member  = @group.members.find(params[:member_id])
     @members = @group.members.joins(:user).active.merge(User.confirmed).order(points: :desc)
-    @week    = WeekNavigation.new(@group.championship, params[:week])
+    @week    = WeekNavigation.new(championship: @group.championship, day: params[:day])
 
     @bets   = @member.user.bets.
                 joins(game: :championship).
