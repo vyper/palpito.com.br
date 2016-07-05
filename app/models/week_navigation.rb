@@ -1,61 +1,46 @@
 class WeekNavigation
-  attr_accessor :championship, :number
+  attr_accessor :championship
 
-  def initialize(championship, number = nil)
-    if number.to_i > 0
-      @number = number.to_i
-    end
-
+  def initialize(championship:, day:)
+    @day          = day.present? ? Time.zone.parse(day) : Time.current
     @championship = championship
   end
 
-  def start
-    Date.commercial(year, number, 1).beginning_of_day
+  def week
+    current.to_date.cweek
   end
 
-  def finish
-    Date.commercial(year, number, 7).end_of_day
-  end
+  def current
+    @base_day ||= begin
+      return championship.started_at.beginning_of_week if @day < championship.started_at
+      return championship.finished_at.beginning_of_week if @day > championship.finished_at
 
-  def year
-    championship.started_at.year
-  end
-
-  def now
-    Time.zone.now
-  end
-
-  def number
-    @number ||= now.to_date.cweek
-
-    @number = max_number_limit if @number > max_number_limit
-    @number = min_number_limit if @number < min_number_limit
-
-    @number
-  end
-
-  def min_number_limit
-    championship.started_at.to_date.cweek
-  end
-
-  def max_number_limit
-    championship.finished_at.to_date.cweek
+      @day.beginning_of_week
+    end
   end
 
   def next
-    number + 1
+    current + 8.days
   end
 
   def next?
-    self.next <= max_number_limit
+    self.next <= championship.finished_at.end_of_week
   end
 
   def previous
-    number - 1
+    current - 1.day
   end
 
   def previous?
-    self.previous >= min_number_limit
+    self.previous >= championship.started_at.beginning_of_week
+  end
+
+  def start
+    current.beginning_of_week
+  end
+
+  def finish
+    current.end_of_week
   end
 
   def to_range

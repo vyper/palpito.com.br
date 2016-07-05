@@ -15,7 +15,7 @@ class BetsController < ApplicationController
               joins(:game).
               includes(game: [:team_home, :team_away, :championship]).
               where(
-                games: { played_at: week.to_range, championship_id: group.championship_id }
+                games: { played_at: navigation.to_range, championship_id: group.championship_id }
               ).
               order('"games"."played_at" ASC')
 
@@ -35,8 +35,8 @@ private
     end
   end
 
-  def week
-    @week = WeekNavigation.new(group.championship, params[:week])
+  def navigation
+    @navigation = WeekNavigation.new(championship: group.championship, day: params[:day])
   end
 
   def group

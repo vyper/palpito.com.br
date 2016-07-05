@@ -3,49 +3,93 @@ require 'spec_helper'
 RSpec.describe WeekNavigation do
   fixtures :championships
 
-  let(:championship) { championships(:worldcup) }
-  let(:week)         { described_class.new(championship) }
-  let(:week_w_n)     { described_class.new(championship, 25) }
+  context 'championship with only one year' do
+    let(:championship) { championships(:worldcup) }
 
-  before :each do
-    allow_any_instance_of(described_class).to receive(:now).and_return(Time.zone.parse('2014-06-11 00:00:00'))
+    subject { described_class.new(championship: championship, day: day) }
+
+    context 'day is before of championship' do
+      let(:day)      { '2014-01-01 00:00:00' }
+      let(:base_day) { championship.started_at.beginning_of_week }
+
+      it('#current')   { expect(subject.current).to eq base_day }
+      it('#week')      { expect(subject.week).to eq base_day.to_date.cweek }
+      it('#next')      { expect(subject.next).to eq base_day + 8.days }
+      it('#next?')     { expect(subject.next?).to be_truthy }
+      it('#previous')  { expect(subject.previous).to eq base_day - 1.day }
+      it('#previous?') { expect(subject.previous?).to be_falsey }
+      it('#to_range')  { expect(subject.to_range).to eq base_day..base_day.end_of_week }
+    end
+
+    context 'day is during of championship' do
+      let(:day)      { '2014-06-18 00:00:00' }
+      let(:base_day) { Time.zone.parse(day).beginning_of_week }
+
+      it('#current')   { expect(subject.current).to eq base_day }
+      it('#week')      { expect(subject.week).to eq base_day.to_date.cweek }
+      it('#next')      { expect(subject.next).to eq base_day + 8.days }
+      it('#next?')     { expect(subject.next?).to be_truthy }
+      it('#previous')  { expect(subject.previous).to eq base_day - 1.day }
+      it('#previous?') { expect(subject.previous?).to be_truthy }
+      it('#to_range')  { expect(subject.to_range).to eq base_day.beginning_of_week..base_day.end_of_week }
+    end
+
+    context 'day is after of championship' do
+      let(:day)      { '2014-08-01 00:00:00' }
+      let(:base_day) { championship.finished_at.beginning_of_week }
+
+      it('#current')   { expect(subject.current).to eq base_day }
+      it('#week')      { expect(subject.week).to eq base_day.to_date.cweek }
+      it('#next')      { expect(subject.next).to eq base_day + 8.days }
+      it('#next?')     { expect(subject.next?).to be_falsey }
+      it('#previous')  { expect(subject.previous).to eq base_day - 1.day }
+      it('#previous?') { expect(subject.previous?).to be_truthy }
+      it('#to_range')  { expect(subject.to_range).to eq base_day..base_day.end_of_week }
+    end
   end
 
-  context '#number' do
-    it('max limit') { expect(described_class.new(championship, 66).number).to eq 28 }
-    it('min limit') { expect(described_class.new(championship, -3).number).to eq 24 }
-    it('empty')     { expect(described_class.new(championship).number).    to eq 24 }
-  end
+  context 'championship with two years' do
+    let(:championship) { championships(:premier_league) }
 
-  it('#min_number_limit') { expect(week.min_number_limit).to eq 24 }
-  it('#max_number_limit') { expect(week.max_number_limit).to eq 28 }
+    subject { described_class.new(championship: championship, day: day) }
 
-  context '#start' do
-    it { expect(week.start).to     eq Time.zone.parse('2014-06-09 00:00:00') }
-    it { expect(week_w_n.start).to eq Time.zone.parse('2014-06-16 00:00:00') }
-  end
+    context 'day is before of championship' do
+      let(:day)      { '2016-07-01 00:00' }
+      let(:base_day) { championship.started_at.beginning_of_week }
 
-  context '#finish' do
-    it { expect(week.finish).to     eq Time.zone.parse('2014-06-15 23:59:59.999999999') }
-    it { expect(week_w_n.finish).to eq Time.zone.parse('2014-06-22 23:59:59.999999999') }
-  end
+      it('#current')   { expect(subject.current).to eq base_day }
+      it('#week')      { expect(subject.week).to eq base_day.to_date.cweek }
+      it('#next')      { expect(subject.next).to eq base_day + 8.days }
+      it('#next?')     { expect(subject.next?).to be_truthy }
+      it('#previous')  { expect(subject.previous).to eq base_day - 1.day }
+      it('#previous?') { expect(subject.previous?).to be_falsey }
+      it('#to_range')  { expect(subject.to_range).to eq base_day..base_day.end_of_week }
+    end
 
-  it('#next?') { expect(week.next?).to eq true }
+    context 'day is during of championship' do
+      let(:day)      { '2016-09-13 00:00' }
+      let(:base_day) { Time.zone.parse(day).beginning_of_week }
 
-  context '#next' do
-    it { expect(week.next).to     eq 25 }
-    it { expect(week_w_n.next).to eq 26 }
-  end
+      it('#current')   { expect(subject.current).to eq base_day }
+      it('#week')      { expect(subject.week).to eq base_day.to_date.cweek }
+      it('#next')      { expect(subject.next).to eq base_day + 8.days }
+      it('#next?')     { expect(subject.next?).to be_truthy }
+      it('#previous')  { expect(subject.previous).to eq base_day - 1.day }
+      it('#previous?') { expect(subject.previous?).to be_truthy }
+      it('#to_range')  { expect(subject.to_range).to eq base_day.beginning_of_week..base_day.end_of_week }
+    end
 
-  it('#previous?') { expect(week.previous?).to eq false }
+    context 'day is after of championship' do
+      let(:day)      { '2017-08-13 00:00' }
+      let(:base_day) { championship.finished_at.beginning_of_week }
 
-  context '#previous' do
-    it { expect(week.previous).to     eq 23 }
-    it { expect(week_w_n.previous).to eq 24 }
-  end
-
-  context '#to_range' do
-    it { expect(week.to_range).to     eq (Time.zone.parse('2014-06-09 00:00:00')..Time.zone.parse('2014-06-15 23:59:59.999999999')) }
-    it { expect(week_w_n.to_range).to eq (Time.zone.parse('2014-06-16 00:00:00')..Time.zone.parse('2014-06-22 23:59:59.999999999')) }
+      it('#current')   { expect(subject.current).to eq base_day }
+      it('#week')      { expect(subject.week).to eq base_day.to_date.cweek }
+      it('#next')      { expect(subject.next).to eq base_day + 8.days }
+      it('#next?')     { expect(subject.next?).to be_falsey }
+      it('#previous')  { expect(subject.previous).to eq base_day - 1.day }
+      it('#previous?') { expect(subject.previous?).to be_truthy }
+      it('#to_range')  { expect(subject.to_range).to eq base_day..base_day.end_of_week }
+    end
   end
 end
