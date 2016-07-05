@@ -1,7 +1,7 @@
 <ul class="pager">
   <% if @week.previous? %>
     <li class="previous">
-      <%= link_to '←', group_member_bets_path(@group, @member, week: @week.previous) %>
+      <%= link_to '←', group_member_bets_path(@group, @member, day: @week.previous) %>
     </li>
   <% else %>
     <li class='previous disabled'>
@@ -9,12 +9,12 @@
     </li>
   <% end %>
   <li class="week">
-    Semana <%= @week.number %>:
+    Semana <%= @week.week %>:
     <%= @week.start.strftime("%d/%m") %> a <%= @week.finish.strftime("%d/%m") %>
   </li>
   <% if @week.next? %>
     <li class="next">
-      <%= link_to '→', group_member_bets_path(@group, @member, week: @week.next) %>
+      <%= link_to '→', group_member_bets_path(@group, @member, day: @week.next) %>
     </li>
   <% else %>
     <li class="next disabled">
