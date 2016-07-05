@@ -24,7 +24,7 @@ $(function(){
   var Bet = Backbone.Model.extend({
     url: function() {
       var base = 'bets';
-      if (this.isNew()) return base + '?week=' + location.search.replace(/\?week=(\d)/, "$1");
+      if (this.isNew()) return base + '?day=' + location.search.replace(/\?day=(\d)/, "$1");
       return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.id;
     },
 
@@ -39,7 +39,7 @@ $(function(){
 
     url: function() {
       var base = 'bets';
-      if (!this.get("id")) return base + '?week=' + location.search.replace(/\?week=(\d)/, "$1");
+      if (!this.get("id")) return base + '?day=' + location.search.replace(/\?day=(\d)/, "$1");
       return base + (base.charAt(base.length - 1) == '/' ? '' : '/') + this.get("id");
     }
   });
