@@ -8,6 +8,10 @@ class Championship < ApplicationRecord
   has_many :groups, dependent: :restrict_with_error
   has_many :games,  dependent: :restrict_with_error
 
+  ## scopes
+  scope :running, -> { where(arel_table[:started_at].lteq(Time.current))
+                         .where(arel_table[:finished_at].gteq(Time.current)) }
+
   ## methods
   def finished?
     finished_at <= DateTime.now

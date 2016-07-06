@@ -6,30 +6,30 @@ RSpec.describe Game do
   subject { games(:sao_x_par) }
 
   ## associations
-  it { expect(subject).to belong_to(:team_away).class_name(Team) }
-  it { expect(subject).to belong_to(:team_home).class_name(Team) }
-  it { expect(subject).to belong_to(:championship) }
-  it { expect(subject).to have_many(:bets).dependent(:restrict_with_error) }
+  it { is_expected.to belong_to(:team_away).class_name(Team) }
+  it { is_expected.to belong_to(:team_home).class_name(Team) }
+  it { is_expected.to belong_to(:championship) }
+  it { is_expected.to have_many(:bets).dependent(:restrict_with_error) }
 
   ## validations
-  it { expect(subject).to validate_presence_of(:played_at) }
-  it { expect(subject).to validate_presence_of(:team_away) }
-  it { expect(subject).to validate_presence_of(:team_home) }
-  it { expect(subject).to validate_numericality_of(:team_home_goals).is_greater_than_or_equal_to(0).allow_nil }
-  it { expect(subject).to validate_numericality_of(:team_away_goals).is_greater_than_or_equal_to(0).allow_nil }
+  it { is_expected.to validate_presence_of(:played_at) }
+  it { is_expected.to validate_presence_of(:team_away) }
+  it { is_expected.to validate_presence_of(:team_home) }
+  it { is_expected.to validate_numericality_of(:team_home_goals).is_greater_than_or_equal_to(0).allow_nil }
+  it { is_expected.to validate_numericality_of(:team_away_goals).is_greater_than_or_equal_to(0).allow_nil }
 
   context '#played?' do
     subject { games(:sao_x_par) }
 
     it 'true' do
-      expect(subject).to validate_presence_of(:team_home_goals)
-      expect(subject).to validate_presence_of(:team_away_goals)
+      is_expected.to validate_presence_of(:team_home_goals)
+      is_expected.to validate_presence_of(:team_away_goals)
     end
 
     it 'false' do
       subject.played_at = 1.days.from_now
-      expect(subject).to_not validate_presence_of(:team_home_goals)
-      expect(subject).to_not validate_presence_of(:team_away_goals)
+      is_expected.to_not validate_presence_of(:team_home_goals)
+      is_expected.to_not validate_presence_of(:team_away_goals)
     end
   end
 

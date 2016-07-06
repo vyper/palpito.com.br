@@ -7,3 +7,18 @@ premier_league:
   name: 'Premier League 2016/2017'
   started_at: '2016-08-13 00:00'
   finished_at: '2017-05-13 23:59'
+
+finished:
+  name: 'Finished championship'
+  started_at: <%= 3.years.ago %>
+  finished_at: <%= 2.years.ago %>
+
+running:
+  name: 'Running championship'
+  started_at: <%= 1.month.ago %>
+  finished_at: <%= 1.month.from_now %>
+
+scheduled:
+  name: 'Scheduled championship'
+  started_at: <%= 1.month.from_now %>
+  finished_at: <%= 3.month.from_now %>

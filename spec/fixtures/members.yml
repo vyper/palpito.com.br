@@ -2,3 +2,8 @@ vyper:
   user: vyper
   group: vyper
   status: 0
+
+vpr:
+  user: vpr
+  group: vpr
+  status: 0
