@@ -17,7 +17,7 @@ class Game < ApplicationRecord
   validate  :only_accept_goals_on_played_game
 
   ## scopes
-  scope :played, -> { where('"games"."played_at" < ?', Time.current) }
+  scope :played, -> { where(arel_table[:played_at].lt(Time.current)) }
   scope :of_day, -> { where(played_at: Date.today.beginning_of_day..Date.today.end_of_day)}
 
   ## methods

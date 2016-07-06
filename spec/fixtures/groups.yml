@@ -2,3 +2,18 @@ vyper:
   name: "vyper's group"
   championship: worldcup
   admin: vyper
+
+finished:
+  name: 'group for finished championship'
+  championship: finished
+  admin: vpr
+
+running:
+  name: 'group for running championship'
+  championship: running
+  admin: vpr
+
+scheduled:
+  name: 'group for scheduled championship'
+  championship: scheduled
+  admin: vpr

@@ -1,16 +1,25 @@
 require 'spec_helper'
 
-describe Championship do
+RSpec.describe Championship, type: :model do
   fixtures :championships
 
   ## validations
-  it { expect(subject).to validate_presence_of(:name) }
-  it { expect(subject).to validate_presence_of(:started_at) }
-  it { expect(subject).to validate_presence_of(:finished_at) }
+  it { is_expected.to validate_presence_of(:name) }
+  it { is_expected.to validate_presence_of(:started_at) }
+  it { is_expected.to validate_presence_of(:finished_at) }
 
   ## associations
-  it { expect(subject).to have_many(:groups).dependent(:restrict_with_error) }
-  it { expect(subject).to have_many(:games).dependent(:restrict_with_error) }
+  it { is_expected.to have_many(:groups).dependent(:restrict_with_error) }
+  it { is_expected.to have_many(:games).dependent(:restrict_with_error) }
+
+  ## scopes
+  describe '.running' do
+    subject { described_class.running }
+
+    it { is_expected.to_not include championships(:finished) }
+    it { is_expected.to     include championships(:running) }
+    it { is_expected.to_not include championships(:scheduled) }
+  end
 
   ## methods
   it { expect(subject.to_s).to eq subject.name }
