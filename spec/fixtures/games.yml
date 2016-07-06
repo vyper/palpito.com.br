@@ -11,3 +11,9 @@ cor_x_pal:
   team_away: pal
   played_at: 2014-01-01 17:00
   championship: worldcup
+
+par_x_cfc:
+  team_home: par
+  team_away: cfc
+  played_at: 2016-08-20 00:00
+  championship: premier_league

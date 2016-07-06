@@ -10,14 +10,7 @@ class BetsController < ApplicationController
 
     @groups  = current_user.groups.includes(:championship).order(:name)
     @members = group.members.joins(:user).active.merge(User.confirmed).order(points: :desc)
-
-    @bets = current_user.bets.
-              joins(:game).
-              includes(game: [:team_home, :team_away, :championship]).
-              where(
-                games: { played_at: navigation.to_range, championship_id: group.championship_id }
-              ).
-              order('"games"."played_at" ASC')
+    @bets    = current_user.bets.by_championship_in(group.championship, navigation.to_range)
 
     respond_with @bets
   end

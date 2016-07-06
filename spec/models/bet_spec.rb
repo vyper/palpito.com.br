@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-describe Bet do
-  fixtures :bets, :games, :teams
+RSpec.describe Bet, type: :model do
+  fixtures :bets, :games, :teams, :championships
 
   subject { bets(:sao_w_x_par) }
 
@@ -43,6 +43,30 @@ describe Bet do
   it { expect(subject.team_home).to eq subject.game.team_home }
   it { expect(subject.team_away).to eq subject.game.team_away }
   it { expect(subject.bettable?).to eq subject.game.bettable? }
+
+  ## scopes
+  describe '.by_championship_in' do
+    let(:worldcup) { championships(:worldcup) }
+    let(:premier)  { championships(:premier_league) }
+
+    subject { described_class.by_championship_in(worldcup, games(:sao_x_par).played_at) }
+
+    it 'contains only games of championship' do
+      expect(subject.pluck(:game_id)).to match_array worldcup.games.pluck(:id)
+    end
+
+    it 'does not contains games of others championships' do
+      expect(subject.pluck(:game_id)).to_not match_array premier.games.pluck(:id)
+    end
+
+    it 'contains only games in interval' do
+      expect(subject.pluck(:game_id)).to match_array worldcup.games.pluck(:id)
+    end
+
+    it 'does not contains games out of interval' do
+      expect(subject.pluck(:game_id)).to_not include games(:par_x_cfc).id
+    end
+  end
 
   ## methods
   it { expect(subject.to_s).to eq("#{subject.game.team_home.short_name} vs #{subject.game.team_away.short_name}") }

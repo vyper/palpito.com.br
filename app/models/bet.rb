@@ -16,6 +16,13 @@ class Bet < ApplicationRecord
   delegate :team_home, to: :game
   delegate :team_away, to: :game
 
+  scope :by_championship_in, ->(championship, played_at) {
+    joins(:game)
+      .includes(game: [:team_home, :team_away])
+      .where(games: { played_at: played_at, championship_id: championship.id })
+      .order('games.played_at ASC')
+  }
+
   ## methods
   def goals?
     team_home_goals.present? and team_away_goals.present?
@@ -25,7 +32,8 @@ class Bet < ApplicationRecord
     "#{team_home.short_name} vs #{team_away.short_name}"
   end
 
-private
+  private
+
   def only_bettable
     if not bettable? and (team_home_goals_changed? or team_away_goals_changed?)
       errors.add(:base, "The game was played and now isn't bettable")
