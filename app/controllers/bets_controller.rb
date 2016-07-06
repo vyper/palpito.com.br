@@ -1,6 +1,6 @@
 class BetsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :with_groups?
+  before_action :authenticate_user!
+  before_action :with_groups?
 
   respond_to :html, :json
 
