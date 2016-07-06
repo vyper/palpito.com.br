@@ -1,6 +1,6 @@
 class GroupsController < ApplicationController
-  before_filter :authenticate_user!
-  before_filter :set_common
+  before_action :authenticate_user!
+  before_action :set_common
 
   respond_to :html
 

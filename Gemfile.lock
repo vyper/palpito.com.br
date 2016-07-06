@@ -1,3 +1,13 @@
+GIT
+  remote: git://github.com/sinatra/sinatra.git
+  revision: a5da6fa82c46436f59ae482d07c1752ab908c852
+  specs:
+    sinatra (2.0.0.pre.alpha)
+      mustermann (~> 0.4)
+      rack (~> 2.0)
+      rack-protection (~> 1.5)
+      tilt (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -167,6 +177,8 @@ GEM
     multi_json (1.12.1)
     multi_xml (0.5.5)
     multipart-post (2.0.0)
+    mustermann (0.4.0)
+      tool (~> 0.2)
     nio4r (1.2.1)
     nokogiri (1.6.8)
       mini_portile2 (~> 2.1.0)
@@ -203,6 +215,8 @@ GEM
       pry (~> 0.10)
     puma (3.4.0)
     rack (2.0.1)
+    rack-protection (1.5.3)
+      rack
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.0)
@@ -287,8 +301,6 @@ GEM
       json (~> 1.8)
       simplecov-html (~> 0.10.0)
     simplecov-html (0.10.0)
-    sinatra (1.0)
-      rack (>= 1.0)
     slim (3.0.7)
       temple (~> 0.7.6)
       tilt (>= 1.3.3, < 2.1)
@@ -315,6 +327,7 @@ GEM
     thread_safe (0.3.5)
     tilt (2.0.5)
     tins (1.6.0)
+    tool (0.2.3)
     tzinfo (1.2.2)
       thread_safe (~> 0.1)
     uglifier (3.0.0)
@@ -376,7 +389,7 @@ DEPENDENCIES
   shoulda
   sidekiq
   simple_form (~> 3.2.1)
-  sinatra
+  sinatra!
   slim-rails
   spring
   spring-watcher-listen (~> 2.0.0)

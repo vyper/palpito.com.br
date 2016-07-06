@@ -1,6 +1,6 @@
 class GamesController < ApplicationController
-  before_filter :authenticate_admin!
-  before_filter :set_common, only: [:edit, :update, :classify, :destroy]
+  before_action :authenticate_admin!
+  before_action :set_common, only: [:edit, :update, :classify, :destroy]
 
   respond_to :html
 
