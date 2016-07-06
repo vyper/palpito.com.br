@@ -1,7 +1,8 @@
 require 'spec_helper'
 
-describe Member do
+RSpec.describe Member, type: :model do
   fixtures :members, :users, :groups
+
   subject { members(:vyper) }
 
   ## associations
@@ -15,7 +16,7 @@ describe Member do
   it { expect(subject).to validate_presence_of(:status) }
 
   ## attributes
-  it { expect(Member::statuses).to eq({"active" => 0, "pending" => 1, "invited" => 2}) }
+  it { is_expected.to define_enum_for(:status).with({ active: 0, pending: 1, invited: 2 }) }
 
   ## delegates
   it do
@@ -26,8 +27,4 @@ describe Member do
     expect(subject.full_name).to eq user.full_name
     expect(subject.to_s).to eq user.to_s
   end
-
-  ## scopes
-  it { expect(Member.active.to_sql).to include '"members"."status" = 0' }
-  it { expect(Member.pending.to_sql).to include '"members"."status" = 1' }
 end
