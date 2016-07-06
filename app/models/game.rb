@@ -26,7 +26,7 @@ class Game < ApplicationRecord
   end
 
   def played?
-    played_at.present? and DateTime.now.in_time_zone > played_at
+    played_at.present? and Time.current > played_at
   end
 
   def goals?

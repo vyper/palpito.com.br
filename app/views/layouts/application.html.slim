@@ -89,7 +89,7 @@ html
         = link_to root_path, class: "navbar-brand" do
           small
             | Palpito.com.br
-            = " © 2010-#{DateTime.now.in_time_zone.year}"
+            = " © 2010-#{Time.current.year}"
       ul.nav.nav-pills.pull-right
         li.btn
           = link_to "Regulamento", rule_path
