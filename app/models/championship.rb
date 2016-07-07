@@ -14,11 +14,11 @@ class Championship < ApplicationRecord
 
   ## methods
   def finished?
-    finished_at <= DateTime.now
+    finished_at <= Time.current
   end
 
   def started?
-    started_at <= DateTime.now
+    started_at <= Time.current
   end
 
   def to_s

@@ -17,7 +17,8 @@ class Game < ApplicationRecord
   validate  :only_accept_goals_on_played_game
 
   ## scopes
-  scope :played, -> { where(arel_table[:played_at].lt(Time.current)) }
+  scope :played_until, ->(time) { where(arel_table[:played_at].lt(time)) }
+  scope :played, -> { played_until(Time.current) }
   scope :of_day, -> { where(played_at: Date.today.beginning_of_day..Date.today.end_of_day)}
 
   ## methods
@@ -26,7 +27,7 @@ class Game < ApplicationRecord
   end
 
   def played?
-    played_at.present? and DateTime.now.in_time_zone > played_at
+    played_at.present? and Time.current > played_at
   end
 
   def goals?

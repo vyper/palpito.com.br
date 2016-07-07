@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160613125839) do
+ActiveRecord::Schema.define(version: 20160706215412) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,10 +23,9 @@ ActiveRecord::Schema.define(version: 20160613125839) do
     t.integer  "points"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["game_id"], name: "index_bets_on_game_id", using: :btree
+    t.index ["user_id"], name: "index_bets_on_user_id", using: :btree
   end
-
-  add_index "bets", ["game_id"], name: "index_bets_on_game_id", using: :btree
-  add_index "bets", ["user_id"], name: "index_bets_on_user_id", using: :btree
 
   create_table "championships", force: :cascade do |t|
     t.string   "name",        null: false
@@ -48,12 +46,11 @@ ActiveRecord::Schema.define(version: 20160613125839) do
     t.datetime "updated_at"
     t.integer  "championship_id"
     t.string   "external_id"
+    t.index ["championship_id"], name: "index_games_on_championship_id", using: :btree
+    t.index ["external_id"], name: "index_games_on_external_id", using: :btree
+    t.index ["team_away_id"], name: "index_games_on_team_away_id", using: :btree
+    t.index ["team_home_id"], name: "index_games_on_team_home_id", using: :btree
   end
-
-  add_index "games", ["championship_id"], name: "index_games_on_championship_id", using: :btree
-  add_index "games", ["external_id"], name: "index_games_on_external_id", using: :btree
-  add_index "games", ["team_away_id"], name: "index_games_on_team_away_id", using: :btree
-  add_index "games", ["team_home_id"], name: "index_games_on_team_home_id", using: :btree
 
   create_table "groups", force: :cascade do |t|
     t.string   "name",            null: false
@@ -61,22 +58,22 @@ ActiveRecord::Schema.define(version: 20160613125839) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "championship_id"
+    t.index ["admin_id"], name: "index_groups_on_admin_id", using: :btree
+    t.index ["championship_id"], name: "index_groups_on_championship_id", using: :btree
   end
-
-  add_index "groups", ["admin_id"], name: "index_groups_on_admin_id", using: :btree
-  add_index "groups", ["championship_id"], name: "index_groups_on_championship_id", using: :btree
 
   create_table "members", force: :cascade do |t|
-    t.integer  "group_id",               null: false
-    t.integer  "user_id",                null: false
-    t.integer  "status",     default: 2, null: false
+    t.integer  "group_id",                null: false
+    t.integer  "user_id",                 null: false
+    t.integer  "status",     default: 2,  null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "points",     default: 0, null: false
+    t.integer  "points",     default: 0,  null: false
+    t.integer  "position",   default: 0,  null: false
+    t.jsonb    "positions",  default: {}, null: false
+    t.index ["group_id"], name: "index_members_on_group_id", using: :btree
+    t.index ["user_id"], name: "index_members_on_user_id", using: :btree
   end
-
-  add_index "members", ["group_id"], name: "index_members_on_group_id", using: :btree
-  add_index "members", ["user_id"], name: "index_members_on_user_id", using: :btree
 
   create_table "oauth_access_grants", force: :cascade do |t|
     t.integer  "resource_owner_id", null: false
@@ -87,9 +84,8 @@ ActiveRecord::Schema.define(version: 20160613125839) do
     t.datetime "created_at",        null: false
     t.datetime "revoked_at"
     t.string   "scopes"
+    t.index ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
   end
-
-  add_index "oauth_access_grants", ["token"], name: "index_oauth_access_grants_on_token", unique: true, using: :btree
 
   create_table "oauth_access_tokens", force: :cascade do |t|
     t.integer  "resource_owner_id"
@@ -100,11 +96,10 @@ ActiveRecord::Schema.define(version: 20160613125839) do
     t.datetime "revoked_at"
     t.datetime "created_at",        null: false
     t.string   "scopes"
+    t.index ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, using: :btree
+    t.index ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
+    t.index ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
   end
-
-  add_index "oauth_access_tokens", ["refresh_token"], name: "index_oauth_access_tokens_on_refresh_token", unique: true, using: :btree
-  add_index "oauth_access_tokens", ["resource_owner_id"], name: "index_oauth_access_tokens_on_resource_owner_id", using: :btree
-  add_index "oauth_access_tokens", ["token"], name: "index_oauth_access_tokens_on_token", unique: true, using: :btree
 
   create_table "oauth_applications", force: :cascade do |t|
     t.string   "name",                      null: false
@@ -114,18 +109,16 @@ ActiveRecord::Schema.define(version: 20160613125839) do
     t.string   "scopes",       default: "", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
   end
-
-  add_index "oauth_applications", ["uid"], name: "index_oauth_applications_on_uid", unique: true, using: :btree
 
   create_table "rounds", force: :cascade do |t|
     t.string   "name",            null: false
     t.integer  "championship_id", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.index ["championship_id"], name: "index_rounds_on_championship_id", using: :btree
   end
-
-  add_index "rounds", ["championship_id"], name: "index_rounds_on_championship_id", using: :btree
 
   create_table "teams", force: :cascade do |t|
     t.string   "name"
@@ -137,9 +130,8 @@ ActiveRecord::Schema.define(version: 20160613125839) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "external_id"
+    t.index ["external_id"], name: "index_teams_on_external_id", using: :btree
   end
-
-  add_index "teams", ["external_id"], name: "index_teams_on_external_id", using: :btree
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -172,9 +164,8 @@ ActiveRecord::Schema.define(version: 20160613125839) do
     t.boolean  "admin",                  default: false
     t.string   "provider"
     t.string   "uid"
+    t.index ["email"], name: "index_users_on_email", unique: true, using: :btree
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
   end
-
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
 end
