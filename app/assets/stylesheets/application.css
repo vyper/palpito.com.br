@@ -110,3 +110,17 @@ th.happened, td.happened {
   margin-left: 30px;
   display: list-item;
 }
+
+.ranking li .position-difference {
+  margin-top: 3px;
+  margin-right: 5px;
+  font-size: 10px;
+}
+
+.ranking li .fa-arrow-up {
+  color: green;
+}
+
+.ranking li .fa-arrow-down {
+  color: red;
+}

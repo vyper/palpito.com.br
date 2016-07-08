@@ -32,4 +32,10 @@ class Member < ApplicationRecord
 
     save!
   end
+
+  def position_difference
+    return 0 if positions.size < 2
+
+    positions.sort.last(2).map(&:last).reduce(&:-)
+  end
 end

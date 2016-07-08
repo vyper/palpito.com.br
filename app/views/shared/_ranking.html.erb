@@ -11,6 +11,15 @@
       <li class="list-group-item <%= member.user == current_user ? 'list-group-item-success' : '' %>">
         <%= link_to member, group_member_bets_path(@group, member) %>
         <span class="badge"><%= member.points %></span>
+        <span class="position-difference pull-right">
+          <% if member.position_difference > 0 %>
+            <%= fa_icon 'arrow-up' %>
+          <% elsif member.position_difference < 0 %>
+            <%= fa_icon 'arrow-down' %>
+          <% else %>
+            <%= fa_icon 'minus' %>
+          <% end %>
+        </span>
       </li>
     <% end %>
   </ol>
