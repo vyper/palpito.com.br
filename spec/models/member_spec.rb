@@ -123,4 +123,28 @@ RSpec.describe Member, type: :model do
       end
     end
   end
+
+  describe '#position_difference' do
+    it 'has not positions' do
+      expect(subject.position_difference).to eq 0
+    end
+
+    it 'has only one position' do
+      subject.update positions: { '2016/27' => 1 }
+
+      expect(subject.position_difference).to eq 0
+    end
+
+    it 'has two positions' do
+      subject.update positions: { '2016/03' => 3, '2016/27' => 1 }
+
+      expect(subject.position_difference).to eq 2
+    end
+
+    it 'has many positions' do
+      subject.update positions: { '2016/03' => 3, '2016/26' => 1, '2016/27' => 6 }
+
+      expect(subject.position_difference).to eq -5
+    end
+  end
 end
