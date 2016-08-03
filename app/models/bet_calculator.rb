@@ -1,11 +1,14 @@
 class BetCalculator
-  attr_accessor :game_home_goals, :game_away_goals, :bet_home_goals, :bet_away_goals
+  attr_accessor :game_home_goals, :game_away_goals, :bet_home_goals, :bet_away_goals, :points
 
-  Points = 10
+  POINTS = 10
 
   def initialize(options)
-    @game_home_goals, @game_away_goals = options[:game_home_goals], options[:game_away_goals]
-    @bet_home_goals,  @bet_away_goals  = options[:bet_home_goals],  options[:bet_away_goals]
+    @points          = options.fetch(:points, POINTS)
+    @game_home_goals = options[:game_home_goals]
+    @game_away_goals = options[:game_away_goals]
+    @bet_home_goals  = options[:bet_home_goals]
+    @bet_away_goals  = options[:bet_away_goals]
   end
 
   def calculate
@@ -21,11 +24,11 @@ class BetCalculator
     bh_goals = bet_home_goals
 
     if gh_goals > bh_goals
-      score += Points - (gh_goals - bh_goals)
+      score += points - (gh_goals - bh_goals)
     elsif gh_goals < bh_goals
-      score += Points - (bh_goals - gh_goals)
+      score += points - (bh_goals - gh_goals)
     else
-      score += 10
+      score += points
     end
 
     # away goals
@@ -34,19 +37,19 @@ class BetCalculator
     ba_goals = bet_away_goals
 
     if ga_goals > ba_goals
-      score += Points - (ga_goals - ba_goals)
+      score += points - (ga_goals - ba_goals)
     elsif ga_goals < ba_goals
-      score += Points - (ba_goals - ga_goals)
+      score += points - (ba_goals - ga_goals)
     else
-      score += 10
+      score += points
     end
 
     # Points by correct bet
-    score += 10
+    score += points
 
     # Points by correct score
     if game_home_goals == bet_home_goals && game_away_goals == bet_away_goals
-      score += 10
+      score += points
     end
 
     score
