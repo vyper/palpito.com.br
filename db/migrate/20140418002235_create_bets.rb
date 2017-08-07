@@ -1,4 +1,4 @@
-class CreateBets < ActiveRecord::Migration
+class CreateBets < ActiveRecord::Migration[4.2]
   def change
     create_table :bets do |t|
       t.references :user,            null: false, index: true
