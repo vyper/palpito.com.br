@@ -1,6 +1,6 @@
-FROM ruby:2.3
+FROM ruby:2.3.4
 
-RUN apt-get update && apt-get install -qq -y build-essential nodejs libpq-dev postgresql-client-9.4 --fix-missing --no-install-recommends
+RUN apt-get update && apt-get install -qq -y build-essential nodejs libpq-dev postgresql-client --fix-missing --no-install-recommends
 
 RUN mkdir -p /usr/src/app
 WORKDIR /usr/src/app

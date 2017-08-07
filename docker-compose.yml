@@ -19,11 +19,11 @@ web:
     - "3000"
 
 db_data:
-  image: postgres:9.4.5
+  image: postgres:9.6-alpine
   entrypoint: /bin/bash
 
 db:
-  image: postgres:9.4.5
+  image: postgres:9.6-alpine
   volumes_from:
     - db_data
   environment:
@@ -35,7 +35,7 @@ db:
     - "5432"
 
 redis:
-  image: redis:3.0.5
+  image: redis:3-alpine
   ports:
     - "6379:6379"
   expose:
