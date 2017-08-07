@@ -75,7 +75,7 @@ gem 'dotenv-rails'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen', '~> 3.1.5'
 
   gem 'bullet'
   gem 'better_errors'
