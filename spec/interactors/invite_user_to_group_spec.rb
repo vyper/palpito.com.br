@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe InviteUserToGroup do
+RSpec.describe InviteUserToGroup, type: :interactor do
   fixtures :users, :members, :groups
 
   subject      { InviteUserToGroup.call(user: user, group: group) }

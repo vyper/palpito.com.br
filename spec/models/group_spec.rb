@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe Group do
+RSpec.describe Group, type: :model do
   fixtures :groups, :users
 
   subject { groups(:vyper) }

@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe PersistGame do
+RSpec.describe PersistGame, type: :interactor do
   fixtures :games, :teams
 
   let(:game) { games(:sao_x_par) }

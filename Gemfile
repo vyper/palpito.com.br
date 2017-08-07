@@ -93,11 +93,11 @@ end
 
 group :test do
   # Tests
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.6'
   gem 'capybara'
-  gem 'shoulda'
-  gem 'coveralls', require: false
-  gem 'codeclimate-test-reporter', require: false
+  gem 'shoulda', '~>3.5'
+  gem 'simplecov'
+  gem 'codeclimate-test-reporter', '~> 1.0'
 end
 
 # Error notification

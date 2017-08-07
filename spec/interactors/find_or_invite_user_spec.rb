@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe FindOrInviteUser do
+RSpec.describe FindOrInviteUser, type: :interactor do
   fixtures :users, :groups
 
   subject      { FindOrInviteUser.call(member: member) }

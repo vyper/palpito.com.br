@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe MemberController do
+RSpec.describe MemberController, type: :controller do
   pending '#accept'
   pending '#destroy'
 end

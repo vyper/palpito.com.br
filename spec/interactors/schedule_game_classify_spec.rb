@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ScheduleGameClassify do
+RSpec.describe ScheduleGameClassify, type: :interactor do
   fixtures :games
 
   subject { ScheduleGameClassify.new game: game }

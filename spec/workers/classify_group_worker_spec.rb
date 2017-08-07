@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe ClassifyGroupWorker, type: :worker do
   fixtures :groups, :members, :users, :bets, :games, :championships
