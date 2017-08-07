@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.2'
 
 # HTML
 gem 'slim-rails'
-gem 'simple_form', '~> 3.2.1'
+gem 'simple_form', '~> 3.5.0'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 
@@ -36,7 +36,7 @@ gem 'devise-doorkeeper'
 
 # Attachment
 gem 'paperclip'
-gem 'aws-sdk', '~> 2.0.34'
+gem 'aws-sdk', '~> 2.10.21'
 
 # Pattern
 gem 'interactor'
@@ -95,7 +95,7 @@ group :test do
   # Tests
   gem 'rspec-rails', '~> 3.6'
   gem 'capybara'
-  gem 'shoulda', '~>3.5'
+  gem 'shoulda', '~> 3.5'
   gem 'simplecov'
   gem 'codeclimate-test-reporter', '~> 1.0'
 end
