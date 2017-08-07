@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '>= 5.0.0.1'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -23,7 +23,7 @@ gem 'font-awesome-rails'
 gem 'browser'
 
 # Crawling
-gem 'nokogiri'
+gem 'nokogiri', '>= 1.7.2'
 
 # Auth
 gem 'devise'
@@ -31,7 +31,7 @@ gem 'devise_invitable'
 gem 'omniauth-facebook'
 
 # OAuth2 provider
-gem 'doorkeeper'
+gem 'doorkeeper', '>= 4.2.0'
 gem 'devise-doorkeeper'
 
 # Attachment
