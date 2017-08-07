@@ -11,7 +11,7 @@ class User < ApplicationRecord
   validates :last_name,  presence: true
 
   ## associations
-  belongs_to :team
+  belongs_to :team, required: false
   has_many :bets
   has_many :members
   has_many :my_groups, class_name: Group, foreign_key: :admin_id

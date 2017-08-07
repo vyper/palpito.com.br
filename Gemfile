@@ -3,7 +3,7 @@ source 'https://rubygems.org'
 ruby '2.3.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1.3'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -95,6 +95,8 @@ group :test do
   # Tests
   gem 'rspec-rails', '~> 3.6'
   gem 'capybara'
+  gem 'selenium-webdriver'
+
   gem 'shoulda', '~> 3.5'
   gem 'simplecov'
   gem 'codeclimate-test-reporter', '~> 1.0'
