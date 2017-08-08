@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-RSpec.describe ClassifyBetWorker do
+RSpec.describe ClassifyBetWorker, type: :worker do
   fixtures :bets, :games, :teams, :users, :championships
 
   let(:bet)  { bets(:sao_w_x_par) }

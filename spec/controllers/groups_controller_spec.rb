@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe GroupsController do
+RSpec.describe GroupsController, type: :controller do
   pending '#index'
   pending '#new'
   pending '#create'

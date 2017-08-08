@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe CreateGroup do
+RSpec.describe CreateGroup, type: :interactor do
 end

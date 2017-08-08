@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe MembersController do
+RSpec.describe MembersController, type: :controller do
   pending '#index'
   pending '#new'
   pending '#invite'

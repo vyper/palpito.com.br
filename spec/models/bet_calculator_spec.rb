@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe BetCalculator do
   let(:default_params) { { game_home_goals: 1, game_away_goals: 1, bet_home_goals: 1, bet_away_goals: 1 } }

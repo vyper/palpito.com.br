@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe AddGroup do
+RSpec.describe AddGroup, type: :interactor do
   fixtures :championships, :users
 
   context '.call' do

@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe 'Championships' do
+RSpec.describe 'Championships', type: :feature do
   fixtures :users, :championships
 
   before(:each) { login_as(users(:vyper), scope: :user, run_callbacks: false) }

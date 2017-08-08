@@ -1,9 +1,9 @@
 source 'https://rubygems.org'
 
-ruby '2.3.1'
+ruby '2.3.4'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
-gem 'rails', '~> 5.0.0'
+gem 'rails', '~> 5.1.3'
 # Use postgresql as the database for Active Record
 gem 'pg'
 # Use SCSS for stylesheets
@@ -15,7 +15,7 @@ gem 'coffee-rails', '~> 4.2'
 
 # HTML
 gem 'slim-rails'
-gem 'simple_form', '~> 3.2.1'
+gem 'simple_form', '~> 3.5.0'
 gem 'bootstrap-sass'
 gem 'font-awesome-rails'
 
@@ -36,7 +36,7 @@ gem 'devise-doorkeeper'
 
 # Attachment
 gem 'paperclip'
-gem 'aws-sdk', '~> 2.0.34'
+gem 'aws-sdk', '~> 2.10.21'
 
 # Pattern
 gem 'interactor'
@@ -75,7 +75,7 @@ gem 'dotenv-rails'
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> in views
   gem 'web-console'
-  gem 'listen', '~> 3.0.5'
+  gem 'listen', '~> 3.1.5'
 
   gem 'bullet'
   gem 'better_errors'
@@ -93,11 +93,13 @@ end
 
 group :test do
   # Tests
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.6'
   gem 'capybara'
-  gem 'shoulda'
-  gem 'coveralls', require: false
-  gem 'codeclimate-test-reporter', require: false
+  gem 'selenium-webdriver'
+
+  gem 'shoulda', '~> 3.5'
+  gem 'simplecov'
+  gem 'codeclimate-test-reporter', '~> 1.0'
 end
 
 # Error notification

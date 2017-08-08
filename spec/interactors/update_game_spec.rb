@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe UpdateGame do
+RSpec.describe UpdateGame, type: :interactor do
 end

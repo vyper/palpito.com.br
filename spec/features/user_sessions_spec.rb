@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe "UserSessions" do
+RSpec.describe "UserSessions", type: :feature do
   fixtures :users, :teams
 
   it "sign me in" do

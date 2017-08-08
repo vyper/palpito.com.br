@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe ClassifyGameWorker do
+RSpec.describe ClassifyGameWorker, type: :worker do
   fixtures :games, :bets
 
   context '#perform' do

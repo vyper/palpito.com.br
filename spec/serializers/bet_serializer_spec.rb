@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe BetSerializer do
+RSpec.describe BetSerializer do
   fixtures :bets, :games, :teams
 
   subject { BetSerializer.new(bets(:sao_w_x_par)) }

@@ -1,4 +1,4 @@
-require 'spec_helper'
+require 'rails_helper'
 
 RSpec.describe CreateBetsWorker, type: :worker do
   fixtures :games, :users, :members, :teams, :bets, :championships

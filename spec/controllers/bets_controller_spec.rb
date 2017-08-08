@@ -1,6 +1,6 @@
-require 'spec_helper'
+require 'rails_helper'
 
-describe BetsController do
+RSpec.describe BetsController, type: :controller do
   pending '#index'
   pending '#update'
 end
