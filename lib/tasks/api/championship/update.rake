@@ -1,46 +1,46 @@
 require 'nokogiri'
-require 'open-uri'
+require 'net/http'
 
 namespace :api do
   namespace :championship do
     desc "Update games"
-    task :update, [:day] => [:environment] do |t, args|
-      default_logo = File.open(Rails.root.join('app', 'assets', 'images', 'default-logo.png'))
-      game_date = args[:day].present? ? Time.zone.parse(args[:day]) : Time.zone.now
+    task :update, [:jump_n_days, :day] => [:environment] do |t, args|
+      day = args[:day].present? ? Time.zone.parse(args[:day]) : Time.zone.now
+      day = day + args.fetch(:jump_n_days, 0).to_i.day
 
-      puts "[START #{Time.now.in_time_zone}] api:championship:update => date: #{game_date}"
-
-      championships = Championship.where("? between started_at and finished_at", game_date)
+      puts "[START #{Time.now.in_time_zone}] api:championship:update => date: #{day}"
+      championships = Championship.running(on: day).where.not(url: nil)
       championships.each do |championship|
         print "championship: #{championship}: "
-        url = championship.url + "#{championship.url.include?("?") ? "&" : "?"}date=#{game_date.strftime("%Y%m%d")}"
-        doc = Nokogiri::HTML(open(url))
+        url = championship.url + "#{championship.url.include?("?") ? "&" : "?"}dates=#{day.strftime("%Y%m%d")}"
+        doc = Net::HTTP.get(URI.parse(url))
+        json = JSON.parse(doc)
 
-        games = doc.css(".score-box")
-        games.each do |game|
-          game_time = game.css(".game-info .time")
+        json_games = json['events']
+        json_games.each do |json_game|
+          json_teams = json_game['competitions'].first['competitors']
 
-          team_home_name = game.css(".team-name")[0].text.strip
-          team_away_name = game.css(".team-name")[1].text.strip
+          json_competitor_home = json_teams.select { |team| team['homeAway'] == 'home' }.first
+          json_competitor_away = json_teams.select { |team| team['homeAway'] == 'away' }.first
 
-          team_home_goals = game.css(".team-score span")[0].text.gsub(/\([0-9]+\) ?/, "")
-          team_away_goals = game.css(".team-score span")[1].text.gsub(/\([0-9]+\) ?/, "")
+          json_team_home = json_competitor_home['team']
+          json_team_away = json_competitor_away['team']
 
-          team_home = Team.where(external_id: team_home_name).first_or_create(name: team_home_name, short_name: team_home_name[0..2].upcase, image: default_logo)
-          team_away = Team.where(external_id: team_away_name).first_or_create(name: team_away_name, short_name: team_away_name[0..2].upcase, image: default_logo)
+          if !json_team_home['isActive'] && !json_team_away['isActive']
+            print 'i'
+            next
+          end
 
-          game_external_id =  game.css(".score").first.attributes["data-gameid"].value
-          game = Game.where(external_id: game_external_id).
-                      first_or_create(team_home: team_home, team_away: team_away, championship: championship)
+          team_home = first_or_create_team(json_team_home)
+          team_away = first_or_create_team(json_team_away)
 
-          game.team_home = team_home
-          game.team_away = team_away
-          game.team_home_goals = team_home_goals
-          game.team_away_goals = team_away_goals
+          game_external_id = json_game['uid']
+          game_played_at = Time.zone.parse(json_game['date'])
+          game = Game.where(external_id: game_external_id).first_or_initialize(team_home: team_home, team_away: team_away, championship: championship, played_at: game_played_at)
 
-          if !(game_time.text =~ /LIVE|FT|AET/)
-            played_at = game_time.first.attributes['data-time'].value
-            game.played_at = Time.zone.parse(played_at)
+          if json_game['status']['type']['completed']
+            game.team_home_goals = json_competitor_home['score'].to_i
+            game.team_away_goals = json_competitor_away['score'].to_i
           end
 
           print '.'
@@ -50,8 +50,17 @@ namespace :api do
         end
         puts
 
-        puts "[FINISH #{Time.now.in_time_zone}] api:championship:update => date: #{game_date}"
+        puts "[FINISH #{Time.now.in_time_zone}] api:championship:update => date: #{day}"
       end
+    end
+
+    def first_or_create_team(json)
+      external_id = json['uid']
+      team_name   = json['name']
+      short_name  = json['abbreviation'][0..2].upcase
+      image       = URI.parse(json['logo']).open
+
+      Team.where(external_id: external_id).first_or_create(external_id: external_id, name: team_name, short_name: short_name, image: image)
     end
   end
 end

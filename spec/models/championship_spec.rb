@@ -19,6 +19,14 @@ RSpec.describe Championship, type: :model do
     it { is_expected.to_not include championships(:finished) }
     it { is_expected.to     include championships(:running) }
     it { is_expected.to_not include championships(:scheduled) }
+
+    context 'specifing on' do
+      subject { described_class.running(on: championships(:running).started_at) }
+
+      it { is_expected.to_not include championships(:finished) }
+      it { is_expected.to     include championships(:running) }
+      it { is_expected.to_not include championships(:scheduled) }
+    end
   end
 
   ## methods
