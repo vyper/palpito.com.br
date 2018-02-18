@@ -9,8 +9,8 @@ class Championship < ApplicationRecord
   has_many :games,  dependent: :restrict_with_error
 
   ## scopes
-  scope :running, -> { where(arel_table[:started_at].lteq(Time.current))
-                         .where(arel_table[:finished_at].gteq(Time.current)) }
+  scope :running, -> (on: Time.current) {  where(arel_table[:started_at].lteq(on.end_of_day))
+                                          .where(arel_table[:finished_at].gteq(on.beginning_of_day)) }
 
   ## methods
   def finished?
