@@ -4,11 +4,12 @@ require 'net/http'
 namespace :api do
   namespace :championship do
     desc "Update games"
-    task :update, [:day] => [:environment] do |t, args|
+    task :update, [:jump_n_days, :day] => [:environment] do |t, args|
       day = args[:day].present? ? Time.zone.parse(args[:day]) : Time.zone.now
+      day = day + args.fetch(:jump_n_days, 0).to_i.day
 
       puts "[START #{Time.now.in_time_zone}] api:championship:update => date: #{day}"
-      championships = Championship.running(on: day)
+      championships = Championship.running(on: day).where.not(url: nil)
       championships.each do |championship|
         print "championship: #{championship}: "
         url = championship.url + "#{championship.url.include?("?") ? "&" : "?"}dates=#{day.strftime("%Y%m%d")}"
