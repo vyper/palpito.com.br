@@ -27,6 +27,7 @@ RSpec.describe 'Teams', type: :feature do
   it 'updating' do
     visit "/teams/#{teams(:cor).id}/edit"
 
+    attach_file('team_image', File.join('spec', 'support', 'test.png'))
     fill_in 'team_short_name', with: 'COR'
     fill_in 'team_name', with: 'Galinhas'
     click_on 'Salvar'

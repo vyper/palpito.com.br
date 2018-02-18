@@ -5,7 +5,7 @@ ruby '2.3.4'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.1.3'
 # Use postgresql as the database for Active Record
-gem 'pg'
+gem 'pg', '~> 0.21'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -44,7 +44,7 @@ gem 'interactor-rails'
 
 # Queue
 gem 'sidekiq'
-gem 'sinatra', require: nil, github: 'sinatra/sinatra'
+gem 'sinatra', require: false
 
 # Schedule
 gem 'whenever'
