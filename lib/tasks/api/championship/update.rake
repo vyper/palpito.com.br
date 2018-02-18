@@ -5,7 +5,6 @@ namespace :api do
   namespace :championship do
     desc "Update games"
     task :update, [:day] => [:environment] do |t, args|
-      default_logo = File.open(Rails.root.join('app', 'assets', 'images', 'default-logo.png'))
       day = args[:day].present? ? Time.zone.parse(args[:day]) : Time.zone.now
 
       puts "[START #{Time.now.in_time_zone}] api:championship:update => date: #{day}"
@@ -21,10 +20,18 @@ namespace :api do
           json_teams = json_game['competitions'].first['competitors']
 
           json_competitor_home = json_teams.select { |team| team['homeAway'] == 'home' }.first
-          team_home = first_or_create_team(json_competitor_home['team'])
-
           json_competitor_away = json_teams.select { |team| team['homeAway'] == 'away' }.first
-          team_away = first_or_create_team(json_competitor_away['team'])
+
+          json_team_home = json_competitor_home['team']
+          json_team_away = json_competitor_away['team']
+
+          if !json_team_home['isActive'] && !json_team_away['isActive']
+            print 'i'
+            next
+          end
+
+          team_home = first_or_create_team(json_team_home)
+          team_away = first_or_create_team(json_team_away)
 
           game_external_id = json_game['uid']
           game_played_at = Time.zone.parse(json_game['date'])
@@ -51,7 +58,6 @@ namespace :api do
       team_name   = json['name']
       short_name  = json['abbreviation'][0..2].upcase
       image       = URI.parse(json['logo']).open
-      default_logo = File.open(Rails.root.join('app', 'assets', 'images', 'default-logo.png'))
 
       Team.where(external_id: external_id).first_or_create(external_id: external_id, name: team_name, short_name: short_name, image: image)
     end
