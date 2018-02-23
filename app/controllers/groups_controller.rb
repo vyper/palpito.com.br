@@ -2,7 +2,7 @@ class GroupsController < ApplicationController
   before_action :authenticate_user!
   before_action :set_common
 
-  respond_to :html
+  respond_to :html, :json
 
   def index
     @my_groups = current_user.my_groups.includes(:championship)
