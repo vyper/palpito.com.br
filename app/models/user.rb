@@ -14,7 +14,7 @@ class User < ApplicationRecord
   belongs_to :team, required: false
   has_many :bets
   has_many :members
-  has_many :my_groups, class_name: Group, foreign_key: :admin_id
+  has_many :my_groups, class_name: 'Group', foreign_key: :admin_id
   has_many :groups, through: :members
 
   ## scopes
@@ -46,13 +46,14 @@ class User < ApplicationRecord
     end
 
     unless user.persisted?
-      user.first_name = auth.info.first_name
-      user.last_name  = auth.info.last_name
-      user.email      = auth.info.email
-      user.nickname   = user.name[0..15]
-      user.password   = Devise.friendly_token[0,20]
+      user.first_name   = auth.info.first_name
+      user.last_name    = auth.info.last_name
+      user.email        = auth.info.email
+      user.nickname     = user.name[0..15]
+      user.password     = Devise.friendly_token[0,20]
     end
 
+    user.confirmed_at ||= Time.current
     user.save if user.changed?
 
     user
