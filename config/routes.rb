@@ -12,14 +12,14 @@ Rails.application.routes.draw do
 
   as :user do
     # session handling
-    get     '/entrar'  => 'devise/sessions#new',     as: 'new_user_session'
-    post    '/entrar'  => 'devise/sessions#create',  as: 'user_session'
-    delete  '/sair' => 'devise/sessions#destroy', as: 'destroy_user_session'
+    post    '/entrar/facebook' => 'users/facebook#create',   as: 'facebook_user_session'
+    get     '/entrar'          => 'devise/sessions#new',     as: 'new_user_session'
+    post    '/entrar'          => 'devise/sessions#create',  as: 'user_session'
+    delete  '/sair'            => 'devise/sessions#destroy', as: 'destroy_user_session'
 
     # joining
     get   '/cadastrar'          => 'devise/registrations#new',    as: 'new_user_registration'
     post  '/cadastrar'          => 'devise/registrations#create', as: 'user_registration'
-    post  '/cadastrar/facebook' => 'users/facebook#create',       as: 'facebook_user_registration'
 
     scope '/minha-conta' do
       # password reset
