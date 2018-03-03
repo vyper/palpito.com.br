@@ -1,42 +1,46 @@
-web:
-  # tty: true
-  # stdin_open: true
-  build: .
-  command: bash -c "bundle install && rails s -p 3000 -b '0.0.0.0'"
-  environment:
-    - DATABASE_URL=postgres://postgres:postgres@db:5432
-    - REDIS_URL=redis://redis:6379/0
-    - RAILS_ENV=development
-    - SECRET_KEY_BASE=78ad42a2e34b37ab8c3717cfb273447bc86a3a0e5b58776fde26643a13d88d55ac00c51f14a0644b27132293c7923ac71afd95b695ead3c93bfe31d0b5a58536
-  volumes:
-    - '.:/usr/src/app'
-  links:
-    - db
-    - redis
-  ports:
-    - "3000:3000"
-  expose:
-    - "3000"
+version: '3'
 
-db_data:
-  image: postgres:9.6-alpine
-  entrypoint: /bin/bash
+services:
+  web:
+    build: .
+    command: bash -c "(bundle check || bundle install) && rails s -b '0.0.0.0'"
+    environment:
+      - DATABASE_URL=postgres://postgres:postgres@db:5432
+      - REDIS_URL=redis://redis:6379/0
+      - RAILS_ENV=development
+      - SECRET_KEY_BASE=78ad42a2e34b37ab8c3717cfb273447bc86a3a0e5b58776fde26643a13d88d55ac00c51f14a0644b27132293c7923ac71afd95b695ead3c93bfe31d0b5a58536
+    volumes:
+      - .:/usr/src/app
+      - bundle:/usr/local/bundle
+    depends_on:
+      - db
+      - redis
+    ports:
+      - "3000:3000"
+    expose:
+      - "3000"
 
-db:
-  image: postgres:9.6-alpine
-  volumes_from:
-    - db_data
-  environment:
-    POSTGRES_PASSWORD: postgres
-    POSTGRES_USER: postgres
-  ports:
-    - "5432:5432"
-  expose:
-    - "5432"
+  db:
+    image: postgres:9.6-alpine
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+    ports:
+      - "5432:5432"
+    expose:
+      - "5432"
 
-redis:
-  image: redis:3-alpine
-  ports:
-    - "6379:6379"
-  expose:
-    - "6379"
+  redis:
+    image: redis:3-alpine
+    ports:
+      - "6379:6379"
+    expose:
+      - "6379"
+
+volumes:
+  bundle:
+    driver: local
+  db_data:
+    driver: local
