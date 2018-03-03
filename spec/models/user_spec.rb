@@ -53,6 +53,7 @@ RSpec.describe User, type: :model do
         user = User.from_facebook_oauth(auth)
       end.to change(User, :count).by(1)
 
+      expect(user).to            be_confirmed
       expect(user.provider).to   eq auth.provider
       expect(user.uid).to        eq auth.uid
       expect(user.email).to      eq auth.info.email
@@ -69,6 +70,7 @@ RSpec.describe User, type: :model do
         user = User.from_facebook_oauth(auth)
       end.to change(User, :count).by(0)
 
+      expect(user).to            be_confirmed
       expect(user.provider).to   eq auth.provider
       expect(user.uid).to        eq auth.uid
       expect(user.email).to      eq subject.email
@@ -85,6 +87,7 @@ RSpec.describe User, type: :model do
         user = User.from_facebook_oauth(auth)
       end.to change(User, :count).by(0)
 
+      expect(user).to            be_confirmed
       expect(user.provider).to   eq subject.provider
       expect(user.uid).to        eq subject.uid
       expect(user.email).to      eq subject.email
