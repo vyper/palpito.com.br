@@ -57,6 +57,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :api do
+    resources :bets, only: [:index, :update]
+    resources :groups, only: :index
+  end
+
   resources :bets, only: [:index, :update]
 
   resources :championships, except: :show

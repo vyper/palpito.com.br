@@ -1,7 +1,7 @@
 class Game < ApplicationRecord
   ## associations
-  belongs_to :team_home, class_name: Team
-  belongs_to :team_away, class_name: Team
+  belongs_to :team_home, class_name: 'Team'
+  belongs_to :team_away, class_name: 'Team'
   belongs_to :championship
   has_many   :bets, dependent: :restrict_with_error
 
