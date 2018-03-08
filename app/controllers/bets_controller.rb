@@ -8,9 +8,9 @@ class BetsController < ApplicationController
     # TODO choose better way
     request.variant = :mobile if browser.device.mobile?
 
-    @groups  = current_user.groups.includes(:championship).order(:name)
-    @members = group.members.joins(:user).active.merge(User.confirmed).order(points: :desc)
-    @bets    = current_user.bets.by_championship_in(group.championship, navigation.to_range)
+    @groups  = groups
+    @members = members
+    @bets    = bets
 
     respond_with @bets
   end
@@ -22,6 +22,19 @@ class BetsController < ApplicationController
   end
 
 private
+
+  def bets
+    current_user.bets.by_championship_in(group.championship, navigation.to_range)
+  end
+
+  def groups
+    current_user.groups.includes(:championship).order(:name)
+  end
+
+  def members
+    group.members.joins(:user).active.merge(User.confirmed).order(points: :desc)
+  end
+
   def with_groups?
     unless current_user.groups.count > 0
       redirect_to groups_path
@@ -34,12 +47,12 @@ private
 
   def group
     if params[:group_id].present?
-      @group = @groups.find(params[:group_id])
+      @group = groups.find(params[:group_id])
       session[:group_id] = params[:group_id]
     elsif session[:group_id].present?
-      @group = @groups.find(session[:group_id])
+      @group = groups.find(session[:group_id])
     else
-      @group = @groups.first
+      @group = groups.first
     end
 
     @group

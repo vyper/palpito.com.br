@@ -1,6 +1,6 @@
 class Group < ApplicationRecord
   ## associations
-  belongs_to :admin, class_name: User
+  belongs_to :admin, class_name: 'User'
   belongs_to :championship
   has_many   :members, dependent: :destroy
   has_many   :users, through: :members
